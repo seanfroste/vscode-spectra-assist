@@ -1,0 +1,34 @@
+{
+  "name": "vscode-spectre-assist",
+  "displayName": "vscode-spectre-assist",
+  "description": "basic syntax highlighting for spectre input files",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.87.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "in",
+        "aliases": [
+          "spectre-in",
+          "in"
+        ],
+        "extensions": [
+          ".in"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "in",
+        "scopeName": "source.in",
+        "path": "./syntaxes/in.tmLanguage.json"
+      }
+    ]
+  }
+}
