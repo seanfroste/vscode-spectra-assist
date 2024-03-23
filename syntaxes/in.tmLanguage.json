@@ -1,16 +1,12 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-  "fileTypes": [
-    "in"
-  ],
+  "fileTypes": [ "in" ],
   "name": "spectre-in",
   "patterns": [
-    {
-      "include": "#main"
-    }
+    { "include": "#main" }
   ],
   "scopeName": "source.in",
-  "uuid": "",
+  "uuid": "4fb5ae98-d1e6-43dd-bc85-387d08a61ea0",
   "repository": {
     "main": {
       "patterns": [
@@ -20,7 +16,7 @@
         },
         {
           "match": "(^(BIAS|CONSTANT|CONS|CONVERGENCE|CONV|DEFINE|DEPOSIT|DEPO|DOPE|ELECTRODE|ELEC|END|EXTRACT|EXTR|GRID|IF|INSERT|INTERFACE|INT|LIGHT|MODEL|NFERMI|NFER|PFERMI|PFER|REGION|REGI|RESTART|REST|SAVE|STRUCTURE|STRUCT|SUBSTRATE|SUBS|TITLE))(?=\\s+)",
-          "name": "keyword.in"
+          "name": "keyword.control.in"
         },
         {
           "match": "([A-Za-z]+(?=[\\x{0020}\\t]*={1}[\\x{0020}\\t]*))",
@@ -30,23 +26,13 @@
           "match": "(=\\s*([^\\x{003d}\\n\\x{002c}\\x{0028}\\x{007b}\\s\\t]+)(?![A-Za-z]+(?=[\\x{0020}\\t]*={1}[\\x{0020}\\t]*|\\s*\\(|\\s*\\{)))",
           "name": "constant.numeric.in"
         },
-        {
-          "include": "#numeric"
-        },
+        { "include": "#numeric" },
         {
           "begin": "(\\{)",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.in"
-            }
-          },
+          "beginCaptures": { "1": { "name": "punctuation.in" } },
           "contentName": "text.in",
           "end": "(\\})",
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.in"
-            }
-          }
+          "endCaptures": { "1": { "name": "punctuation.in" } }
         },
         {
           "match": "(;)",
@@ -54,52 +40,24 @@
         },
         {
           "begin": "(\\\")",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.in"
-            }
-          },
+          "beginCaptures": { "1": { "name": "punctuation.in" } },
           "contentName": "text.in",
           "end": "(\\\")",
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.in"
-            }
-          }
+          "endCaptures": { "1": { "name": "punctuation.in" } }
         },
         {
           "begin": "(')",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.in"
-            }
-          },
+          "beginCaptures": { "1": { "name": "punctuation.in" } },
           "contentName": "text.in",
           "end": "(')",
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.in"
-            }
-          }
+          "endCaptures": { "1": { "name": "punctuation.in" } }
         },
         {
           "begin": "(\\()",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.in"
-            }
-          },
-          "patterns": [
-            {
-              "include": "#main__4"
-            }
-          ],
+          "beginCaptures": { "1": { "name": "punctuation.in" } },
+          "patterns": [ { "include": "#main__4" } ],
           "end": "(\\))",
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.in"
-            }
-          }
+          "endCaptures": { "1": { "name": "punctuation.in" } }
         },
         {
           "match": "(=)",
@@ -120,19 +78,17 @@
       ]
     },
     "main__1": {
-      "patterns": []
+      "patterns": [ ]
     },
     "main__2": {
-      "patterns": []
+      "patterns": [ ]
     },
     "main__3": {
-      "patterns": []
+      "patterns": [ ]
     },
     "main__4": {
       "patterns": [
-        {
-          "include": "#numeric"
-        },
+        { "include": "#numeric" },
         {
           "match": "(,)",
           "name": "punctuation.in"
