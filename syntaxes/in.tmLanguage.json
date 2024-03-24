@@ -61,7 +61,7 @@
         },
         {
           "match": "(=)",
-          "name": "text.in"
+          "name": "keyword.operator"
         },
         {
           "match": "(,\\s*,)",
