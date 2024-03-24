@@ -18,14 +18,7 @@
           "match": "(^(BIAS|CONSTANT|CONS|CONVERGENCE|CONV|DEFINE|DEPOSIT|DEPO|DOPE|ELECTRODE|ELEC|END|EXTRACT|EXTR|GRID|IF|INSERT|INTERFACE|INT|LIGHT|MODEL|NFERMI|NFER|PFERMI|PFER|REGION|REGI|RESTART|REST|SAVE|STRUCTURE|STRUCT|SUBSTRATE|SUBS|TITLE){1})(?=\\s+)",
           "name": "keyword.control.in"
         },
-        {
-          "match": "([A-Za-z]+(?=[\\x{0020}\\t]*={1}[\\x{0020}\\t]*))",
-          "name": "entity.other.attribute-name"
-        },
-        {
-          "match": "(?<==\\s*)([^\\x{003d}\\n\\x{002c}\\x{0028}\\x{007b}\\s\\t]+)(?![A-Za-z]+(?=[\\x{0020}\\t]*={1}[\\x{0020}\\t]*|\\s*\\(|\\s*\\{))",
-          "name": "constant.character"
-        },
+        { "include": "#parameters" },
         { "include": "#numeric" },
         {
           "begin": "(\\{)",
@@ -83,6 +76,20 @@
         {
           "match": "(,)",
           "name": "punctuation.in"
+        }
+      ]
+    },
+    "parameters": {
+      "patterns": [
+        {
+          "match": "([A-Za-z]+(?=[\\x{0020}\\t]*={1}[\\x{0020}\\t]*))",
+          "name": "entity.other.attribute-name",
+          "comment": "parameter name"
+        },
+        {
+          "match": "(?<==\\s*)([^\\x{003d}\\n\\x{002c}\\x{0028}\\x{007b}\\s\\t]+)(?![A-Za-z]+(?=[\\x{0020}\\t]*={1}[\\x{0020}\\t]*|\\s*\\(|\\s*\\{))",
+          "name": "constant.character",
+          "comment": "parameter value"
         }
       ]
     },
