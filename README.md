@@ -26,6 +26,6 @@ Just open an issue! make sure to provide details, screenshots, anything that'll 
 
 ## Release Notes
 
-### 1.0.0
+### 0.0.1
 
 Initial release
