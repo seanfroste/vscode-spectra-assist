@@ -30,7 +30,7 @@
         {
           "begin": "(\\{)",
           "beginCaptures": { "1": { "name": "punctuation.in" } },
-          "contentName": "text.in",
+          "contentName": "string.quoted.other",
           "end": "(\\})",
           "endCaptures": { "1": { "name": "punctuation.in" } }
         },
@@ -41,14 +41,14 @@
         {
           "begin": "(\\\")",
           "beginCaptures": { "1": { "name": "punctuation.in" } },
-          "contentName": "text.in",
+          "contentName": "string.quoted.double",
           "end": "(\\\")",
           "endCaptures": { "1": { "name": "punctuation.in" } }
         },
         {
           "begin": "(')",
           "beginCaptures": { "1": { "name": "punctuation.in" } },
-          "contentName": "text.in",
+          "contentName": "string.quoted.single",
           "end": "(')",
           "endCaptures": { "1": { "name": "punctuation.in" } }
         },
