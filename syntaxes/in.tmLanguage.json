@@ -58,7 +58,7 @@
         },
         {
           "match": "(,\\s*,)",
-          "name": "invalid.in"
+          "name": "invalid.illegal"
         },
         {
           "match": "(,)",
