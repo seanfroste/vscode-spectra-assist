@@ -55,7 +55,7 @@
         {
           "begin": "(\\()",
           "beginCaptures": { "1": { "name": "punctuation.in" } },
-          "patterns": [ { "include": "#main__4" } ],
+          "patterns": [ { "include": "#main__1" } ],
           "end": "(\\))",
           "endCaptures": { "1": { "name": "punctuation.in" } }
         },
@@ -78,15 +78,6 @@
       ]
     },
     "main__1": {
-      "patterns": [ ]
-    },
-    "main__2": {
-      "patterns": [ ]
-    },
-    "main__3": {
-      "patterns": [ ]
-    },
-    "main__4": {
       "patterns": [
         { "include": "#numeric" },
         {
