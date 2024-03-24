@@ -23,8 +23,8 @@
           "name": "keyword.in"
         },
         {
-          "match": "(=\\s*([^\\x{003d}\\n\\x{002c}\\x{0028}\\x{007b}\\s\\t]+)(?![A-Za-z]+(?=[\\x{0020}\\t]*={1}[\\x{0020}\\t]*|\\s*\\(|\\s*\\{)))",
-          "name": "constant.numeric.in"
+          "match": "(?<==\\s*)([^\\x{003d}\\n\\x{002c}\\x{0028}\\x{007b}\\s\\t]+)(?![A-Za-z]+(?=[\\x{0020}\\t]*={1}[\\x{0020}\\t]*|\\s*\\(|\\s*\\{))",
+          "name": "constant.character"
         },
         { "include": "#numeric" },
         {
