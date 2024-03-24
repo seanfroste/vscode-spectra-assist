@@ -29,3 +29,11 @@ Just open an issue! make sure to provide details, screenshots, anything that'll 
 ### 0.0.1
 
 Initial release
+
+### 0.0.2
+
+Statement name highlighting changes
+
+### 0.0.3
+
+Better, organised scoping and improved scope definitions
