@@ -48,7 +48,7 @@
         {
           "begin": "(\\()",
           "beginCaptures": { "1": { "name": "punctuation.in" } },
-          "patterns": [ { "include": "#main__1" } ],
+          "patterns": [ { "include": "#numeric_series" } ],
           "end": "(\\))",
           "endCaptures": { "1": { "name": "punctuation.in" } }
         },
@@ -70,7 +70,7 @@
         }
       ]
     },
-    "main__1": {
+    "numeric_series": {
       "patterns": [
         { "include": "#numeric" },
         {
