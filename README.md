@@ -23,17 +23,3 @@ Happy coding!
 ## Feature requests
 
 Just open an issue! make sure to provide details, screenshots, anything that'll get your idea across! If it sounds concrete and I have time, I'll implement it!
-
-## Release Notes
-
-### 0.0.1
-
-Initial release
-
-### 0.0.2
-
-Statement name highlighting changes
-
-### 0.0.3
-
-Better, organised scoping and improved scope definitions
