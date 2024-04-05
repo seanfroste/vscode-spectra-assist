@@ -12,7 +12,7 @@
       "patterns": [
         {
           "match": "(^[#$*]+.*)",
-          "name": "comment.in"
+          "name": "comment.line"
         },
         {
           "match": "(^(BIAS|CONSTANT|CONS|CONVERGENCE|CONV|DEFINE|DEPOSIT|DEPO|DOPE|ELECTRODE|ELEC|END|EXTRACT|EXTR|GRID|IF|INSERT|INTERFACE|INT|LIGHT|MODEL|NFERMI|NFER|PFERMI|PFER|REGION|REGI|RESTART|REST|SAVE|STRUCTURE|STRUCT|SUBSTRATE|SUBS|TITLE){1})(?=\\s+)",
