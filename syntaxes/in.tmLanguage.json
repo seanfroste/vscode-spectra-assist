@@ -82,12 +82,12 @@
     "parameters": {
       "patterns": [
         {
-          "match": "([A-Za-z]+(?=[\\x{0020}\\t]*={1}[\\x{0020}\\t]*))",
+          "match": "([A-Za-z]+(?=[ \t]*={1}[ \t]*))",
           "name": "entity.other.attribute-name",
           "comment": "parameter name"
         },
         {
-          "match": "(?<==\\s*)([^\\x{003d}\\n\\x{002c}\\x{0028}\\x{007b}\\s\\t]+)(?![A-Za-z]+(?=[\\x{0020}\\t]*={1}[\\x{0020}\\t]*|\\s*\\(|\\s*\\{))",
+          "match": "(?<==\\s*)([^,({\\s]+)(?![A-Za-z]+(?=[ \t]*={1}[ \t]*|\\s*\\(|\\s*\\{))",
           "name": "constant.character",
           "comment": "parameter value"
         }
