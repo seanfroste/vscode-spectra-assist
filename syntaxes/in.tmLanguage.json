@@ -11,7 +11,7 @@
     "main": {
       "patterns": [
         {
-          "match": "(^[\\x{0023}\\x{0024}\\x{002a}]+.*)",
+          "match": "(^[#$*]+.*)",
           "name": "comment.in"
         },
         {
