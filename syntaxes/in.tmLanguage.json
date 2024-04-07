@@ -29,8 +29,19 @@
           "endCaptures": { "1": { "name": "punctuation.in" } }
         },
         {
-          "match": "(^(BIAS|CONSTANT|CONS|CONVERGENCE|CONV|DEFINE|DEPOSIT|DEPO|DOPE|ELECTRODE|ELEC|END|EXTRACT|EXTR|GRID|IF|INSERT|INTERFACE|INT|LIGHT|MODEL|NFERMI|NFER|PFERMI|PFER|REGION|REGI|RESTART|REST|SAVE|STRUCTURE|STRUCT|SUBSTRATE|SUBS|TITLE){1})(?=\\s+)",
-          "name": "keyword.control.in"
+          "match": "(?i)(^TITLE){1}(?-i)(?=\\s+.+)",
+          "name": "keyword.control.title",
+          "comment": "the title statement"
+        },
+        {
+          "comment": "this match makes sure the title name is whatever characters follow the title statement, until the line break",
+          "match": "(?<=(?i)(TITLE){1})(\\s+)(.+)",
+          "name": "variable.name.title"
+        },
+        {
+          "comment": "this matches the calculation statements and their abbreviations, making sure that the line begins at the first column",
+          "match": "(?i)(^(BIAS|CONSTANT|CONS|CONVERGENCE|CONV|DEFINE|DEPOSIT|DEPO|DOPE|ELECTRODE|ELEC|END|EXTRACT|EXTR|GRID|IF|INSERT|INTERFACE|INT|LIGHT|MODEL|NFERMI|NFER|PFERMI|PFER|REGION|REGI|RESTART|REST|SAVE|STRUCTURE|STRUCT|SUBSTRATE|SUBS){1})(?=\\s+)",
+          "name": "keyword.control.calc_statement"
         },
         { "include": "#parameters" },
         { "include": "#numeric" },
