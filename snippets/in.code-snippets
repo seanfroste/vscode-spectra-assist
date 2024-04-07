@@ -12,6 +12,7 @@
 // 	"description": "Log output to console"
 // }
 {
+  // Statement Snippets
   "BIAS statement": {
     "prefix": [
       "BIAS",
@@ -273,5 +274,1002 @@
       "$0"
     ],
     "description": "snippet for the TITLE statement and required parameters, using its abbreviation"
-  }
+  },
+  // --------------------------------------------------------------------------------
+  // Parameter Snippets
+  "ENAME parameter": {
+    "prefix": "ENAME",
+    "body": "ENAME=$1 ",
+    "description": "ENAME parameter"
+  },
+  "VSTEP parameter": {
+    "prefix": "VSTEP",
+    "body": "VSTEP=$1 ",
+    "description": "VSTEP parameter"
+  },
+  "NSTEP parameter": {
+    "prefix": "NSTEP",
+    "body": "NSTEP=$1 ",
+    "description": "NSTEP parameter"
+  },
+  "ERROR parameter": {
+    "prefix": "ERROR",
+    "body": "ERROR=$1 ",
+    "description": "ERROR parameter"
+  },
+  "NFNAME parameter": {
+    "prefix": "NFNAME",
+    "body": "NFNAME=$1 ",
+    "description": "NFNAME parameter"
+  },
+  "PFNAME parameter": {
+    "prefix": "PFNAME",
+    "body": "PFNAME=$1 ",
+    "description": "PFNAME parameter"
+  },
+  "FLOAT parameter": {
+    "prefix": "FLOAT",
+    "body": "FLOAT=$1 ",
+    "description": "FLOAT parameter"
+  },
+  "BMODEL parameter": {
+    "prefix": "BMODEL",
+    "body": "BMODEL=$1 ",
+    "description": "BMODEL parameter"
+  },
+  "TEMPERATURE parameter": {
+    "prefix": "TEMPERATURE",
+    "body": "TEMPERATURE=$1 ",
+    "description": "TEMPERATURE parameter"
+  },
+  "EOX parameter": {
+    "prefix": "EOX",
+    "body": "EOX=$1 ",
+    "description": "EOX parameter"
+  },
+  "ESI parameter": {
+    "prefix": "ESI",
+    "body": "ESI=$1 ",
+    "description": "ESI parameter"
+  },
+  "ENI parameter": {
+    "prefix": "ENI",
+    "body": "ENI=$1 ",
+    "description": "ENI parameter"
+  },
+  "EIN parameter": {
+    "prefix": "EIN",
+    "body": "EIN=$1 ",
+    "description": "EIN parameter"
+  },
+  "EME parameter": {
+    "prefix": "EME",
+    "body": "EME=$1 ",
+    "description": "EME parameter"
+  },
+  "EAL parameter": {
+    "prefix": "EAL",
+    "body": "EAL=$1 ",
+    "description": "EAL parameter"
+  },
+  "EPS parameter": {
+    "prefix": "EPS",
+    "body": "EPS=$1 ",
+    "description": "EPS parameter"
+  },
+  "EM1 parameter": {
+    "prefix": "EM1",
+    "body": "EM1=$1 ",
+    "description": "EM1 parameter"
+  },
+  "EM2 parameter": {
+    "prefix": "EM2",
+    "body": "EM2=$1 ",
+    "description": "EM2 parameter"
+  },
+  "EM3 parameter": {
+    "prefix": "EM3",
+    "body": "EM3=$1 ",
+    "description": "EM3 parameter"
+  },
+  "EM4 parameter": {
+    "prefix": "EM4",
+    "body": "EM4=$1 ",
+    "description": "EM4 parameter"
+  },
+  "EM5 parameter": {
+    "prefix": "EM5",
+    "body": "EM5=$1 ",
+    "description": "EM5 parameter"
+  },
+  "EM6 parameter": {
+    "prefix": "EM6",
+    "body": "EM6=$1 ",
+    "description": "EM6 parameter"
+  },
+  "EM7 parameter": {
+    "prefix": "EM7",
+    "body": "EM7=$1 ",
+    "description": "EM7 parameter"
+  },
+  "EM8 parameter": {
+    "prefix": "EM8",
+    "body": "EM8=$1 ",
+    "description": "EM8 parameter"
+  },
+  "EMOB parameter": {
+    "prefix": "EMOB",
+    "body": "EMOB=$1 ",
+    "description": "EMOB parameter"
+  },
+  "HMOB parameter": {
+    "prefix": "HMOB",
+    "body": "HMOB=$1 ",
+    "description": "HMOB parameter"
+  },
+  "NI parameter": {
+    "prefix": "NI",
+    "body": "NI=$1 ",
+    "description": "NI parameter"
+  },
+  "CN parameter": {
+    "prefix": "CN",
+    "body": "CN=$1 ",
+    "description": "CN parameter"
+  },
+  "CP parameter": {
+    "prefix": "CP",
+    "body": "CP=$1 ",
+    "description": "CP parameter"
+  },
+  "TN0 parameter": {
+    "prefix": "TN0",
+    "body": "TN0=$1 ",
+    "description": "TN0 parameter"
+  },
+  "TP0 parameter": {
+    "prefix": "TP0",
+    "body": "TP0=$1 ",
+    "description": "TP0 parameter"
+  },
+  "VBG parameter": {
+    "prefix": "VBG",
+    "body": "VBG=$1 ",
+    "description": "VBG parameter"
+  },
+  "CBG parameter": {
+    "prefix": "CBG",
+    "body": "CBG=$1 ",
+    "description": "CBG parameter"
+  },
+  "CSRH parameter": {
+    "prefix": "CSRH",
+    "body": "CSRH=$1 ",
+    "description": "CSRH parameter"
+  },
+  "AN parameter": {
+    "prefix": "AN",
+    "body": "AN=$1 ",
+    "description": "AN parameter"
+  },
+  "AP parameter": {
+    "prefix": "AP",
+    "body": "AP=$1 ",
+    "description": "AP parameter"
+  },
+  "BN parameter": {
+    "prefix": "BN",
+    "body": "BN=$1 ",
+    "description": "BN parameter"
+  },
+  "BP parameter": {
+    "prefix": "BP",
+    "body": "BP=$1 ",
+    "description": "BP parameter"
+  },
+  "XREF parameter": {
+    "prefix": "XREF",
+    "body": "XREF=$1 ",
+    "description": "XREF parameter"
+  },
+  "ESREF parameter": {
+    "prefix": "ESREF",
+    "body": "ESREF=$1 ",
+    "description": "ESREF parameter"
+  },
+  "HSREF parameter": {
+    "prefix": "HSREF",
+    "body": "HSREF=$1 ",
+    "description": "HSREF parameter"
+  },
+  "SREFN parameter": {
+    "prefix": "SREFN",
+    "body": "SREFN=$1 ",
+    "description": "SREFN parameter"
+  },
+  "SREFP parameter": {
+    "prefix": "SREFP",
+    "body": "SREFP=$1 ",
+    "description": "SREFP parameter"
+  },
+  "ALPHAN parameter": {
+    "prefix": "ALPHAN",
+    "body": "ALPHAN=$1 ",
+    "description": "ALPHAN parameter"
+  },
+  "ALPHAP parameter": {
+    "prefix": "ALPHAP",
+    "body": "ALPHAP=$1 ",
+    "description": "ALPHAP parameter"
+  },
+  "BETAN parameter": {
+    "prefix": "BETAN",
+    "body": "BETAN=$1 ",
+    "description": "BETAN parameter"
+  },
+  "BETAP parameter": {
+    "prefix": "BETAP",
+    "body": "BETAP=$1 ",
+    "description": "BETAP parameter"
+  },
+  "FACTN parameter": {
+    "prefix": "FACTN",
+    "body": "FACTN=$1 ",
+    "description": "FACTN parameter"
+  },
+  "FACTP parameter": {
+    "prefix": "FACTP",
+    "body": "FACTP=$1 ",
+    "description": "FACTP parameter"
+  },
+  "CREFN parameter": {
+    "prefix": "CREFN",
+    "body": "CREFN=$1 ",
+    "description": "CREFN parameter"
+  },
+  "CREFP parameter": {
+    "prefix": "CREFP",
+    "body": "CREFP=$1 ",
+    "description": "CREFP parameter"
+  },
+  "VCN parameter": {
+    "prefix": "VCN",
+    "body": "VCN=$1 ",
+    "description": "VCN parameter"
+  },
+  "VCP parameter": {
+    "prefix": "VCP",
+    "body": "VCP=$1 ",
+    "description": "VCP parameter"
+  },
+  "VSN parameter": {
+    "prefix": "VSN",
+    "body": "VSN=$1 ",
+    "description": "VSN parameter"
+  },
+  "VSP parameter": {
+    "prefix": "VSP",
+    "body": "VSP=$1 ",
+    "description": "VSP parameter"
+  },
+  "EMMIN parameter": {
+    "prefix": "EMMIN",
+    "body": "EMMIN=$1 ",
+    "description": "EMMIN parameter"
+  },
+  "HMMIN parameter": {
+    "prefix": "HMMIN",
+    "body": "HMMIN=$1 ",
+    "description": "HMMIN parameter"
+  },
+  "NSI parameter": {
+    "prefix": "NSI",
+    "body": "NSI=$1 ",
+    "description": "NSI parameter"
+  },
+  "ASI parameter": {
+    "prefix": "ASI",
+    "body": "ASI=$1 ",
+    "description": "ASI parameter"
+  },
+  "ASG parameter": {
+    "prefix": "ASG",
+    "body": "ASG=$1 ",
+    "description": "ASG parameter"
+  },
+  "AGE parameter": {
+    "prefix": "AGE",
+    "body": "AGE=$1 ",
+    "description": "AGE parameter"
+  },
+  "EGGE parameter": {
+    "prefix": "EGGE",
+    "body": "EGGE=$1 ",
+    "description": "EGGE parameter"
+  },
+  "QE parameter": {
+    "prefix": "QE",
+    "body": "QE=$1 ",
+    "description": "QE parameter"
+  },
+  "CTRAP parameter": {
+    "prefix": "CTRAP",
+    "body": "CTRAP=$1 ",
+    "description": "CTRAP parameter"
+  },
+  "DTRAP parameter": {
+    "prefix": "DTRAP",
+    "body": "DTRAP=$1 ",
+    "description": "DTRAP parameter"
+  },
+  "TRAPMOB parameter": {
+    "prefix": "TRAPMOB",
+    "body": "TRAPMOB=$1 ",
+    "description": "TRAPMOB parameter"
+  },
+  "TMASS parameter": {
+    "prefix": "TMASS",
+    "body": "TMASS=$1 ",
+    "description": "TMASS parameter"
+  },
+  "DRANGE parameter": {
+    "prefix": "DRANGE",
+    "body": "DRANGE=$1 ",
+    "description": "DRANGE parameter"
+  },
+  "ET parameter": {
+    "prefix": "ET",
+    "body": "ET=$1 ",
+    "description": "ET parameter"
+  },
+  "FNMN parameter": {
+    "prefix": "FNMN",
+    "body": "FNMN=$1 ",
+    "description": "FNMN parameter"
+  },
+  "FNMP parameter": {
+    "prefix": "FNMP",
+    "body": "FNMP=$1 ",
+    "description": "FNMP parameter"
+  },
+  "FNBN parameter": {
+    "prefix": "FNBN",
+    "body": "FNBN=$1 ",
+    "description": "FNBN parameter"
+  },
+  "FNBP parameter": {
+    "prefix": "FNBP",
+    "body": "FNBP=$1 ",
+    "description": "FNBP parameter"
+  },
+  "VERROR parameter": {
+    "prefix": "VERROR",
+    "body": "VERROR=$1 ",
+    "description": "VERROR parameter"
+  },
+  "FERROR parameter": {
+    "prefix": "FERROR",
+    "body": "FERROR=$1 ",
+    "description": "FERROR parameter"
+  },
+  "CARRIER parameter": {
+    "prefix": "CARRIER",
+    "body": "CARRIER=$1 ",
+    "description": "CARRIER parameter"
+  },
+  "PHASE1 parameter": {
+    "prefix": "PHASE1",
+    "body": "PHASE1=$1 ",
+    "description": "PHASE1 parameter"
+  },
+  "PHASE2 parameter": {
+    "prefix": "PHASE2",
+    "body": "PHASE2=$1 ",
+    "description": "PHASE2 parameter"
+  },
+  "PHASE3 parameter": {
+    "prefix": "PHASE3",
+    "body": "PHASE3=$1 ",
+    "description": "PHASE3 parameter"
+  },
+  "TIME parameter": {
+    "prefix": "TIME",
+    "body": "TIME=$1 ",
+    "description": "TIME parameter"
+  },
+  "STEP parameter": {
+    "prefix": "STEP",
+    "body": "STEP=$1 ",
+    "description": "STEP parameter"
+  },
+  "TRATE parameter": {
+    "prefix": "TRATE",
+    "body": "TRATE=$1 ",
+    "description": "TRATE parameter"
+  },
+  "SKIP parameter": {
+    "prefix": "SKIP",
+    "body": "SKIP=$1 ",
+    "description": "SKIP parameter"
+  },
+  "PSOR parameter": {
+    "prefix": "PSOR",
+    "body": "PSOR=$1 ",
+    "description": "PSOR parameter"
+  },
+  "PCYCLE parameter": {
+    "prefix": "PCYCLE",
+    "body": "PCYCLE=$1 ",
+    "description": "PCYCLE parameter"
+  },
+  "NEWTON parameter": {
+    "prefix": "NEWTON",
+    "body": "NEWTON=$1 ",
+    "description": "NEWTON parameter"
+  },
+  "FSOR parameter": {
+    "prefix": "FSOR",
+    "body": "FSOR=$1 ",
+    "description": "FSOR parameter"
+  },
+  "FCYCLE parameter": {
+    "prefix": "FCYCLE",
+    "body": "FCYCLE=$1 ",
+    "description": "FCYCLE parameter"
+  },
+  "ABORT parameter": {
+    "prefix": "ABORT",
+    "body": "ABORT=$1 ",
+    "description": "ABORT parameter"
+  },
+  "METHOD parameter": {
+    "prefix": "METHOD",
+    "body": "METHOD=$1 ",
+    "description": "METHOD parameter"
+  },
+  "POISSON parameter": {
+    "prefix": "POISSON",
+    "body": "POISSON=$1 ",
+    "description": "POISSON parameter"
+  },
+  "RANGECHECK parameter": {
+    "prefix": "RANGECHECK",
+    "body": "RANGECHECK=$1 ",
+    "description": "RANGECHECK parameter"
+  },
+  "FPRINT parameter": {
+    "prefix": "FPRINT",
+    "body": "FPRINT=$1 ",
+    "description": "FPRINT parameter"
+  },
+  "NAME parameter": {
+    "prefix": "NAME",
+    "body": "NAME=$1 ",
+    "description": "NAME parameter"
+  },
+  "VALUE parameter": {
+    "prefix": "VALUE",
+    "body": "VALUE=$1 ",
+    "description": "VALUE parameter"
+  },
+  "FILE parameter": {
+    "prefix": "FILE",
+    "body": "FILE=$1 ",
+    "description": "FILE parameter"
+  },
+  "CHARACTER parameter": {
+    "prefix": "CHARACTER",
+    "body": "CHARACTER=$1 ",
+    "description": "CHARACTER parameter"
+  },
+  "OPTIMIZE parameter": {
+    "prefix": "OPTIMIZE",
+    "body": "OPTIMIZE=$1 ",
+    "description": "OPTIMIZE parameter"
+  },
+  "TARGET parameter": {
+    "prefix": "TARGET",
+    "body": "TARGET=$1 ",
+    "description": "TARGET parameter"
+  },
+  "TYPE parameter": {
+    "prefix": "TYPE",
+    "body": "TYPE=$1 ",
+    "description": "TYPE parameter"
+  },
+  "CHARGE parameter": {
+    "prefix": "CHARGE",
+    "body": "CHARGE=$1 ",
+    "description": "CHARGE parameter"
+  },
+  "XMIN parameter": {
+    "prefix": "XMIN",
+    "body": "XMIN=$1 ",
+    "description": "XMIN parameter"
+  },
+  "YMIN parameter": {
+    "prefix": "YMIN",
+    "body": "YMIN=$1 ",
+    "description": "YMIN parameter"
+  },
+  "ZMIN parameter": {
+    "prefix": "ZMIN",
+    "body": "ZMIN=$1 ",
+    "description": "ZMIN parameter"
+  },
+  "XMAX parameter": {
+    "prefix": "XMAX",
+    "body": "XMAX=$1 ",
+    "description": "XMAX parameter"
+  },
+  "YMAX parameter": {
+    "prefix": "YMAX",
+    "body": "YMAX=$1 ",
+    "description": "YMAX parameter"
+  },
+  "ZMAX parameter": {
+    "prefix": "ZMAX",
+    "body": "ZMAX=$1 ",
+    "description": "ZMAX parameter"
+  },
+  "ELEMENT parameter": {
+    "prefix": "ELEMENT",
+    "body": "ELEMENT=$1 ",
+    "description": "ELEMENT parameter"
+  },
+  "PROFILE parameter": {
+    "prefix": "PROFILE",
+    "body": "PROFILE=$1 ",
+    "description": "PROFILE parameter"
+  },
+  "CMAX parameter": {
+    "prefix": "CMAX",
+    "body": "CMAX=$1 ",
+    "description": "CMAX parameter"
+  },
+  "CBACK parameter": {
+    "prefix": "CBACK",
+    "body": "CBACK=$1 ",
+    "description": "CBACK parameter"
+  },
+  "XJ parameter": {
+    "prefix": "XJ",
+    "body": "XJ=$1 ",
+    "description": "XJ parameter"
+  },
+  "RP parameter": {
+    "prefix": "RP",
+    "body": "RP=$1 ",
+    "description": "RP parameter"
+  },
+  "LD parameter": {
+    "prefix": "LD",
+    "body": "LD=$1 ",
+    "description": "LD parameter"
+  },
+  "THETA parameter": {
+    "prefix": "THETA",
+    "body": "THETA=$1 ",
+    "description": "THETA parameter"
+  },
+  "PHI parameter": {
+    "prefix": "PHI",
+    "body": "PHI=$1 ",
+    "description": "PHI parameter"
+  },
+  "MULTIPLY parameter": {
+    "prefix": "MULTIPLY",
+    "body": "MULTIPLY=$1 ",
+    "description": "MULTIPLY parameter"
+  },
+  "PATTERN parameter": {
+    "prefix": "PATTERN",
+    "body": "PATTERN=$1 ",
+    "description": "PATTERN parameter"
+  },
+  "GFILE parameter": {
+    "prefix": "GFILE",
+    "body": "GFILE=$1 ",
+    "description": "GFILE parameter"
+  },
+  "XORIGIN parameter": {
+    "prefix": "XORIGIN",
+    "body": "XORIGIN=$1 ",
+    "description": "XORIGIN parameter"
+  },
+  "YORIGIN parameter": {
+    "prefix": "YORIGIN",
+    "body": "YORIGIN=$1 ",
+    "description": "YORIGIN parameter"
+  },
+  "AXIS parameter": {
+    "prefix": "AXIS",
+    "body": "AXIS=$1 ",
+    "description": "AXIS parameter"
+  },
+  "MASK parameter": {
+    "prefix": "MASK",
+    "body": "MASK=$1 ",
+    "description": "MASK parameter"
+  },
+  "ANDMASK parameter": {
+    "prefix": "ANDMASK",
+    "body": "ANDMASK=$1 ",
+    "description": "ANDMASK parameter"
+  },
+  "ANDNEGA parameter": {
+    "prefix": "ANDNEGA",
+    "body": "ANDNEGA=$1 ",
+    "description": "ANDNEGA parameter"
+  },
+  "CRATE parameter": {
+    "prefix": "CRATE",
+    "body": "CRATE=$1 ",
+    "description": "CRATE parameter"
+  },
+  "DETECT parameter": {
+    "prefix": "DETECT",
+    "body": "DETECT=$1 ",
+    "description": "DETECT parameter"
+  },
+  "APPEND parameter": {
+    "prefix": "APPEND",
+    "body": "APPEND=$1 ",
+    "description": "APPEND parameter"
+  },
+  "TRIM parameter": {
+    "prefix": "TRIM",
+    "body": "TRIM=$1 ",
+    "description": "TRIM parameter"
+  },
+  "XPLUS parameter": {
+    "prefix": "XPLUS",
+    "body": "XPLUS=$1 ",
+    "description": "XPLUS parameter"
+  },
+  "YPLUS parameter": {
+    "prefix": "YPLUS",
+    "body": "YPLUS=$1 ",
+    "description": "YPLUS parameter"
+  },
+  "ZPLUS parameter": {
+    "prefix": "ZPLUS",
+    "body": "ZPLUS=$1 ",
+    "description": "ZPLUS parameter"
+  },
+  "XMULTIPLE parameter": {
+    "prefix": "XMULTIPLE",
+    "body": "XMULTIPLE=$1 ",
+    "description": "XMULTIPLE parameter"
+  },
+  "YMULTIPLE parameter": {
+    "prefix": "YMULTIPLE",
+    "body": "YMULTIPLE=$1 ",
+    "description": "YMULTIPLE parameter"
+  },
+  "ZMULTIPLE parameter": {
+    "prefix": "ZMULTIPLE",
+    "body": "ZMULTIPLE=$1 ",
+    "description": "ZMULTIPLE parameter"
+  },
+  "XSHIFT parameter": {
+    "prefix": "XSHIFT",
+    "body": "XSHIFT=$1 ",
+    "description": "XSHIFT parameter"
+  },
+  "YSHIFT parameter": {
+    "prefix": "YSHIFT",
+    "body": "YSHIFT=$1 ",
+    "description": "YSHIFT parameter"
+  },
+  "ZSHIFT parameter": {
+    "prefix": "ZSHIFT",
+    "body": "ZSHIFT=$1 ",
+    "description": "ZSHIFT parameter"
+  },
+  "FXMULTIPLE parameter": {
+    "prefix": "FXMULTIPLE",
+    "body": "FXMULTIPLE=$1 ",
+    "description": "FXMULTIPLE parameter"
+  },
+  "FYMULTIPLE parameter": {
+    "prefix": "FYMULTIPLE",
+    "body": "FYMULTIPLE=$1 ",
+    "description": "FYMULTIPLE parameter"
+  },
+  "NEGATIVE parameter": {
+    "prefix": "NEGATIVE",
+    "body": "NEGATIVE=$1 ",
+    "description": "NEGATIVE parameter"
+  },
+  "XREPEAT parameter": {
+    "prefix": "XREPEAT",
+    "body": "XREPEAT=$1 ",
+    "description": "XREPEAT parameter"
+  },
+  "YREPEAT parameter": {
+    "prefix": "YREPEAT",
+    "body": "YREPEAT=$1 ",
+    "description": "YREPEAT parameter"
+  },
+  "LOCOS parameter": {
+    "prefix": "LOCOS",
+    "body": "LOCOS=$1 ",
+    "description": "LOCOS parameter"
+  },
+  "MATERIAL parameter": {
+    "prefix": "MATERIAL",
+    "body": "MATERIAL=$1 ",
+    "description": "MATERIAL parameter"
+  },
+  "EXPAND parameter": {
+    "prefix": "EXPAND",
+    "body": "EXPAND=$1 ",
+    "description": "EXPAND parameter"
+  },
+  "VOLTAGE parameter": {
+    "prefix": "VOLTAGE",
+    "body": "VOLTAGE=$1 ",
+    "description": "VOLTAGE parameter"
+  },
+  "WORK parameter": {
+    "prefix": "WORK",
+    "body": "WORK=$1 ",
+    "description": "WORK parameter"
+  },
+  "SUPREM4 parameter": {
+    "prefix": "SUPREM4",
+    "body": "SUPREM4=$1 ",
+    "description": "SUPREM4 parameter"
+  },
+  "RESISTANCE parameter": {
+    "prefix": "RESISTANCE",
+    "body": "RESISTANCE=$1 ",
+    "description": "RESISTANCE parameter"
+  },
+  "PARAMETER parameter": {
+    "prefix": "PARAMETER",
+    "body": "PARAMETER=$1 ",
+    "description": "PARAMETER parameter"
+  },
+  "OPTION parameter": {
+    "prefix": "OPTION",
+    "body": "OPTION=$1 ",
+    "description": "OPTION parameter"
+  },
+  "PEAK parameter": {
+    "prefix": "PEAK",
+    "body": "PEAK=$1 ",
+    "description": "PEAK parameter"
+  },
+  "RADIUS parameter": {
+    "prefix": "RADIUS",
+    "body": "RADIUS=$1 ",
+    "description": "RADIUS parameter"
+  },
+  "WIDTH parameter": {
+    "prefix": "WIDTH",
+    "body": "WIDTH=$1 ",
+    "description": "WIDTH parameter"
+  },
+  "COORDINATE parameter": {
+    "prefix": "COORDINATE",
+    "body": "COORDINATE=$1 ",
+    "description": "COORDINATE parameter"
+  },
+  "DELIMITER parameter": {
+    "prefix": "DELIMITER",
+    "body": "DELIMITER=$1 ",
+    "description": "DELIMITER parameter"
+  },
+  "RATIO parameter": {
+    "prefix": "RATIO",
+    "body": "RATIO=$1 ",
+    "description": "RATIO parameter"
+  },
+  "RATE parameter": {
+    "prefix": "RATE",
+    "body": "RATE=$1 ",
+    "description": "RATE parameter"
+  },
+  "SPACE parameter": {
+    "prefix": "SPACE",
+    "body": "SPACE=$1 ",
+    "description": "SPACE parameter"
+  },
+  "TMIN parameter": {
+    "prefix": "TMIN",
+    "body": "TMIN=$1 ",
+    "description": "TMIN parameter"
+  },
+  "TMAX parameter": {
+    "prefix": "TMAX",
+    "body": "TMAX=$1 ",
+    "description": "TMAX parameter"
+  },
+  "TPLUS parameter": {
+    "prefix": "TPLUS",
+    "body": "TPLUS=$1 ",
+    "description": "TPLUS parameter"
+  },
+  "QF parameter": {
+    "prefix": "QF",
+    "body": "QF=$1 ",
+    "description": "QF parameter"
+  },
+  "SN parameter": {
+    "prefix": "SN",
+    "body": "SN=$1 ",
+    "description": "SN parameter"
+  },
+  "SP parameter": {
+    "prefix": "SP",
+    "body": "SP=$1 ",
+    "description": "SP parameter"
+  },
+  "LAMBDA parameter": {
+    "prefix": "LAMBDA",
+    "body": "LAMBDA=$1 ",
+    "description": "LAMBDA parameter"
+  },
+  "POWER parameter": {
+    "prefix": "POWER",
+    "body": "POWER=$1 ",
+    "description": "POWER parameter"
+  },
+  "ABSORPTION parameter": {
+    "prefix": "ABSORPTION",
+    "body": "ABSORPTION=$1 ",
+    "description": "ABSORPTION parameter"
+  },
+  "LMAX parameter": {
+    "prefix": "LMAX",
+    "body": "LMAX=$1 ",
+    "description": "LMAX parameter"
+  },
+  "REVERSE parameter": {
+    "prefix": "REVERSE",
+    "body": "REVERSE=$1 ",
+    "description": "REVERSE parameter"
+  },
+  "MIRROR parameter": {
+    "prefix": "MIRROR",
+    "body": "MIRROR=$1 ",
+    "description": "MIRROR parameter"
+  },
+  "BACK parameter": {
+    "prefix": "BACK",
+    "body": "BACK=$1 ",
+    "description": "BACK parameter"
+  },
+  "MOBILITY parameter": {
+    "prefix": "MOBILITY",
+    "body": "MOBILITY=$1 ",
+    "description": "MOBILITY parameter"
+  },
+  "BGNARROW parameter": {
+    "prefix": "BGNARROW",
+    "body": "BGNARROW=$1 ",
+    "description": "BGNARROW parameter"
+  },
+  "SRH parameter": {
+    "prefix": "SRH",
+    "body": "SRH=$1 ",
+    "description": "SRH parameter"
+  },
+  "AUGER parameter": {
+    "prefix": "AUGER",
+    "body": "AUGER=$1 ",
+    "description": "AUGER parameter"
+  },
+  "IMPACT parameter": {
+    "prefix": "IMPACT",
+    "body": "IMPACT=$1 ",
+    "description": "IMPACT parameter"
+  },
+  "TRAP parameter": {
+    "prefix": "TRAP",
+    "body": "TRAP=$1 ",
+    "description": "TRAP parameter"
+  },
+  "TUNNELING parameter": {
+    "prefix": "TUNNELING",
+    "body": "TUNNELING=$1 ",
+    "description": "TUNNELING parameter"
+  },
+  "FNCURRENT parameter": {
+    "prefix": "FNCURRENT",
+    "body": "FNCURRENT=$1 ",
+    "description": "FNCURRENT parameter"
+  },
+  "DV parameter": {
+    "prefix": "DV",
+    "body": "DV=$1 ",
+    "description": "DV parameter"
+  },
+  "GR parameter": {
+    "prefix": "GR",
+    "body": "GR=$1 ",
+    "description": "GR parameter"
+  },
+  "BEAK parameter": {
+    "prefix": "BEAK",
+    "body": "BEAK=$1 ",
+    "description": "BEAK parameter"
+  },
+  "ZBEAK parameter": {
+    "prefix": "ZBEAK",
+    "body": "ZBEAK=$1 ",
+    "description": "ZBEAK parameter"
+  },
+  "EDGE parameter": {
+    "prefix": "EDGE",
+    "body": "EDGE=$1 ",
+    "description": "EDGE parameter"
+  },
+  "RN parameter": {
+    "prefix": "RN",
+    "body": "RN=$1 ",
+    "description": "RN parameter"
+  },
+  "CURRENT parameter": {
+    "prefix": "CURRENT",
+    "body": "CURRENT=$1 ",
+    "description": "CURRENT parameter"
+  },
+  "NCURRENT parameter": {
+    "prefix": "NCURRENT",
+    "body": "NCURRENT=$1 ",
+    "description": "NCURRENT parameter"
+  },
+  "PCURRENT parameter": {
+    "prefix": "PCURRENT",
+    "body": "PCURRENT=$1 ",
+    "description": "PCURRENT parameter"
+  },
+  "SHAPE parameter": {
+    "prefix": "SHAPE",
+    "body": "SHAPE=$1 ",
+    "description": "SHAPE parameter"
+  },
+  "NEW_FERMI parameter": {
+    "prefix": "NEW_FERMI",
+    "body": "NEW_FERMI=$1 ",
+    "description": "NEW_FERMI parameter"
+  },
+  "ADD_IMPURITY parameter": {
+    "prefix": "ADD_IMPURITY",
+    "body": "ADD_IMPURITY=$1 ",
+    "description": "ADD_IMPURITY parameter"
+  },
+  "OLD_ELECTRODE parameter": {
+    "prefix": "OLD_ELECTRODE",
+    "body": "OLD_ELECTRODE=$1 ",
+    "description": "OLD_ELECTRODE parameter"
+  },
+  "TSTEP parameter": {
+    "prefix": "TSTEP",
+    "body": "TSTEP=$1 ",
+    "description": "TSTEP parameter"
+  },
+  "XBOUNDARY parameter": {
+    "prefix": "XBOUNDARY",
+    "body": "XBOUNDARY=$1 ",
+    "description": "XBOUNDARY parameter"
+  },
+  "YBOUNDARY parameter": {
+    "prefix": "YBOUNDARY",
+    "body": "YBOUNDARY=$1 ",
+    "description": "YBOUNDARY parameter"
+  },
+  "CELL parameter": {
+    "prefix": "CELL",
+    "body": "CELL=$1 ",
+    "description": "CELL parameter"
+  },
+  "CONCENTRATION parameter": {
+    "prefix": "CONCENTRATION",
+    "body": "CONCENTRATION=$1 ",
+    "description": "CONCENTRATION parameter"
+  },
 }
