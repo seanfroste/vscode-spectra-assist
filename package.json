@@ -30,6 +30,12 @@
         "scopeName": "source.in",
         "path": "./syntaxes/in.tmLanguage.json"
       }
+    ],
+    "snippets": [
+      {
+        "language": "in",
+        "path": "./snippets/in.code-snippets"
+      }
     ]
   }
 }
