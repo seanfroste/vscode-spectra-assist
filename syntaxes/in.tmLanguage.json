@@ -31,11 +31,11 @@
         {
           "match": "(?i)(^TITLE){1}(?-i)(?=\\s+.+)",
           "name": "keyword.control.title",
-          "comment": "the title statement"
+          "comment": "matches the TITLE statement at the beginning of the line"
         },
         {
-          "comment": "this match makes sure the title name is whatever characters follow the title statement, until the line break",
-          "match": "(?<=(?i)(TITLE){1})(\\s+)(.+)",
+          "comment": "this match matches the title name as whatever characters follow the TITLE statement ending at the line break",
+          "match": "(?<=(?i)(^TITLE){1})(\\s+)(.+)",
           "name": "variable.name.title"
         },
         {
