@@ -6,7 +6,7 @@ Format loosely based on [Keep a Changelog](http://keepachangelog.com/)
 
 - [Change Log](#change-log)
   - [\[Unreleased\]](#unreleased)
-  - [\[0.2.1\]](#021)
+  - [\[0.3.0\]](#030)
     - [Added](#added)
   - [\[0.2.0\]](#020)
     - [Fixed](#fixed)
@@ -19,7 +19,7 @@ Format loosely based on [Keep a Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 
-## [0.2.1]
+## [0.3.0]
 
 ### Added
 

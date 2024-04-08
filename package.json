@@ -2,7 +2,7 @@
   "name": "vscode-spectre-assist",
   "displayName": "vscode-spectre-assist",
   "description": "basic syntax highlighting for spectre input files",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "repository": "https://github.com/seanfroste/vscode-spectre-assist",
   "engines": {
     "vscode": "^1.87.0"
