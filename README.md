@@ -8,17 +8,21 @@ Makes the code just that _**little**_ bit easier on the eyes.
 
 ## Requirements
 
-none
+\-
 
 ## Extension Setup
 
-Move this extension (root directory) to `%USERPROFILE%\.vscode\extensions`
+### From VSIX
 
-Just open a `*.in` file! if you don't see any syntax highlighting on what you think is a valid file, open the command palette (F1) and try "Change Language Mode".
+1. Grab the VSIX package from the [Releases](https://github.com/seanfroste/vscode-spectre-assist/releases) page
+2. Open the command palette (`F1` or `Ctrl+P`)
+3. Use the `Extensions: Install from VSIX...` command and to select the VSIX package you just downloaded
 
-Type in "spectre" to filter the languages and select `spectre-in` as your language of choice.
+### From Source
 
-Happy coding!
+1. Clone this extension into the VSCode extensions folder (`%USERPROFILE%\\.vscode\\extensions\\` on Windows, `~/.vscode/extensions/`)
+2. Just open a `*.in` file! if you don't see any syntax highlighting on what you think is a valid file, open the command palette (F1) and try "Change Language Mode".
+3. Type in "spectre" to filter the languages and select `spectre-in` as your language of choice.
 
 ## Feature requests
 
