@@ -1,9 +1,9 @@
 {
-  "name": "vscode-spectre-assist",
-  "displayName": "vscode-spectre-assist",
-  "description": "basic syntax highlighting for spectre input files",
+  "name": "vscode-spectra-assist",
+  "displayName": "vscode-spectra-assist",
+  "description": "basic syntax highlighting for spectra input files",
   "version": "0.3.0",
-  "repository": "https://github.com/seanfroste/vscode-spectre-assist",
+  "repository": "https://github.com/seanfroste/vscode-spectra-assist",
   "engines": {
     "vscode": "^1.87.0"
   },
@@ -15,7 +15,7 @@
       {
         "id": "in",
         "aliases": [
-          "spectre-in",
+          "spectra-in",
           "in"
         ],
         "extensions": [

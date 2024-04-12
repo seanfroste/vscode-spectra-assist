@@ -1,6 +1,6 @@
 # Change Log
 
-All notable changes to the "vscode-spectre-assist" extension will be documented in this file.
+All notable changes to the "vscode-spectra-assist" extension will be documented in this file.
 
 Format loosely based on [Keep a Changelog](http://keepachangelog.com/)
 
