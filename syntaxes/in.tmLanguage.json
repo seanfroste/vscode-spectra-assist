@@ -10,10 +10,26 @@
   "repository": {
     "main": {
       "patterns": [
+        { "include": "#comments" },
+        { "include": "#strings" },
+        { "include": "#title" },
+        { "include": "#calculation_statements" },
+        { "include": "#numeric" },
+        { "include": "#parameters" },
+        { "include": "#other_punctuation" },
+        { "include": "#invalid_patterns" }
+      ]
+    },
+    "comments": {
+      "patterns": [
         {
           "match": "(^[#$*]+.*)",
           "name": "comment.line"
-        },
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
         {
           "begin": "(')",
           "beginCaptures": { "1": { "name": "punctuation.in" } },
@@ -29,64 +45,39 @@
           "endCaptures": { "1": { "name": "punctuation.in" } }
         },
         {
-          "match": "(?i)(^TITLE){1}(?-i)(?=\\s+.+)",
-          "name": "keyword.control.title",
-          "comment": "matches the TITLE statement at the beginning of the line"
-        },
-        {
-          "comment": "this match matches the title name as whatever characters follow the TITLE statement ending at the line break",
-          "match": "(?<=(?i)(^TITLE){1})(\\s+)(.+)",
-          "name": "variable.name.title"
-        },
-        {
-          "comment": "this matches the calculation statements and their abbreviations, making sure that the line begins at the first column",
-          "match": "(?i)(^(BIAS|CONSTANT|CONS|CONVERGENCE|CONV|DEFINE|DEPOSIT|DEPO|DOPE|ELECTRODE|ELEC|END|EXTRACT|EXTR|GRID|IF|INSERT|INTERFACE|INT|LIGHT|MODEL|NFERMI|NFER|PFERMI|PFER|REGION|REGI|RESTART|REST|SAVE|STRUCTURE|STRUCT|SUBSTRATE|SUBS){1})(?=\\s+)",
-          "name": "keyword.control.calc_statement"
-        },
-        { "include": "#parameters" },
-        { "include": "#numeric" },
-        {
           "begin": "(\\{)",
           "beginCaptures": { "1": { "name": "punctuation.in" } },
           "contentName": "string.quoted.other",
           "end": "(\\})",
           "endCaptures": { "1": { "name": "punctuation.in" } }
-        },
-        {
-          "match": "(;)",
-          "name": "punctuation.in"
-        },
-        {
-          "begin": "(\\()",
-          "beginCaptures": { "1": { "name": "punctuation.in" } },
-          "patterns": [ { "include": "#numeric_series" } ],
-          "end": "(\\))",
-          "endCaptures": { "1": { "name": "punctuation.in" } }
-        },
-        {
-          "match": "(=)",
-          "name": "keyword.operator"
-        },
-        {
-          "match": "(,\\s*,)",
-          "name": "invalid.illegal"
-        },
-        {
-          "match": "(,)",
-          "name": "punctuation.in"
-        },
-        {
-          "match": "([^\\s])",
-          "name": "invalid.in"
         }
       ]
     },
-    "numeric_series": {
+    "title": {
       "patterns": [
-        { "include": "#numeric" },
         {
-          "match": "(,)",
-          "name": "punctuation.in"
+          "match": "(?i)(^TITLE){1}(?-i)(?=\\s+.+)",
+          "name": "keyword.control.title"
+        },
+        {
+          "match": "(?<=(?i)(^TITLE){1})(\\s+)(.+)",
+          "name": "variable.name.title"
+        }
+      ]
+    },
+    "calculation_statements": {
+      "patterns": [
+        {
+          "match": "(?i)(^(BIAS|CONSTANT|CONS|CONVERGENCE|CONV|DEFINE|DEPOSIT|DEPO|DOPE|ELECTRODE|ELEC|END|EXTRACT|EXTR|GRID|IF|INSERT|INTERFACE|INT|LIGHT|MODEL|NFERMI|NFER|PFERMI|PFER|REGION|REGI|RESTART|REST|SAVE|STRUCTURE|STRUCT|SUBSTRATE|SUBS){1})(?=\\s+)",
+          "name": "keyword.control.calc_statement"
+        }
+      ]
+    },
+    "numeric": {
+      "patterns": [
+        {
+          "match": "(-?[ \t]*\\d+(\\.\\d+)?(?:[eE][-]?\\d+)?)",
+          "name": "constant.numeric.in"
         }
       ]
     },
@@ -94,21 +85,60 @@
       "patterns": [
         {
           "match": "([A-Za-z]+(?=[ \t]*={1}[ \t]*))",
-          "name": "entity.other.attribute-name",
-          "comment": "parameter name"
+          "name": "entity.other.attribute-name.parameter_name"
+        },
+        {
+          "match": "(?<==\\s*)(@\\w+(?:\\.\\w+\\s*)?)(?![A-Za-z]+(?=[ \t]*={1}[ \t]*|\\s*\\(|\\s*\\{))",
+          "name": "variable.other.usre_defined"
+        },
+        {
+          "match": "(?<==\\s*)(\\${2}\\w+(?:\\.\\w+\\s*)?)(?![A-Za-z]+(?=[ \t]*={1}[ \t]*|\\s*\\(|\\s*\\{))",
+          "name": "string.other.user_defined_string"
         },
         {
           "match": "(?<==\\s*)([^,({\\s]+)(?![A-Za-z]+(?=[ \t]*={1}[ \t]*|\\s*\\(|\\s*\\{))",
-          "name": "constant.character",
-          "comment": "parameter value"
+          "name": "constant.character.parameter_value"
+        },
+        {
+          "match": "\\(([^)]+)\\)",
+          "captures": {
+            "1": {
+              "patterns": [
+                {
+                  "match": "\\b(?:\\d*\\.?\\d+(?:[ \\t]*[, ]+[ \\t]*\\d*\\.?\\d+)*)\\b",
+                  "name": "constant.numeric.in"
+                },
+                {
+                  "match": "[^,]+",
+                  "name": "string"
+                }
+              ]
+            }
+          }
         }
       ]
     },
-    "numeric": {
+    "other_punctuation": {
       "patterns": [
         {
-          "match": "(\\b\\d+(.?[0-9]*))",
-          "name": "constant.numeric.in"
+          "match": "(=)",
+          "name": "keyword.operator"
+        },
+        {
+          "match": "(,)",
+          "name": "punctuation.in"
+        },
+        {
+          "match": "(;)",
+          "name": "punctuation.in"
+        }
+      ]
+    },
+    "invalid_patterns": {
+      "patterns": [
+        {
+          "match": "(,\\s*,)",
+          "name": "invalid.illegal"
         }
       ]
     }
