@@ -76,7 +76,7 @@
     "numeric": {
       "patterns": [
         {
-          "match": "(\\b-?\\d+(\\.\\d+)?(?:[eE][-]?\\d+)?)",
+          "match": "(-?[ \t]*\\d+(\\.\\d+)?(?:[eE][-]?\\d+)?)",
           "name": "constant.numeric.in"
         }
       ]
