@@ -2,7 +2,7 @@
   "name": "vscode-spectra-assist",
   "displayName": "vscode-spectra-assist",
   "description": "basic syntax highlighting for spectra input files",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "repository": "https://github.com/seanfroste/vscode-spectra-assist",
   "engines": {
     "vscode": "^1.87.0"
