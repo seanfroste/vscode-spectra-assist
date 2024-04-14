@@ -1,6 +1,6 @@
 {
   "name": "vscode-spectra-assist",
-  "displayName": "vscode-spectra-assist",
+  "displayName": "Spectra Assist",
   "description": "syntax highlighting and snippets for spectra input files",
   "publisher": "seanfroste",
   "version": "0.3.2",
