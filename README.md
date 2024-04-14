@@ -12,6 +12,10 @@ Makes the code just that _**little**_ bit easier on the eyes.
 
 ## Extension Setup
 
+### From the Marketplace
+
+- Search for the `vscode-spectra-assist` extension in the VSCode Extensions tab
+
 ### From VSIX
 
 1. Grab the VSIX package from the [Releases](https://github.com/seanfroste/vscode-spectra-assist/releases) page
@@ -27,3 +31,9 @@ Makes the code just that _**little**_ bit easier on the eyes.
 ## Feature requests
 
 Just open an issue! make sure to provide details, screenshots, anything that'll get your idea across! If it sounds concrete and I have time, I'll implement it!
+
+## DISCLAIMER
+
+I am not affiliated with Link Research Corporation or the SPECTRA 3d device simulator.
+
+This extension was written for recreation over a couple of weeks, and to learn how language extensions work
