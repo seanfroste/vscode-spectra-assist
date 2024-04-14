@@ -6,20 +6,28 @@ Format loosely based on [Keep a Changelog](http://keepachangelog.com/)
 
 - [Change Log](#change-log)
   - [\[Unreleased\]](#unreleased)
-  - [\[0.3.1\]](#031)
+  - [\[0.3.2\]](#032)
     - [Added](#added)
-  - [\[0.3.0\]](#030)
+  - [\[0.3.1\]](#031)
     - [Added](#added-1)
+  - [\[0.3.0\]](#030)
+    - [Added](#added-2)
   - [\[0.2.0\]](#020)
     - [Fixed](#fixed)
   - [\[0.1.1\] - 2021-04-24](#011---2021-04-24)
-    - [Added](#added-2)
+    - [Added](#added-3)
     - [Fixed](#fixed-1)
     - [Removed](#removed)
   - [\[0.1.0\] - 2024-03-23](#010---2024-03-23)
-    - [Added](#added-3)
+    - [Added](#added-4)
 
 ## [Unreleased]
+
+## [0.3.2]
+
+### Added
+
+- Published the extension to the marketplace
 
 ## [0.3.1]
 
