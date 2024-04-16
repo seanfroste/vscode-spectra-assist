@@ -6,15 +6,11 @@ Syntax Highlighting for spectra `*.in` files (specifically calculation statement
 
 Makes the code just that _**little**_ bit easier on the eyes.
 
-## Requirements
-
-\-
-
 ## Extension Setup
 
 ### From the Marketplace
 
-- Search for the `vscode-spectra-assist` extension in the VSCode Extensions tab
+Search for the `Spectra Assist` extension by `seanfroste` in the VSCode Extensions tab
 
 ### From VSIX
 
