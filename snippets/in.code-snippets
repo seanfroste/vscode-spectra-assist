@@ -72,7 +72,7 @@
       "dopet",
     ],
     "body": [
-      "DOPE TYPE=${1:<char>} PROFILE=${2:<char>} XMIN=${3:<real>} YMIN=${4:<real>} XMAX=${5:<real>} YMAX=${5:<real>} ",
+      "DOPE TYPE=${1:<char>} PROFILE=${2:<char>} ",
       "$0"
     ],
     "description": "snippet for the DOPE statement and required parameters, using its abbreviation"
@@ -83,7 +83,7 @@
       "dope",
     ],
     "body": [
-      "DOPE ELEMENT=${1:<char>} PROFILE=${2:<char>} XMIN=${3:<real>} YMIN=${4:<real>} XMAX=${5:<real>} YMAX=${5:<real>} ",
+      "DOPE ELEMENT=${1:<char>} PROFILE=${2:<char>} ",
       "$0"
     ],
     "description": "snippet for the DOPE statement and required parameters, using its abbreviation"
