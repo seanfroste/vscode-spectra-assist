@@ -56,8 +56,8 @@
     "numeric": {
       "patterns": [
         {
-          "match": "(-?[ \t]*\\d+(\\.\\d+)?(?:[eE][-]?\\d+)?)",
-          "name": "constant.numeric.in"
+          "match": "(((-?)(?:[ \t]*)(\\d+)((\\.)(\\d+))?)([eE](-?\\d+))?)",
+          "captures": { "1": { "name": "constant.numeric.in" } }
         }
       ]
     },
@@ -83,7 +83,7 @@
     "parameters": {
       "patterns": [
         {
-          "match": "(\\w+)(?:[ \t]*)(=)(?:[ \t]*)(.+?)(?=[, \t]*\\w+[ \t]*?=|\n)",
+          "match": "(\\w+)(?:[ \t]*)(=)(?:[ \t]*)(.+?)(?=(?:(?:[, \t]*\\w+[ \t]*?=)|(?:\n)))",
           "comment": "capture groups are (param_name)(=)(param_value)",
           "captures": {
             "1": { "name": "keyword.other.parameter.name" },
@@ -104,19 +104,12 @@
                 {
                   "match": "\\(([^)]+)\\)",
                   "comment": "greedy match for non closing brace char, i.e. contents of (...)",
-                  "captures": {
-                    "1": {
-                      "patterns": [
-                        { "include": "#numeric" },
-                        {
-                          "match": "[^,]+",
-                          "name": "string"
-                        }
-                      ]
-                    }
-                  }
+                  "captures": { "1": { "patterns": [ { "include": "#numeric" } ] } }
                 },
-                { "include": "#numeric" },
+                {
+                  "match": "(?<==)(?:[ \t]*)(((-?)(?:[ \t]*)(\\d+)((\\.)(\\d+))?)([eE](-?\\d+))?)",
+                  "name": "constant.numeric.parameter"
+                },
                 {
                   "match": ".+?",
                   "comment": "custom param value",
