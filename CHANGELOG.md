@@ -5,6 +5,8 @@ All notable changes to the "vscode-spectra-assist" extension will be documented 
 Format loosely based on [Keep a Changelog](http://keepachangelog.com/)
 
 - [Change Log](#change-log)
+  - [\[0.8.0\]](#080)
+    - [Added](#added)
   - [\[0.7.0\]](#070)
     - [Fixed](#fixed)
   - [\[0.6.1\]](#061)
@@ -12,19 +14,25 @@ Format loosely based on [Keep a Changelog](http://keepachangelog.com/)
   - [\[0.6.0\]](#060)
     - [Fixed](#fixed-2)
   - [\[0.3.2\]](#032)
-    - [Added](#added)
-  - [\[0.3.1\]](#031)
     - [Added](#added-1)
-  - [\[0.3.0\]](#030)
+  - [\[0.3.1\]](#031)
     - [Added](#added-2)
+  - [\[0.3.0\]](#030)
+    - [Added](#added-3)
   - [\[0.2.0\]](#020)
     - [Fixed](#fixed-3)
   - [\[0.1.1\] - 2021-04-24](#011---2021-04-24)
-    - [Added](#added-3)
+    - [Added](#added-4)
     - [Fixed](#fixed-4)
     - [Removed](#removed)
   - [\[0.1.0\] - 2024-03-23](#010---2024-03-23)
-    - [Added](#added-4)
+    - [Added](#added-5)
+
+## [0.8.0]
+
+### Added
+
+- statements are indentable
 
 ## [0.7.0]
 
