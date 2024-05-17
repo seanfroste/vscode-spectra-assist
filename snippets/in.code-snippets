@@ -1,6 +1,6 @@
-// Place your snippets for cpp here. Each snippet is defined under a snippet name and has a prefix"/ Place your snippets for cpp here. Each snippet is defined under a snippet",, [body ,]and 
+// Place your snippets for cpp here. Each snippet is defined under a snippet name and has a prefix"/ Place your snippets for cpp here. Each snippet is defined under a snippet",, [body ,]and
 // description. The prefix"", i[s ,]what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
-// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
 // same ids are connected.
 // Example:
 // "Print to console": {
@@ -14,10 +14,7 @@
 {
   // Statement Snippets
   "BIAS statement": {
-    "prefix": [
-      "BIAS",
-      "bias",
-    ],
+    "prefix": ["BIAS", "bias"],
     "body": [
       "BIAS ENAME=${1:<char>} VSTEP=${2:<real>} NSTEP=${3:<real>} ERROR=${4:<real>} ",
       "$0"
@@ -25,30 +22,17 @@
     "description": "snippet for the BIAS statement and required parameters, using its abbreviation"
   },
   "CONSTANT statement": {
-    "prefix": [
-      "CONSTANT",
-      "cons",
-    ],
-    "body": [
-      "CONSTANT $0"
-    ],
+    "prefix": ["CONSTANT", "cons"],
+    "body": ["CONSTANT $0"],
     "description": "snippet for the CONSTANT statement and required parameters, using its abbreviation"
   },
   "CONVERGENCE statement": {
-    "prefix": [
-      "CONVERGENCE",
-      "conv",
-    ],
-    "body": [
-      "CONVERGENCE $0"
-    ],
+    "prefix": ["CONVERGENCE", "conv"],
+    "body": ["CONVERGENCE $0"],
     "description": "snippet for the CONVERGENCE statement and required parameters, using its abbreviation"
   },
   "DEFINE statement": {
-    "prefix": [
-      "DEFINE",
-      "define",
-    ],
+    "prefix": ["DEFINE", "define"],
     "body": [
       "DEFINE NAME=${1:<char>} VALUE=${2:<real>, <series>, or <func>} ",
       "$0"
@@ -56,10 +40,7 @@
     "description": "snippet for the DEFINE statement and required parameters, using its abbreviation"
   },
   "DEPOSIT statement": {
-    "prefix": [
-      "DEPOSIT",
-      "depo",
-    ],
+    "prefix": ["DEPOSIT", "depo"],
     "body": [
       "DEPOSIT TYPE=${1:<char>} CHARGE=${2:<char>} XMIN=${3:<real>} YMIN=${4:<real>} ZMIN=${4:<real>} XMAX=${5:<real>} YMAX=${6:<real>} ZMAX=${7:<real>} ",
       "$0"
@@ -67,32 +48,17 @@
     "description": "snippet for the DEPOSIT statement and required parameters, using its abbreviation"
   },
   "DOPE-TYPE statement": {
-    "prefix": [
-      "DOPE-TYPE",
-      "dopet",
-    ],
-    "body": [
-      "DOPE TYPE=${1:<char>} PROFILE=${2:<char>} ",
-      "$0"
-    ],
+    "prefix": ["DOPE-TYPE", "dopet"],
+    "body": ["DOPE TYPE=${1:<char>} PROFILE=${2:<char>} ", "$0"],
     "description": "snippet for the DOPE statement and required parameters, using its abbreviation"
   },
   "DOPE-ELEMENT statement": {
-    "prefix": [
-      "DOPE-ELEMENT",
-      "dope",
-    ],
-    "body": [
-      "DOPE ELEMENT=${1:<char>} PROFILE=${2:<char>} ",
-      "$0"
-    ],
+    "prefix": ["DOPE-ELEMENT", "dope"],
+    "body": ["DOPE ELEMENT=${1:<char>} PROFILE=${2:<char>} ", "$0"],
     "description": "snippet for the DOPE statement and required parameters, using its abbreviation"
   },
   "ELECTRODE statement": {
-    "prefix": [
-      "ELECTRODE",
-      "elec",
-    ],
+    "prefix": ["ELECTRODE", "elec"],
     "body": [
       "ELECTRODE XMIN=${1:<real>} YMIN=${2:<real>} ZMIN=${3:<real>} XMAX=${4:<real>} YMAX=${5:<real>} ZMAX=${6:<real>} VOLTAGE=${7:<real>} ",
       "$0"
@@ -100,98 +66,47 @@
     "description": "snippet for the ELECTRODE statement and required parameters, using its abbreviation"
   },
   "END statement": {
-    "prefix": [
-      "END",
-      "end",
-    ],
-    "body": [
-      "END",
-      "$0"
-    ],
+    "prefix": ["END", "end"],
+    "body": ["END", "$0"],
     "description": "snippet for the END statement and required parameters, using its abbreviation"
   },
   "EXTRACT statement": {
-    "prefix": [
-      "EXTRACT",
-      "extr",
-    ],
-    "body": [
-      "EXTRACT PARAMETER=${1:<char>} FILE=${2:<char>}",
-      "$0"
-    ],
+    "prefix": ["EXTRACT", "extr"],
+    "body": ["EXTRACT PARAMETER=${1:<char>} FILE=${2:<char>}", "$0"],
     "description": "snippet for the EXTRACT statement and required parameters, using its abbreviation"
   },
   "GRID statement": {
-    "prefix": [
-      "GRID",
-      "grid",
-    ],
-    "body": [
-      "GRID $0"
-    ],
+    "prefix": ["GRID", "grid"],
+    "body": ["GRID $0"],
     "description": "snippet for the GRID statement and required parameters, using its abbreviation"
   },
   "IF statement": {
-    "prefix": [
-      "IF",
-      "if",
-    ],
-    "body": [
-      "IF [${1:<expr>}]",
-      "\t$2",
-      "ELSE",
-      "\t$3",
-      "ENDIF",
-      "$0"
-    ],
+    "prefix": ["IF", "if"],
+    "body": ["IF [${1:<expr>}]", "\t$2", "ELSE", "\t$3", "ENDIF", "$0"],
     "description": "snippet for the IF statement and required parameters, using its abbreviation"
   },
   "INSERT statement": {
-    "prefix": [
-      "INSERT",
-      "insert",
-    ],
-    "body": [
-      "INSERT FILE=${1:<char>}",
-      "$0"
-    ],
+    "prefix": ["INSERT", "insert"],
+    "body": ["INSERT FILE=${1:<char>}", "$0"],
     "description": "snippet for the INSERT statement and required parameters, using its abbreviation"
   },
   "INTERFACE statement": {
-    "prefix": [
-      "INTERFACE",
-      "int",
-    ],
-    "body": [
-      "INTERFACE $0"
-    ],
+    "prefix": ["INTERFACE", "int"],
+    "body": ["INTERFACE $0"],
     "description": "snippet for the INTERFACE statement and required parameters, using its abbreviation"
   },
   "LIGHT statement": {
-    "prefix": [
-      "LIGHT",
-      "light",
-    ],
-    "body": [
-      "LIGHT $0"
-    ],
+    "prefix": ["LIGHT", "light"],
+    "body": ["LIGHT $0"],
     "description": "snippet for the LIGHT statement and required parameters, using its abbreviation"
   },
   "MODEL statement": {
-    "prefix": [
-      "MODEL",
-      "model",
-    ],
-    "body": [
-      "MODEL $0"
-    ],
+    "prefix": ["MODEL", "model"],
+    "body": ["MODEL $0"],
     "description": "snippet for the MODEL statement and required parameters, using its abbreviation"
   },
   "NFERMI statement": {
-    "prefix": [
-      "NFERMI",
-      "nfer",
-    ],
+    "prefix": ["NFERMI", "nfer"],
     "body": [
       "NFERMI XMIN=${1:<real>} YMIN=${2:<real>} ZMIN=${3:<real>} XMAX=${4:<real>} YMAX=${5:<real>} ZMAX=${6:<real>} VOLTAGE=${7:<real>}",
       "$0"
@@ -199,10 +114,7 @@
     "description": "snippet for the NFERMI statement and required parameters, using its abbreviation"
   },
   "PFERMI statement": {
-    "prefix": [
-      "PFERMI",
-      "pfer",
-    ],
+    "prefix": ["PFERMI", "pfer"],
     "body": [
       "PFERMI XMIN=${1:<real>} YMIN=${2:<real>} ZMIN=${3:<real>} XMAX=${4:<real>} YMAX=${5:<real>} ZMAX=${6:<real>} VOLTAGE=${7:<real>}",
       "$0"
@@ -210,43 +122,22 @@
     "description": "snippet for the PFERMI statement and required parameters, using its abbreviation"
   },
   "REGION statement": {
-    "prefix": [
-      "REGION",
-      "regi",
-    ],
-    "body": [
-      "REGION MATERIAL=${1:<char>}",
-      "$0"
-    ],
+    "prefix": ["REGION", "regi"],
+    "body": ["REGION MATERIAL=${1:<char>}", "$0"],
     "description": "snippet for the REGION statement and required parameters, using its abbreviation"
   },
   "RESTART statement": {
-    "prefix": [
-      "RESTART",
-      "rest",
-    ],
-    "body": [
-      "RESTART FILE=${1:<char>}",
-      "$0"
-    ],
+    "prefix": ["RESTART", "rest"],
+    "body": ["RESTART FILE=${1:<char>}", "$0"],
     "description": "snippet for the RESTART statement and required parameters, using its abbreviation"
   },
   "SAVE statement": {
-    "prefix": [
-      "SAVE",
-      "save",
-    ],
-    "body": [
-      "SAVE FILE=${1:<char>}",
-      "$0"
-    ],
+    "prefix": ["SAVE", "save"],
+    "body": ["SAVE FILE=${1:<char>}", "$0"],
     "description": "snippet for the SAVE statement and required parameters, using its abbreviation"
   },
   "STRUCTURE statement": {
-    "prefix": [
-      "STRUCTURE",
-      "struct",
-    ],
+    "prefix": ["STRUCTURE", "struct"],
     "body": [
       "STRUCTURE XBOUNDARY=${1:<char>} YBOUNDARY=${2:<char>} XMAX=${3:<real>} YMAX=${4:<real>} ZMAX=${5:<real>} ZMIN=${6:<real>}",
       "$0"
@@ -254,10 +145,7 @@
     "description": "snippet for the STRUCTURE statement and required parameters, using its abbreviation"
   },
   "SUBSTRATE statement": {
-    "prefix": [
-      "SUBSTRATE",
-      "subs",
-    ],
+    "prefix": ["SUBSTRATE", "subs"],
     "body": [
       "SUBSTRATE TYPE=${1:<char>} CONCENTRATION=${2:<real>} VOLTAGE=${3:<real> or <func> or <char>}",
       "$0"
@@ -265,14 +153,8 @@
     "description": "snippet for the SUBSTRATE statement and required parameters, using its abbreviation"
   },
   "TITLE statement": {
-    "prefix": [
-      "TITLE",
-      "title",
-    ],
-    "body": [
-      "TITLE ${1:<char>}",
-      "$0"
-    ],
+    "prefix": ["TITLE", "title"],
+    "body": ["TITLE ${1:<char>}", "$0"],
     "description": "snippet for the TITLE statement and required parameters, using its abbreviation"
   },
   // --------------------------------------------------------------------------------
@@ -1271,5 +1153,5 @@
     "prefix": "CONCENTRATION",
     "body": "CONCENTRATION=$1 ",
     "description": "CONCENTRATION parameter"
-  },
+  }
 }

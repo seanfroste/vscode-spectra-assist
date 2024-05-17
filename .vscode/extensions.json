@@ -1,6 +1,6 @@
 {
   "recommendations": [
     "redcmd.tmlanguage-syntax-highlighter",
-    "zainchen.json"
+    "esbenp.prettier-vscode"
   ]
 }
