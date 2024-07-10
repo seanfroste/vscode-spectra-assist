@@ -495,12 +495,12 @@ UserParam: '@' ParamChars;
 ParamSep: Whitespace | COMMA | Newline;
 
 // comments
-LineComment: CommentStartChar ~[\r\n]* -> channel (HIDDEN);
+LineComment: CommentStartChar ~[\r\n]+ -> channel (HIDDEN);
 
 CommentStartChar: '#' | '$' | '*';
 
 // title statement
-TitleStatement: (TITLE | TITLE_ALIAS) ~[\r\n]*;
+TitleStatement: (TITLE | TITLE_ALIAS) ~[\r\n]+;
 
 // parameter values
 fragment DIGITS: [0-9]+;
@@ -511,7 +511,7 @@ Integer: '-'? DIGITS;
 
 Decimal: Integer '.' DIGITS;
 
-Scientific: '-'? DIGITS ('.' DIGITS)? [E] Integer;
+Scientific: Integer ('.' DIGITS)? [E] Integer;
 
 StringLiteral: '"' .+? '"' | '\'' .+? '\'';
 
