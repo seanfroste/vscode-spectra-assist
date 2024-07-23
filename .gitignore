@@ -11,6 +11,12 @@
 # Built Visual Studio Code Extensions
 *.vsix
 
+# compiled outputs
+out/
+src/language/generated/
+# textmate syntax defs
+syntaxes/
+
 # Logs
 logs
 *.log
