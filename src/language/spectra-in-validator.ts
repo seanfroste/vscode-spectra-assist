@@ -1,5 +1,5 @@
-import type { ValidationAcceptor, ValidationChecks } from "langium";
-import type { SpectraInAstType, Person } from "./generated/ast.js";
+import type { /* ValidationAcceptor, */ ValidationChecks } from "langium";
+import type { SpectraInAstType /* , Person */ } from "./generated/ast.js";
 import type { SpectraInServices } from "./spectra-in-module.js";
 
 /**
@@ -9,7 +9,7 @@ export function registerValidationChecks(services: SpectraInServices) {
   const registry = services.validation.ValidationRegistry;
   const validator = services.validation.SpectraInValidator;
   const checks: ValidationChecks<SpectraInAstType> = {
-    Person: validator.checkPersonStartsWithCapital,
+    /* Person: validator.checkPersonStartsWithCapital, */
   };
   registry.register(checks, validator);
 }
@@ -18,6 +18,7 @@ export function registerValidationChecks(services: SpectraInServices) {
  * Implementation of custom validations.
  */
 export class SpectraInValidator {
+  /* // check if person starts with capital
   checkPersonStartsWithCapital(
     person: Person,
     accept: ValidationAcceptor
@@ -31,5 +32,5 @@ export class SpectraInValidator {
         });
       }
     }
-  }
+  } */
 }
