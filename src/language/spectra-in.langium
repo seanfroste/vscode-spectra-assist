@@ -1,25 +1,25 @@
 grammar SpectraIn
 
 entry Source:
-    (stmts+=Stmt)*;
+  (stmts+=Stmt)*;
 
 Stmt:
-    stmtName=ID ((arg=Arg)|(paramPair+=ParamPair (paramSep=PARAM_SEP paramPair+=ParamPair)*))?;
+  stmtName=ID ((arg=Arg)|(paramPair+=ParamPair (paramSep=PARAM_SEP paramPair+=ParamPair)*))?;
 
 Arg:
-    (ifCondition=IfCond | titleArg=ANYCHARS);
+  (ifCondition=IfCond | titleArg=ANYCHARS);
 
 IfCond:
-    '['ifExpr+=IfExpr '=' ifExpr+=IfExpr']';
+  '['ifExpr+=IfExpr '=' ifExpr+=IfExpr']';
 
 ParamPair:
-    paraName=ID '=' paramVal=ParamValue;
+  paraName=ID '=' paramVal=ParamValue;
 
 IfExpr:
-    expr=ParamValue;
+  expr=ParamValue;
 
 ParamValue:
-    val=(ID|NUMERIC|STRING|NUM_FUNC|USER_VAR|USER_STRING);
+  val=(ID|NUMERIC|STRING|NUM_FUNC|USER_VAR|USER_STRING);
 
 // Terminal definitions
 terminal ID: /[a-zA-Z_][\w]*|%\w*/;
