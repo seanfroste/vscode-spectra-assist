@@ -10,7 +10,7 @@ Arg:
   (ifCondition=IfCond | titleArg=ANYCHARS);
 
 IfCond:
-    '['ifExpr+=IfExpr ifOperator=OP_CHARS ifExpr+=IfExpr']';
+  '[' ifExpr+=IfExpr ifOperator=OP_CHARS ifExpr+=IfExpr ']';
 
 ParamPair:
   paraName=ID '=' paramVal=ParamValue;
