@@ -1,11 +1,10 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-  "fileTypes": [ "in" ],
   "name": "spectra-in",
   "patterns": [
     { "include": "#main" }
   ],
-  "scopeName": "source.in",
+  "scopeName": "source.spectra-in",
   "uuid": "4fb5ae98-d1e6-43dd-bc85-387d08a61ea0",
   "repository": {
     "main": {
@@ -32,24 +31,24 @@
       "patterns": [
         {
           "begin": "(')",
-          "beginCaptures": { "1": { "name": "punctuation.in" } },
+          "beginCaptures": { "1": { "name": "punctuation.spectra-in" } },
           "contentName": "string.quoted.single",
           "end": "(')",
-          "endCaptures": { "1": { "name": "punctuation.in" } }
+          "endCaptures": { "1": { "name": "punctuation.spectra-in" } }
         },
         {
           "begin": "\"",
-          "beginCaptures": { "1": { "name": "punctuation.in" } },
+          "beginCaptures": { "1": { "name": "punctuation.spectra-in" } },
           "contentName": "string.quoted.double",
           "end": "\"",
-          "endCaptures": { "1": { "name": "punctuation.in" } }
+          "endCaptures": { "1": { "name": "punctuation.spectra-in" } }
         },
         {
           "begin": "(\\{)",
-          "beginCaptures": { "1": { "name": "punctuation.in" } },
+          "beginCaptures": { "1": { "name": "punctuation.spectra-in" } },
           "contentName": "string.quoted.curly_braces",
           "end": "(\\})",
-          "endCaptures": { "1": { "name": "punctuation.in" } }
+          "endCaptures": { "1": { "name": "punctuation.spectra-in" } }
         }
       ]
     },
@@ -57,7 +56,7 @@
       "patterns": [
         {
           "match": "(((-?)(?:[ \t]*)(\\d+)((\\.)(\\d+))?)([eE](-?\\d+))?)",
-          "captures": { "1": { "name": "constant.numeric.in" } }
+          "captures": { "1": { "name": "constant.numeric" } }
         }
       ]
     },
@@ -67,7 +66,7 @@
           "match": "(?i)(^TITLE)(?:[ \t]+)(.+)",
           "captures": {
             "1": { "name": "keyword.control.title" },
-            "2": { "name": "variable.name.title" }
+            "2": { "name": "constant.character.title" }
           }
         }
       ]
@@ -125,15 +124,15 @@
       "patterns": [
         {
           "match": "(=)",
-          "name": "keyword.operator.equals"
+          "name": "keyword.operator.logical.spectra-in"
         },
         {
           "match": "(,)",
-          "name": "punctuation.in"
+          "name": "punctuation.spectra-in"
         },
         {
           "match": "(;)",
-          "name": "punctuation.in"
+          "name": "punctuation.spectra-in"
         }
       ]
     },
