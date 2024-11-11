@@ -1,11 +1,10 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-  "fileTypes": [ "in" ],
   "name": "spectra-in",
   "patterns": [
     { "include": "#main" }
   ],
-  "scopeName": "source.in",
+  "scopeName": "source.spectra-in",
   "uuid": "4fb5ae98-d1e6-43dd-bc85-387d08a61ea0",
   "repository": {
     "main": {
