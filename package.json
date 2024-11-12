@@ -1,6 +1,7 @@
 {
   "name": "vscode-spectra-assist",
-  "description": "syntax highlighting and snippets for spectra input files",
+  "displayName": "Spectra Assist",
+  "description": "Syntax Highlighting and Snippets for SPECTRA Calculation Input files",
   "publisher": "seanfroste",
   "version": "0.8.0",
   "repository": "https://github.com/seanfroste/vscode-spectra-assist",
@@ -39,7 +40,6 @@
     "node": "18.19.1",
     "npm": "10.2.4"
   },
-  "displayName": "Spectra Assist",
   "engines": {
     "vscode": "^1.67.0"
   },
@@ -51,8 +51,7 @@
       {
         "id": "spectra-in",
         "aliases": [
-          "Spectra In",
-          "spectra-in"
+          "SPECTRA Calculation Input"
         ],
         "extensions": [
           ".in"
@@ -64,7 +63,7 @@
       {
         "language": "spectra-in",
         "scopeName": "source.spectra-in",
-        "path": "syntaxes/spectra-in.tmLanguage.json"
+        "path": "./syntaxes/spectra-in.tmLanguage.json"
       }
     ],
     "snippets": [
