@@ -3,7 +3,7 @@
   "displayName": "Spectra Assist",
   "description": "Syntax Highlighting and Snippets for SPECTRA Calculation Input files",
   "publisher": "seanfroste",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "repository": "https://github.com/seanfroste/vscode-spectra-assist",
   "engines": {
     "vscode": "^1.87.0"
