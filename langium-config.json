@@ -1,0 +1,14 @@
+{
+  "projectName": "SpectraIn",
+  "languages": [
+    {
+      "id": "spectra-in",
+      "grammar": "src/language/spectra-in.langium",
+      "fileExtensions": [".in"],
+      "textMate": {
+        "out": "syntaxes/spectra-in.tmLanguage.json"
+      }
+    }
+  ],
+  "out": "src/language/generated"
+}

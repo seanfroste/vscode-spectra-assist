@@ -1,0 +1,5 @@
+out/*
+dist/*
+tsconfig.tsbuildinfo
+webpack.config.js
+src/language/generated/*

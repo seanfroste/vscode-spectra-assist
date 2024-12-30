@@ -6,12 +6,23 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Extension",
+      "name": "Run Extension",
       "type": "extensionHost",
       "request": "launch",
-      "args": [
-        "--extensionDevelopmentPath=${workspaceFolder}",
-        "--disable-extensions"
+      "args": ["--extensionDevelopmentPath=${workspaceFolder}"],
+      "sourceMaps": true,
+      "outFiles": ["${workspaceFolder}/out/**/*.js"]
+    },
+    {
+      "name": "Attach to Language Server",
+      "type": "node",
+      "port": 6009,
+      "request": "attach",
+      "skipFiles": ["<node_internals>/**"],
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceFolder}/out/**/*.js",
+        "${workspaceFolder}/node_modules/langium"
       ]
     }
   ]

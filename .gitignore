@@ -141,3 +141,12 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# compiled files
+out/
+
+# langium generated files
+src/language/generated/
+
+# tmLanguage definitions (refreshes everytime build is run, so transient)
+syntaxes/

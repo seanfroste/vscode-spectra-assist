@@ -1,22 +1,67 @@
 {
   "name": "vscode-spectra-assist",
-  "displayName": "Spectra Assist",
-  "description": "Syntax Highlighting and Snippets for SPECTRA Calculation Input files",
-  "publisher": "seanfroste",
+  "description": "Please enter a brief description here",
   "version": "0.8.1",
-  "repository": "https://github.com/seanfroste/vscode-spectra-assist",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seanfroste/vscode-spectra-assist"
+  },
+  "files": [
+    "out",
+    "src",
+    "LICENSE"
+  ],
+  "type": "module",
+  "scripts": {
+    "build": "tsc -b tsconfig.src.json && node esbuild.mjs",
+    "watch": "concurrently -n tsc,esbuild -c blue,yellow \"tsc -b tsconfig.src.json --watch\" \"node esbuild.mjs --watch\"",
+    "lint": "eslint src --ext ts",
+    "langium:generate": "langium generate",
+    "langium:generate:production": "langium generate --mode=production",
+    "langium:watch": "langium generate --watch",
+    "vscode:prepublish": "npm run build && npm run lint",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "langium": "~3.3.0",
+    "vscode-languageclient": "~9.0.1",
+    "vscode-languageserver": "~9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "~1.67.0",
+    "@typescript-eslint/eslint-plugin": "~7.3.1",
+    "@typescript-eslint/parser": "~7.3.1",
+    "concurrently": "~8.2.1",
+    "esbuild": "~0.20.2",
+    "eslint": "~8.57.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "langium-cli": "~3.3.0",
+    "prettier": "^3.4.2",
+    "typescript": "~5.1.6",
+    "vitest": "~1.4.0"
+  },
+  "volta": {
+    "node": "18.19.1",
+    "npm": "10.2.4"
+  },
+  "markdown": "github",
+  "displayName": "Spectrals",
   "engines": {
-    "vscode": "^1.87.0"
+    "vscode": "^1.67.0"
   },
   "categories": [
-    "Programming Languages"
+    "Programming Languages",
+    "Snippets"
   ],
   "contributes": {
     "languages": [
       {
         "id": "spectra-in",
         "aliases": [
-          "SPECTRA Calculation Input"
+          "Spectra Calculation Input",
+          "Spectra In",
+          "spectra-in"
         ],
         "extensions": [
           ".in"
@@ -28,7 +73,7 @@
       {
         "language": "spectra-in",
         "scopeName": "source.spectra-in",
-        "path": "./syntaxes/spectra-in.tmLanguage.json"
+        "path": "syntaxes/spectra-in.tmLanguage.json"
       }
     ],
     "snippets": [
@@ -37,5 +82,9 @@
         "path": "./snippets/spectra-in.code-snippets"
       }
     ]
-  }
+  },
+  "activationEvents": [
+    "onLanguage:spectra-in"
+  ],
+  "main": "./out/extension/main.cjs"
 }

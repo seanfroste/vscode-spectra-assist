@@ -1,148 +1,71 @@
 {
-  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "name": "spectra-in",
-  "patterns": [
-    { "include": "#main" }
-  ],
   "scopeName": "source.spectra-in",
-  "uuid": "4fb5ae98-d1e6-43dd-bc85-387d08a61ea0",
-  "repository": {
-    "main": {
+  "fileTypes": [
+    ".in"
+  ],
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "name": "keyword.control.spectra-in",
+      "match": "\\b(Hello|person)\\b"
+    },
+    {
+      "name": "string.quoted.double.spectra-in",
+      "begin": "\"",
+      "end": "\"",
       "patterns": [
-        { "include": "#comments" },
-        { "include": "#strings" },
-        { "include": "#title" },
-        { "include": "#calculation_statements" },
-        { "include": "#numeric" },
-        { "include": "#parameters" },
-        { "include": "#other_punctuation" },
-        { "include": "#invalid_patterns" }
+        {
+          "include": "#string-character-escape"
+        }
       ]
     },
+    {
+      "name": "string.quoted.single.spectra-in",
+      "begin": "'",
+      "end": "'",
+      "patterns": [
+        {
+          "include": "#string-character-escape"
+        }
+      ]
+    }
+  ],
+  "repository": {
     "comments": {
       "patterns": [
         {
-          "match": "(^[#$*]+.*)",
-          "name": "comment.line"
-        }
-      ]
-    },
-    "strings": {
-      "patterns": [
-        {
-          "begin": "(')",
-          "beginCaptures": { "1": { "name": "punctuation.spectra-in" } },
-          "contentName": "string.quoted.single",
-          "end": "(')",
-          "endCaptures": { "1": { "name": "punctuation.spectra-in" } }
-        },
-        {
-          "begin": "\"",
-          "beginCaptures": { "1": { "name": "punctuation.spectra-in" } },
-          "contentName": "string.quoted.double",
-          "end": "\"",
-          "endCaptures": { "1": { "name": "punctuation.spectra-in" } }
-        },
-        {
-          "begin": "(\\{)",
-          "beginCaptures": { "1": { "name": "punctuation.spectra-in" } },
-          "contentName": "string.quoted.curly_braces",
-          "end": "(\\})",
-          "endCaptures": { "1": { "name": "punctuation.spectra-in" } }
-        }
-      ]
-    },
-    "numeric": {
-      "patterns": [
-        {
-          "match": "(((-?)(?:[ \t]*)(\\d+)((\\.)(\\d+))?)([eE](-?\\d+))?)",
-          "captures": { "1": { "name": "constant.numeric" } }
-        }
-      ]
-    },
-    "title": {
-      "patterns": [
-        {
-          "match": "(?i)(^TITLE)(?:[ \t]+)(.+)",
-          "captures": {
-            "1": { "name": "keyword.control.title" },
-            "2": { "name": "constant.character.title" }
-          }
-        }
-      ]
-    },
-    "calculation_statements": {
-      "patterns": [
-        {
-          "match": "(?i)(?:\\s*)((BIAS|CONSTANT|CONS|CONVERGENCE|CONV|DEFINE|DEPOSIT|DEPO|DOPE|ELECTRODE|ELEC|END|EXTRACT|EXTR|GRID|IF|INSERT|INTERFACE|INT|LIGHT|MODEL|NFERMI|NFER|PFERMI|PFER|REGION|REGI|RESTART|REST|SAVE|STRUCTURE|STRUCT|SUBSTRATE|SUBS){1})(?=\\s|$)",
-          "name": "keyword.control.calc_statement"
-        }
-      ]
-    },
-    "parameters": {
-      "patterns": [
-        {
-          "match": "(\\w+)(?:[ \t]*)(=)(?:[ \t]*)(.+?)(?=(?:(?:[, \t]*\\w+[ \t]*?=)|(?:\n)))",
-          "comment": "capture groups are (param_name)(=)(param_value)",
-          "captures": {
-            "1": { "name": "keyword.other.parameter.name" },
-            "2": { "name": "keyword.operator.parameter.assignment" },
-            "3": {
-              "patterns": [
-                {
-                  "match": "@.+?",
-                  "comment": "referencing user defined variable",
-                  "name": "variable.other.user_defined"
-                },
-                {
-                  "match": "\\$\\$.+?",
-                  "comment": "referencing user defined string",
-                  "name": "string.other.user_defined"
-                },
-                { "include": "#strings" },
-                {
-                  "match": "\\(([^)]+)\\)",
-                  "comment": "greedy match for non closing brace char, i.e. contents of (...)",
-                  "captures": { "1": { "patterns": [ { "include": "#numeric" } ] } }
-                },
-                {
-                  "match": "(?<==)(?:[ \t]*)(((-?)(?:[ \t]*)(\\d+)((\\.)(\\d+))?)([eE](-?\\d+))?)",
-                  "name": "constant.numeric.parameter"
-                },
-                {
-                  "match": ".+?",
-                  "comment": "custom param value",
-                  "name": "constant.character.parameter_value"
-                }
-              ]
+          "name": "comment.block.spectra-in",
+          "begin": "/\\*",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.spectra-in"
+            }
+          },
+          "end": "\\*/",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.spectra-in"
             }
           }
+        },
+        {
+          "begin": "//",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.whitespace.comment.leading.spectra-in"
+            }
+          },
+          "end": "(?=$)",
+          "name": "comment.line.spectra-in"
         }
       ]
     },
-    "other_punctuation": {
-      "patterns": [
-        {
-          "match": "(=)",
-          "name": "keyword.operator.logical.spectra-in"
-        },
-        {
-          "match": "(,)",
-          "name": "punctuation.spectra-in"
-        },
-        {
-          "match": "(;)",
-          "name": "punctuation.spectra-in"
-        }
-      ]
-    },
-    "invalid_patterns": {
-      "patterns": [
-        {
-          "match": "(,\\s*,)",
-          "name": "invalid.illegal"
-        }
-      ]
+    "string-character-escape": {
+      "name": "constant.character.escape.spectra-in",
+      "match": "\\\\(x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|u\\{[0-9A-Fa-f]+\\}|[0-2][0-7]{0,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.|$)"
     }
   }
 }
