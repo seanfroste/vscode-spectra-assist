@@ -212,3 +212,11 @@ Icon[
 Network Trash Folder
 Temporary Items
 .apdisk
+# Spectrals source code - private repository, do not commit
+spectrals/
+
+# TypeScript output
+out/
+
+# Language server logs
+spectrals.log
