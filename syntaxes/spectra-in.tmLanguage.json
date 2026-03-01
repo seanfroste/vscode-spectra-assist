@@ -1,146 +1,192 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "name": "spectra-in",
-  "patterns": [
-    { "include": "#main" }
-  ],
   "scopeName": "source.spectra-in",
   "uuid": "4fb5ae98-d1e6-43dd-bc85-387d08a61ea0",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#statements" },
+    { "include": "#control-flow" },
+    { "include": "#parameters" },
+    { "include": "#functions" },
+    { "include": "#variables" },
+    { "include": "#materials" },
+    { "include": "#patterns" },
+    { "include": "#numeric" },
+    { "include": "#strings" },
+    { "include": "#operators" }
+  ],
   "repository": {
-    "main": {
-      "patterns": [
-        { "include": "#comments" },
-        { "include": "#strings" },
-        { "include": "#title" },
-        { "include": "#calculation_statements" },
-        { "include": "#numeric" },
-        { "include": "#parameters" },
-        { "include": "#other_punctuation" },
-        { "include": "#invalid_patterns" }
-      ]
-    },
     "comments": {
       "patterns": [
         {
-          "match": "(^[#$*]+.*)",
-          "name": "comment.line"
+          "name": "comment.line.spectra-in",
+          "match": "[#$*].*$"
         }
       ]
     },
-    "strings": {
+    "statements": {
       "patterns": [
         {
-          "begin": "(')",
-          "beginCaptures": { "1": { "name": "punctuation.spectra-in" } },
-          "contentName": "string.quoted.single",
-          "end": "(')",
-          "endCaptures": { "1": { "name": "punctuation.spectra-in" } }
+          "name": "keyword.control.statement.spectra-in",
+          "match": "(?i)\\b(TITLE|SUBSTR(?:ATE)?|GRID|STRUCT(?:URE)?|CONV(?:ERGENCE)?|CONSTANT|BIAS|DEFINE|DOPE|ELECTRODE|ELEC|REGION|REGI|INTERFACE|INT|NFERMI|NFER|PFERMI|PFER|LIGHT|MODEL|EXTRACT|EXTR|SAVE|RESTART|REST|INSERT|DEPOSIT|DEPO|END)\\b"
         },
         {
-          "begin": "\"",
-          "beginCaptures": { "1": { "name": "punctuation.spectra-in" } },
-          "contentName": "string.quoted.double",
-          "end": "\"",
-          "endCaptures": { "1": { "name": "punctuation.spectra-in" } }
+          "name": "keyword.control.conditional.spectra-in",
+          "match": "(?i)\\b(IF|ELSE|ENDIF)\\b"
+        }
+      ]
+    },
+    "control-flow": {
+      "patterns": [
+        {
+          "name": "keyword.control.conditional.spectra-in",
+          "match": "(?i)\\b(ELSE|ENDIF)\\b"
         },
         {
-          "begin": "(\\{)",
-          "beginCaptures": { "1": { "name": "punctuation.spectra-in" } },
-          "contentName": "string.quoted.curly_braces",
-          "end": "(\\})",
-          "endCaptures": { "1": { "name": "punctuation.spectra-in" } }
-        }
-      ]
-    },
-    "numeric": {
-      "patterns": [
-        {
-          "match": "(((-?)(?:[ \t]*)(\\d+)((\\.)(\\d+))?)([eE](-?\\d+))?)",
-          "captures": { "1": { "name": "constant.numeric" } }
-        }
-      ]
-    },
-    "title": {
-      "patterns": [
-        {
-          "match": "(?i)(^TITLE)(?:[ \t]+)(.+)",
-          "captures": {
-            "1": { "name": "keyword.control.title" },
-            "2": { "name": "constant.character.title" }
-          }
-        }
-      ]
-    },
-    "calculation_statements": {
-      "patterns": [
-        {
-          "match": "(?i)(?:\\s*)((BIAS|CONSTANT|CONS|CONVERGENCE|CONV|DEFINE|DEPOSIT|DEPO|DOPE|ELECTRODE|ELEC|END|EXTRACT|EXTR|GRID|IF|INSERT|INTERFACE|INT|LIGHT|MODEL|NFERMI|NFER|PFERMI|PFER|REGION|REGI|RESTART|REST|SAVE|STRUCTURE|STRUCT|SUBSTRATE|SUBS){1})(?=\\s|$)",
-          "name": "keyword.control.calc_statement"
+          "name": "keyword.control.spectra-in",
+          "match": "(?i)^\\s*IF\\[.+\\]"
         }
       ]
     },
     "parameters": {
       "patterns": [
         {
-          "match": "(\\w+)(?:[ \t]*)(=)(?:[ \t]*)(.+?)(?=(?:(?:[, \t]*\\w+[ \t]*?=)|(?:\n)))",
-          "comment": "capture groups are (param_name)(=)(param_value)",
-          "captures": {
-            "1": { "name": "keyword.other.parameter.name" },
-            "2": { "name": "keyword.operator.parameter.assignment" },
-            "3": {
-              "patterns": [
-                {
-                  "match": "@.+?",
-                  "comment": "referencing user defined variable",
-                  "name": "variable.other.user_defined"
-                },
-                {
-                  "match": "\\$\\$.+?",
-                  "comment": "referencing user defined string",
-                  "name": "string.other.user_defined"
-                },
-                { "include": "#strings" },
-                {
-                  "match": "\\(([^)]+)\\)",
-                  "comment": "greedy match for non closing brace char, i.e. contents of (...)",
-                  "captures": { "1": { "patterns": [ { "include": "#numeric" } ] } }
-                },
-                {
-                  "match": "(?<==)(?:[ \t]*)(((-?)(?:[ \t]*)(\\d+)((\\.)(\\d+))?)([eE](-?\\d+))?)",
-                  "name": "constant.numeric.parameter"
-                },
-                {
-                  "match": ".+?",
-                  "comment": "custom param value",
-                  "name": "constant.character.parameter_value"
-                }
-              ]
-            }
-          }
+          "name": "variable.parameter.spectra-in",
+          "match": "(?i)\\b(MASK|ANDMASK|ANDNEGA|TRIM)\\s*(?=\\s*=)"
+        },
+        {
+          "name": "variable.parameter.spectra-in",
+          "match": "(?i)\\b(XMIN|XMAX|YMIN|YMAX|ZMIN|ZMAX|XPLUS|YPLUS|ZPLUS|XMULTIPLE|YMULTIPLE|ZMULTIPLE|XSHIFT|YSHIFT|ZSHIFT|XORIGIN|YORIGIN)\\b"
+        },
+        {
+          "name": "variable.parameter.spectra-in",
+          "match": "(?i)\\b(VOLTAGE|V|VE|TYPE|CONCENTRATION|CONC|CM|WORK|RESISTANCE)\\b"
+        },
+        {
+          "name": "variable.parameter.spectra-in",
+          "match": "(?i)\\b(GRATE|GRATIO|RATE|SPACE|TMIN|TMAX)\\b"
+        },
+        {
+          "name": "variable.parameter.spectra-in",
+          "match": "(?i)\\b(MOBILITY|MOBIL|BGNARROW|BGN|SRH|AUGER|IMPACT|TUNNELING|TRAP)\\b"
+        },
+        {
+          "name": "variable.parameter.spectra-in",
+          "match": "(?i)\\b(ELECTRON|HOLE|VMIN|VMAX|NCURRENT|PCURRENT|BARRIER|NBARRIER|PBARRIER|NSADDLE|PSADDLE|EMAX|EMIN|NMAX|PMAX|NMIN|PMIN|TIME|TTRANSIT|QELECTRODE)\\b"
         }
       ]
     },
-    "other_punctuation": {
+    "functions": {
       "patterns": [
         {
-          "match": "(=)",
-          "name": "keyword.operator.logical.spectra-in"
-        },
-        {
-          "match": "(,)",
-          "name": "punctuation.spectra-in"
-        },
-        {
-          "match": "(;)",
-          "name": "punctuation.spectra-in"
+          "name": "support.function.spectra-in",
+          "match": "(?i)\\b(PWL|EXP|PULSE|SIN|FILE|POLY|RECTANGLE|PERIODIC)\\b(?=\\s*\\()"
         }
       ]
     },
-    "invalid_patterns": {
+    "variables": {
       "patterns": [
         {
-          "match": "(,\\s*,)",
-          "name": "invalid.illegal"
+          "name": "variable.other.numeric.spectra-in",
+          "match": "@[A-Za-z_][A-Za-z0-9_]*"
+        },
+        {
+          "name": "variable.other.character.spectra-in",
+          "match": "\\$[A-Za-z_][A-Za-z0-9_]*"
+        },
+        {
+          "name": "variable.other.predefined.spectra-in",
+          "match": "\\$INPUTFILE"
+        }
+      ]
+    },
+    "materials": {
+      "patterns": [
+        {
+          "name": "constant.language.material.spectra-in",
+          "match": "(?i)\\b(SILICON|OXIDE|NITRIDE|INSULATOR|POLY|VACUUM|AIR|LOCOS|METAL|ALUMINUM|M[1-8]|SUPREM4|SSUPREM4|TIF|ISE2|DFISE2)\\b"
+        }
+      ]
+    },
+    "patterns": {
+      "patterns": [
+        {
+          "name": "constant.other.pattern.spectra-in",
+          "match": "(?i)\\b(X[+-]Y[+-]|X[+-]Z[+-]|Y[+-]Z[+-])\\b"
+        },
+        {
+          "name": "constant.other.boundary.spectra-in",
+          "match": "(?i)\\b(PERIODIC|MIRROR|REFLECTION|P|M)\\b"
+        }
+      ]
+    },
+    "numeric": {
+      "patterns": [
+        {
+          "name": "constant.numeric.scientific.spectra-in",
+          "match": "(?<![A-Za-z0-9_])-?\\d+\\.?\\d*[eE][+-]?\\d+(?![A-Za-z0-9_])"
+        },
+        {
+          "name": "constant.numeric.engineering.spectra-in",
+          "match": "(?<![A-Za-z0-9_])-?\\d+\\.?\\d*[bB]\\d+(?![A-Za-z0-9_])"
+        },
+        {
+          "name": "constant.numeric.decimal.spectra-in",
+          "match": "(?<![A-Za-z0-9_])-?\\d+\\.\\d+(?![A-Za-z0-9_])"
+        },
+        {
+          "name": "constant.numeric.integer.spectra-in",
+          "match": "(?<![A-Za-z0-9_])-?\\d+(?![A-Za-z0-9_.])"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.single.spectra-in",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            { "include": "#variables" }
+          ]
+        },
+        {
+          "name": "string.quoted.double.spectra-in",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            { "include": "#variables" }
+          ]
+        },
+        {
+          "name": "string.quoted.curly.spectra-in",
+          "begin": "\\{",
+          "end": "\\}",
+          "patterns": [
+            { "include": "#variables" },
+            { "include": "#numeric" }
+          ]
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.assignment.spectra-in",
+          "match": "="
+        },
+        {
+          "name": "keyword.operator.separator.spectra-in",
+          "match": "[,;]"
+        },
+        {
+          "name": "keyword.operator.logical.spectra-in",
+          "match": "&"
+        },
+        {
+          "name": "invalid.illegal.double-comma.spectra-in",
+          "match": ",\\s*,"
         }
       ]
     }
