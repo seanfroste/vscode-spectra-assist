@@ -18,7 +18,7 @@
   "scripts": {
     "compile": "tsc -p ./",
     "bundle": "esbuild src/extension.ts --bundle --platform=node --external:vscode --outfile=out/extension.js",
-    "vscode:prepublish": "npm run compile && npm run bundle",
+    "vscode:prepublish": "npx prettier --write src/ && npm run compile && npm run bundle",
     "watch": "tsc -watch -p ./"
   },
   "dependencies": {
@@ -28,6 +28,7 @@
     "@types/node": "16.x",
     "@types/vscode": "^1.70.0",
     "esbuild": "^0.27.3",
+    "prettier": "^3.8.1",
     "typescript": "^5.0.0"
   },
   "contributes": {
