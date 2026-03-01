@@ -5,6 +5,7 @@ All notable changes to the "vscode-spectra-assist" extension will be documented 
 Format loosely based on [Keep a Changelog](http://keepachangelog.com/)
 
 - [Change Log](#change-log)
+  - [\[0.9.0\]](#090)
   - [\[0.8.1\]](#081)
     - [Fixed](#fixed)
   - [\[0.8.0\]](#080)
@@ -29,6 +30,13 @@ Format loosely based on [Keep a Changelog](http://keepachangelog.com/)
     - [Removed](#removed)
   - [\[0.1.0\] - 2024-03-23](#010---2024-03-23)
     - [Added](#added-5)
+
+## [0.9.0]
+
+### Changed
+
+- Optimized .vscodeignore for extension packaging
+- Added esbuild bundling for single-file distribution
 
 ## [0.8.1]
 
