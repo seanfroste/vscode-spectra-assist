@@ -1,9 +1,13 @@
 {
   "name": "vscode-spectra-assist",
+  "main": "./out/extension.js",
   "displayName": "Spectra Assist",
   "description": "Syntax Highlighting and Snippets for SPECTRA Calculation Input files",
   "publisher": "seanfroste",
   "version": "0.8.1",
+  "activationEvents": [
+    "onLanguage:spectra-in"
+  ],
   "repository": "https://github.com/seanfroste/vscode-spectra-assist",
   "engines": {
     "vscode": "^1.87.0"
@@ -11,7 +15,32 @@
   "categories": [
     "Programming Languages"
   ],
+  "scripts": {
+    "compile": "tsc -p ./",
+    "bundle": "esbuild src/extension.ts --bundle --platform=node --external:vscode --outfile=out/extension.js",
+    "vscode:prepublish": "npm run compile && npm run bundle",
+    "watch": "tsc -watch -p ./"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^8.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "16.x",
+    "@types/vscode": "^1.70.0",
+    "esbuild": "^0.27.3",
+    "typescript": "^5.0.0"
+  },
   "contributes": {
+    "configuration": {
+      "title": "Spectra LSP",
+      "properties": {
+        "spectra.lsp.logging": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable LSP communication logging to output channel"
+        }
+      }
+    },
     "languages": [
       {
         "id": "spectra-in",
