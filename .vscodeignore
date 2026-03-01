@@ -1,4 +1,36 @@
+# bin/**
+syntaxes/**
+snippets/**
+package.json
+# README.md
+# CHANGELOG.md
+# LICENSE
+language-configuration.json
+.vscodeignore
+src/**
+.git/**
+.gitignore
+.gitattributes
+spectrals/**
+.opencode/**
+node_modules/**
+package-lock.json
+yarn.lock
+bun.lock
+tsconfig.json
+tsconfig.*.json
 .vscode/**
 .vscode-test/**
-.gitignore
+.github/**
+.prettierrc
+.prettierrc.*
+.eslintrc*
+.editorconfig
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.DS_Store
+Thumbs.db
 vsc-extension-quickstart.md

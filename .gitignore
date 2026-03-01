@@ -142,8 +142,12 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# Spectrals source code - private repository, do not commit
+# private repository, do not commit
 spectrals/
+bin/
+
+# opencode configuration
+.opencode/
 
 # TypeScript output
 out/
