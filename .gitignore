@@ -214,6 +214,10 @@ Temporary Items
 .apdisk
 # Spectrals source code - private repository, do not commit
 spectrals/
+bin/
+
+# opencode configuration
+.opencode/
 
 # TypeScript output
 out/
