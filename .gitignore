@@ -141,3 +141,12 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Spectrals source code - private repository, do not commit
+spectrals/
+
+# TypeScript output
+out/
+
+# Language server logs
+spectrals.log
