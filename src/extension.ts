@@ -94,22 +94,32 @@ export function activate(context: ExtensionContext) {
     synchronize: {
       // Notify the server about file changes in the workspace
       fileEvents: workspace.createFileSystemWatcher('**/*.in'),
+      // Notify the server about configuration changes
+      configurationSection: 'spectrals',
     },
     // Enable diagnostics
-    diagnosticCollectionName: 'spectra-lsp',
+    diagnosticCollectionName: 'spectrals',
     // Output channel for logging
     outputChannel: outputChannel,
     // Reveal output channel on error
     revealOutputChannelOn: 2, // Error
+    // Initialization options for the language server
+    initializationOptions: {
+      intellisense: workspace.getConfiguration('spectrals').get('intellisense', true),
+      navigation: workspace.getConfiguration('spectrals').get('navigation', true),
+      diagnostics: workspace.getConfiguration('spectrals').get('diagnostics', true),
+      traceLevel: workspace.getConfiguration('spectrals').get('traceLevel', 'messages'),
+      diagnosticsSeverity: workspace
+        .getConfiguration('spectrals')
+        .get('diagnosticsSeverity', 'error'),
+      maxDiagnosticsPerFile: workspace
+        .getConfiguration('spectrals')
+        .get('maxDiagnosticsPerFile', 100),
+    },
   };
 
   // Create the language client
-  client = new LanguageClient(
-    'spectra-lsp',
-    'Spectra Language Server',
-    serverOptions,
-    clientOptions
-  );
+  client = new LanguageClient('spectrals', 'SPECTRA Language Server', serverOptions, clientOptions);
 
   // Start the client. This will also launch the server
   outputChannel.appendLine('Starting language server...');
