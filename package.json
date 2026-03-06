@@ -1,8 +1,9 @@
 {
   "name": "vscode-spectra-assist",
+  "type": "module",
   "main": "./dist/extension.js",
   "displayName": "Spectra Assist",
-  "description": "Syntax Highlighting and Snippets for SPECTRA Calculation Input files",
+  "description": "Language Extension for SPECTRA Calculation Input files",
   "publisher": "seanfroste",
   "version": "0.12.0",
   "repository": "https://github.com/seanfroste/vscode-spectra-assist",
