@@ -1,6 +1,6 @@
 {
   "name": "vscode-spectra-assist",
-  "main": "./out/extension.js",
+  "main": "./dist/extension.js",
   "displayName": "Spectra Assist",
   "description": "Syntax Highlighting and Snippets for SPECTRA Calculation Input files",
   "publisher": "seanfroste",

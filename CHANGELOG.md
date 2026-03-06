@@ -35,6 +35,10 @@ Format loosely based on [Keep a Changelog](http://keepachangelog.com/)
 
 ### Changed
 
+- Excluded test files, coverage reports, and source maps from extension package
+- Updated .vscodeignore with comprehensive exclusions for non-production files
+- Fixed package.json main entry point to use dist/ instead of out/
+- Optimized extension package size by removing development files
 - Optimized .vscodeignore for extension packaging
 - Added esbuild bundling for single-file distribution
 
