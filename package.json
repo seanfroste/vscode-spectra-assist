@@ -4,7 +4,7 @@
   "displayName": "Spectra Assist",
   "description": "Syntax Highlighting and Snippets for SPECTRA Calculation Input files",
   "publisher": "seanfroste",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "activationEvents": [
     "onLanguage:spectra-in"
   ],
