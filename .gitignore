@@ -148,6 +148,7 @@ bin/
 
 # opencode configuration
 .opencode/
+.ocx/
 
 # TypeScript output
 out/
