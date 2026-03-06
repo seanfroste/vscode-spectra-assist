@@ -4,10 +4,7 @@
   "displayName": "Spectra Assist",
   "description": "Syntax Highlighting and Snippets for SPECTRA Calculation Input files",
   "publisher": "seanfroste",
-  "version": "0.11.0",
-  "activationEvents": [
-    "onLanguage:spectra-in"
-  ],
+  "version": "0.12.0",
   "repository": "https://github.com/seanfroste/vscode-spectra-assist",
   "engines": {
     "vscode": "^1.87.0"
@@ -17,25 +14,69 @@
   ],
   "scripts": {
     "compile": "tsc -p ./",
-    "bundle": "esbuild src/extension.ts --bundle --platform=node --external:vscode --outfile=out/extension.js",
-    "vscode:prepublish": "npx prettier --write src/ && npm run compile && npm run bundle",
+    "bundle": "vite build",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "vscode:prepublish": "npm run test:coverage && npm run compile && npm run bundle",
     "watch": "tsc -watch -p ./"
   },
   "dependencies": {
     "vscode-languageclient": "^8.0.0"
   },
   "devDependencies": {
-    "@types/node": "16.x",
+    "@types/node": "^20.0.0",
     "@types/vscode": "^1.70.0",
-    "esbuild": "^0.27.3",
-    "prettier": "^3.8.1",
-    "typescript": "^5.0.0"
+    "@vitest/coverage-v8": "^1.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^5.4.21",
+    "vitest": "^1.6.1"
   },
   "contributes": {
     "configuration": {
-      "title": "Spectra LSP",
+      "title": "SPECTRA Language Server",
       "properties": {
-        "spectra.lsp.logging": {
+        "spectrals.intellisense": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable hover information and code completion"
+        },
+        "spectrals.navigation": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable go-to-definition and find-references features"
+        },
+        "spectrals.diagnostics": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable syntax validation and error reporting"
+        },
+        "spectrals.traceLevel": {
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "messages",
+          "description": "Logging verbosity"
+        },
+        "spectrals.diagnosticsSeverity": {
+          "type": "string",
+          "enum": [
+            "error",
+            "warning",
+            "info"
+          ],
+          "default": "error",
+          "description": "Minimum diagnostic severity level"
+        },
+        "spectrals.maxDiagnosticsPerFile": {
+          "type": "number",
+          "default": 100,
+          "description": "Maximum number of diagnostics per file (0 = unlimited)"
+        },
+        "spectrals.lsp.logging": {
           "type": "boolean",
           "default": false,
           "description": "Enable LSP communication logging to output channel"
