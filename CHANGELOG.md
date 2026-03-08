@@ -5,11 +5,16 @@ All notable changes to the "vscode-spectra-assist" extension will be documented 
 Format loosely based on [Keep a Changelog](http://keepachangelog.com/)
 
 - [Change Log](#change-log)
+  - [0.12.0](#0120)
+    - [Added](#added)
+    - [Changed](#changed)
   - [\[0.9.0\]](#090)
+    - [Added](#added-1)
+    - [Changed](#changed-1)
   - [\[0.8.1\]](#081)
     - [Fixed](#fixed)
   - [\[0.8.0\]](#080)
-    - [Added](#added)
+    - [Added](#added-2)
   - [\[0.7.0\]](#070)
     - [Fixed](#fixed-1)
   - [\[0.6.1\]](#061)
@@ -17,21 +22,40 @@ Format loosely based on [Keep a Changelog](http://keepachangelog.com/)
   - [\[0.6.0\]](#060)
     - [Fixed](#fixed-3)
   - [\[0.3.2\]](#032)
-    - [Added](#added-1)
-  - [\[0.3.1\]](#031)
-    - [Added](#added-2)
-  - [\[0.3.0\]](#030)
     - [Added](#added-3)
+  - [\[0.3.1\]](#031)
+    - [Added](#added-4)
+  - [\[0.3.0\]](#030)
+    - [Added](#added-5)
   - [\[0.2.0\]](#020)
     - [Fixed](#fixed-4)
   - [\[0.1.1\] - 2021-04-24](#011---2021-04-24)
-    - [Added](#added-4)
+    - [Added](#added-6)
     - [Fixed](#fixed-5)
     - [Removed](#removed)
   - [\[0.1.0\] - 2024-03-23](#010---2024-03-23)
-    - [Added](#added-5)
+    - [Added](#added-7)
+
+## 0.12.0
+
+### Added
+
+- extension client hook with more events
+
+### Changed
+
+- syntax highlighting structure
+- Better, type-safe LSP (still from scratch)
+- abbreviation highlighting to the [textmate grammar](syntaxes/spectra-in.tmLanguage.json)
 
 ## [0.9.0]
+
+### Added
+
+- LANGUAGE SERVER!!!
+- Written in Go, from scratch
+  - Okay, maybe an LLM helped
+    - Okay, maybe multiple did
 
 ### Changed
 

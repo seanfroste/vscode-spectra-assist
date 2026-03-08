@@ -33,6 +33,7 @@ vi.mock('../src/utils/binaryResolver', () => ({
 // Mock LanguageClient
 vi.mock('vscode-languageclient/node', () => ({
   LanguageClient: vi.fn(),
+  RevealOutputChannelOn: { Error: 2 },
   TransportKind: {
     stdio: 0,
   },
@@ -94,6 +95,7 @@ describe('Extension', () => {
 
     vi.doMock('vscode-languageclient/node', () => ({
       LanguageClient: vi.fn(),
+      RevealOutputChannelOn: { Error: 2 },
       TransportKind: {
         stdio: 0,
       },

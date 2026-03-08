@@ -4,8 +4,8 @@ import { workspace, ExtensionContext, OutputChannel, window } from 'vscode';
 import {
   LanguageClient,
   LanguageClientOptions,
+  RevealOutputChannelOn,
   ServerOptions,
-  TransportKind,
   ExecutableOptions,
 } from 'vscode-languageclient/node';
 import { getLanguageServerPath, getPlatformInfo } from './utils/binaryResolver';
@@ -13,7 +13,7 @@ import { getLanguageServerPath, getPlatformInfo } from './utils/binaryResolver';
 let client: LanguageClient;
 let outputChannel: OutputChannel;
 
-export function activate(context: ExtensionContext) {
+export async function activate(context: ExtensionContext) {
   // Create output channel for logging
   outputChannel = window.createOutputChannel('Spectra LSP');
   outputChannel.appendLine('Spectra LSP extension activated');
@@ -72,16 +72,19 @@ export function activate(context: ExtensionContext) {
 
   // Server options - run the binary as an executable
   const executableOptions: ExecutableOptions = {
-    cwd: undefined, // Use extension root
+    cwd: context.extensionPath,
     env: process.env,
-    detached: false,
   };
 
   const serverOptions: ServerOptions = {
-    command: serverPath,
-    args: [], // Language server takes no arguments
-    options: executableOptions,
-    transport: TransportKind.stdio, // JSON-RPC over stdin/stdout
+    run: {
+      command: serverPath,
+      options: executableOptions,
+    },
+    debug: {
+      command: serverPath,
+      options: executableOptions,
+    },
   };
 
   // Client options - configure which documents to sync
@@ -102,7 +105,7 @@ export function activate(context: ExtensionContext) {
     // Output channel for logging
     outputChannel: outputChannel,
     // Reveal output channel on error
-    revealOutputChannelOn: 2, // Error
+    revealOutputChannelOn: RevealOutputChannelOn.Error,
     // Initialization options for the language server
     initializationOptions: {
       intellisense: workspace.getConfiguration('spectrals').get('intellisense', true),
@@ -124,16 +127,14 @@ export function activate(context: ExtensionContext) {
   // Start the client. This will also launch the server
   outputChannel.appendLine('Starting language server...');
 
-  client.start().then(
-    () => {
-      outputChannel.appendLine('Language server started successfully');
-    },
-    error => {
-      const errorMsg = `Failed to start language server: ${error instanceof Error ? error.message : String(error)}`;
-      outputChannel.appendLine(errorMsg);
-      window.showErrorMessage(errorMsg);
-    }
-  );
+  try {
+    await client.start();
+    outputChannel.appendLine('Language server started successfully');
+  } catch (error) {
+    const errorMsg = `Failed to start language server: ${error instanceof Error ? error.message : String(error)}`;
+    outputChannel.appendLine(errorMsg);
+    window.showErrorMessage(errorMsg);
+  }
 }
 
 export function deactivate(): Promise<void> | undefined {

@@ -6,12 +6,12 @@
   "patterns": [
     { "include": "#comments" },
     { "include": "#statements" },
-    { "include": "#control-flow" },
     { "include": "#parameters" },
+    { "include": "#extract-params" },
     { "include": "#functions" },
     { "include": "#variables" },
     { "include": "#materials" },
-    { "include": "#patterns" },
+    { "include": "#direction-patterns" },
     { "include": "#numeric" },
     { "include": "#strings" },
     { "include": "#operators" }
@@ -21,15 +21,16 @@
       "patterns": [
         {
           "name": "comment.line.spectra-in",
-          "match": "[#$*].*$"
+          "match": "^\\s*[#$*].*$"
         }
       ]
     },
     "statements": {
       "patterns": [
         {
+          "comment": "All statement names and their minimum-length abbreviations from spec.rs",
           "name": "keyword.control.statement.spectra-in",
-          "match": "(?i)\\b(TITLE|SUBSTR(?:ATE)?|GRID|STRUCT(?:URE)?|CONV(?:ERGENCE)?|CONSTANT|BIAS|DEFINE|DOPE|ELECTRODE|ELEC|REGION|REGI|INTERFACE|INT|NFERMI|NFER|PFERMI|PFER|LIGHT|MODEL|EXTRACT|EXTR|SAVE|RESTART|REST|INSERT|DEPOSIT|DEPO|END)\\b"
+          "match": "(?i)\\b(TITLE|SUBSTR(?:ATE)?|SUBS|GRID|STRUCT(?:URE)?|CONV(?:ERGENCE)?|CONST(?:ANT)?|BIAS|DEF(?:INE)?|DEPO(?:SIT)?|DOPE|ELEC(?:TRODE)?|END|EXTR(?:ACT)?|INSERT|INT(?:ERFACE)?|LIGHT|MODEL|MASK|NFER(?:MI)?|PFER(?:MI)?|REGI(?:ON)?|REST(?:ART)?|SAVE|PLOT)\\b"
         },
         {
           "name": "keyword.control.conditional.spectra-in",
@@ -37,67 +38,154 @@
         }
       ]
     },
-    "control-flow": {
-      "patterns": [
-        {
-          "name": "keyword.control.conditional.spectra-in",
-          "match": "(?i)\\b(ELSE|ENDIF)\\b"
-        },
-        {
-          "name": "keyword.control.spectra-in",
-          "match": "(?i)^\\s*IF\\[.+\\]"
-        }
-      ]
-    },
     "parameters": {
       "patterns": [
         {
-          "name": "variable.parameter.spectra-in",
-          "match": "(?i)\\b(MASK|ANDMASK|ANDNEGA|TRIM)\\s*(?=\\s*=)"
+          "comment": "Coordinate parameters (shared across many statements)",
+          "name": "variable.parameter.coordinate.spectra-in",
+          "match": "(?i)\\b(XMI(?:N)?|XMA(?:X)?|YMI(?:N)?|YMA(?:X)?|ZMI(?:N)?|ZMA(?:X)?|TMI(?:N)?|TMA(?:X)?|XPL(?:US)?|YPL(?:US)?|ZPL(?:US)?|TPL(?:US)?|XMUL(?:TIPLE)?|YMUL(?:TIPLE)?|ZMUL(?:TIPLE)?|FXMUL(?:TIPLE)?|FYMUL(?:TIPLE)?|XSH(?:IFT)?|YSH(?:IFT)?|ZSH(?:IFT)?|XR(?:EPEAT)?|YR(?:EPEAT)?|XORI(?:GIN)?|YORI(?:GIN)?)\\b(?=\\s*=|\\s*$)"
         },
         {
-          "name": "variable.parameter.spectra-in",
-          "match": "(?i)\\b(XMIN|XMAX|YMIN|YMAX|ZMIN|ZMAX|XPLUS|YPLUS|ZPLUS|XMULTIPLE|YMULTIPLE|ZMULTIPLE|XSHIFT|YSHIFT|ZSHIFT|XORIGIN|YORIGIN)\\b"
+          "comment": "General shared parameters",
+          "name": "variable.parameter.general.spectra-in",
+          "match": "(?i)\\b(NAME|FILE|TYPE|MATE(?:RIAL)?|MAT|PAT(?:TERN)?|OPT(?:ION)?|EXP(?:AND)?|NEGA(?:TIVE)?|MASK|ANDM(?:ASK)?|ANDN(?:EGA)?|TRIM|LOCOS|CELL|SHAPE|POLY)\\b(?=\\s*=|\\s*$)"
         },
         {
-          "name": "variable.parameter.spectra-in",
-          "match": "(?i)\\b(VOLTAGE|V|VE|TYPE|CONCENTRATION|CONC|CM|WORK|RESISTANCE)\\b"
+          "comment": "Substrate and voltage parameters",
+          "name": "variable.parameter.substrate.spectra-in",
+          "match": "(?i)\\b(CONC(?:ENTRATION)?|VOLTAGE|VSUB|VF|DV)\\b(?=\\s*=|\\s*$)"
         },
         {
-          "name": "variable.parameter.spectra-in",
-          "match": "(?i)\\b(GRATE|GRATIO|RATE|SPACE|TMIN|TMAX)\\b"
+          "comment": "Single-letter abbreviations for voltage/concentration (V, C)",
+          "name": "variable.parameter.abbrev.spectra-in",
+          "match": "(?i)\\b(V|C)\\b(?=\\s*=)"
         },
         {
-          "name": "variable.parameter.spectra-in",
-          "match": "(?i)\\b(MOBILITY|MOBIL|BGNARROW|BGN|SRH|AUGER|IMPACT|TUNNELING|TRAP)\\b"
+          "comment": "Doping parameters",
+          "name": "variable.parameter.doping.spectra-in",
+          "match": "(?i)\\b(PROF(?:ILE)?|CM(?:AX)?|CB|XJ|RP|LAT(?:ERAL)?|DOSE|MULT(?:IPLY)?|MUL)\\b(?=\\s*=|\\s*$)"
         },
         {
-          "name": "variable.parameter.spectra-in",
-          "match": "(?i)\\b(ELECTRON|HOLE|VMIN|VMAX|NCURRENT|PCURRENT|BARRIER|NBARRIER|PBARRIER|NSADDLE|PSADDLE|EMAX|EMIN|NMAX|PMAX|NMIN|PMIN|TIME|TTRANSIT|QELECTRODE)\\b"
+          "comment": "Grid parameters",
+          "name": "variable.parameter.grid.spectra-in",
+          "match": "(?i)\\b(RAT(?:IO)?|GRA(?:TE)?|SP(?:ACE)?)\\b(?=\\s*=|\\s*$)"
+        },
+        {
+          "comment": "Structure/boundary parameters",
+          "name": "variable.parameter.structure.spectra-in",
+          "match": "(?i)\\b(XB(?:OUNDARY)?|YB(?:OUNDARY)?)\\b(?=\\s*=|\\s*$)"
+        },
+        {
+          "comment": "BIAS parameters",
+          "name": "variable.parameter.bias.spectra-in",
+          "match": "(?i)\\b(ENAME|VSTEP|NSTEP|FLOAT|CUR(?:RENT)?|NCUR(?:RENT)?|PCUR(?:RENT)?)\\b(?=\\s*=|\\s*$)"
+        },
+        {
+          "comment": "CONVERGENCE parameters",
+          "name": "variable.parameter.convergence.spectra-in",
+          "match": "(?i)\\b(CA(?:RRIER)?|VE(?:RROR)?|FE(?:RROR)?|TIME)\\b(?=\\s*=|\\s*$)"
+        },
+        {
+          "comment": "DEFINE parameters",
+          "name": "variable.parameter.define.spectra-in",
+          "match": "(?i)\\b(VALUE|CHAR(?:ACTER)?|OPTI(?:MIZE)?|TARG(?:ET)?|ERROR)\\b(?=\\s*=|\\s*$)"
+        },
+        {
+          "comment": "Electrode parameters",
+          "name": "variable.parameter.electrode.spectra-in",
+          "match": "(?i)\\b(WOR(?:K)?|RESI(?:STANCE)?|SU(?:PREM4)?)\\b(?=\\s*=|\\s*$)"
+        },
+        {
+          "comment": "Region parameters",
+          "name": "variable.parameter.region.spectra-in",
+          "match": "(?i)\\b(TN(?:0)?|TP(?:0)?|RN|RP|GR|NC|PC|BEAK|ZBE(?:AK)?|EDGE|EMOB|HMOB)\\b(?=\\s*=|\\s*$)"
+        },
+        {
+          "comment": "Interface parameters",
+          "name": "variable.parameter.interface.spectra-in",
+          "match": "(?i)\\b(QF|SN|SP)\\b(?=\\s*=|\\s*$)"
+        },
+        {
+          "comment": "Light parameters",
+          "name": "variable.parameter.light.spectra-in",
+          "match": "(?i)\\b(LA(?:MBDA)?|PO(?:WER)?|TH(?:ETA)?|PH(?:I)?|ASI|NSI|SKI(?:P)?|NST(?:EP)?|LMA(?:X)?|BACK|REV(?:ERSE)?)\\b(?=\\s*=|\\s*$)"
+        },
+        {
+          "comment": "MODEL parameters",
+          "name": "variable.parameter.model.spectra-in",
+          "match": "(?i)\\b(MOB(?:IL(?:ITY)?)?|BGN(?:ARROW)?|SRH|AUG(?:ER)?|IMP(?:ACT)?|TUN(?:NELING)?|TRAP|FNC(?:URRENT)?)\\b(?=\\s*=|\\s*$)"
+        },
+        {
+          "comment": "EXTRACT parameters",
+          "name": "variable.parameter.extract.spectra-in",
+          "match": "(?i)\\b(PARA(?:METER)?|ENAME|AXIS|AX|DELIMIT(?:ER)?|COO(?:RDINATE)?|WIDTH|RAD(?:IUS)?|PEAK|STEP)\\b(?=\\s*=|\\s*$)"
+        },
+        {
+          "comment": "SAVE parameters",
+          "name": "variable.parameter.save.spectra-in",
+          "match": "(?i)\\b(NEW_FERMI|ADD_IMPURITY)\\b(?=\\s*=|\\s*$)"
+        }
+      ]
+    },
+    "extract-params": {
+      "comment": "Well-known EXTRACT PARAMETER values and doping profile types",
+      "patterns": [
+        {
+          "name": "constant.language.extract.spectra-in",
+          "match": "(?i)\\b(ELECTRON|HOLE|VMIN|VMAX|NFERMI|PFERMI|NCURRENT|PCURRENT|NSADDLE|PSADDLE|EMAX|EMIN|BARRIER|NBARRIER|PBARRIER|TIME|TTRANSIT|VELECTRODE|QELECTRODE|GRCURRENT|NGRCURRENT|PGRCURRENT|CNMAX|CPMAX|DONOR|ACCEPTOR|EVOLUME|GII)\\b"
+        },
+        {
+          "comment": "Extracted parameter coordinate variants",
+          "name": "constant.language.extract-coord.spectra-in",
+          "match": "(?i)\\b([XYZ](?:VMIN|VMAX|EMIN|EMAX|CNMAX|CPMAX|NSADDLE|PSADDLE|NMAX|NMIN|PMAX|PMIN|NBMAX|NBMIN|PBMAX|PBMIN|NFMAX|NFMIN|PFMAX|PFMIN))\\b"
+        },
+        {
+          "comment": "Doping profile types",
+          "name": "constant.language.profile.spectra-in",
+          "match": "(?i)\\b(GAUSS(?:IAN)?|BOX|ERFC|SUPREM4|SSUPREM4|TIF|ISE2|DFISE2)\\b"
         }
       ]
     },
     "functions": {
       "patterns": [
         {
+          "comment": "Mask and geometry functions",
           "name": "support.function.spectra-in",
-          "match": "(?i)\\b(PWL|EXP|PULSE|SIN|FILE|POLY|RECTANGLE|PERIODIC)\\b(?=\\s*\\()"
+          "match": "(?i)\\b(PWL|POLY(?:GON)?|FILE|MFILE|RECT(?:ANGLE)?|PERI(?:ODIC)?|PULSE)\\b(?=\\s*\\()"
+        },
+        {
+          "comment": "Mathematical functions (Appendix M, used in {} expressions)",
+          "name": "support.function.math.spectra-in",
+          "match": "(?i)\\b(EXP|SQRT|LOG|LOG10|ABS|SIN|COS|TAN|ASIN|ACOS|ATAN|ATAN2|SINH|COSH|TANH)\\b(?=\\s*\\()"
+        },
+        {
+          "comment": "Built-in mathematical constant PI",
+          "name": "constant.language.math.spectra-in",
+          "match": "\\bPI\\b"
         }
       ]
     },
     "variables": {
       "patterns": [
         {
+          "comment": "Predefined variable $INPUTFILE — must come before general $ pattern",
+          "name": "variable.other.predefined.spectra-in",
+          "match": "\\$INPUTFILE\\b"
+        },
+        {
+          "comment": "User numeric variables @name",
           "name": "variable.other.numeric.spectra-in",
           "match": "@[A-Za-z_][A-Za-z0-9_]*"
         },
         {
+          "comment": "User character variables $name",
           "name": "variable.other.character.spectra-in",
           "match": "\\$[A-Za-z_][A-Za-z0-9_]*"
         },
         {
-          "name": "variable.other.predefined.spectra-in",
-          "match": "\\$INPUTFILE"
+          "comment": "Extracted parameter references #name",
+          "name": "variable.other.extracted.spectra-in",
+          "match": "#[A-Za-z_][A-Za-z0-9_ -]*"
         }
       ]
     },
@@ -105,37 +193,48 @@
       "patterns": [
         {
           "name": "constant.language.material.spectra-in",
-          "match": "(?i)\\b(SILICON|OXIDE|NITRIDE|INSULATOR|POLY|VACUUM|AIR|LOCOS|METAL|ALUMINUM|M[1-8]|SUPREM4|SSUPREM4|TIF|ISE2|DFISE2)\\b"
+          "match": "(?i)\\b(SILICON|OXIDE|NITRIDE|INSULATOR|POLY|VACUUM|AIR|LOCOS|METAL|ALUMINUM|M[1-8])\\b"
         }
       ]
     },
-    "patterns": {
+    "direction-patterns": {
       "patterns": [
         {
+          "comment": "Triangle direction patterns for PATTERN parameter",
           "name": "constant.other.pattern.spectra-in",
-          "match": "(?i)\\b(X[+-]Y[+-]|X[+-]Z[+-]|Y[+-]Z[+-])\\b"
+          "match": "(?i)\\b(X[+-]Y[+-](?:Z[+-])?|Y[+-]Z[+-]|X[+-]Z[+-])\\b"
         },
         {
+          "comment": "Axis direction values",
+          "name": "constant.other.axis.spectra-in",
+          "match": "(?i)\\b(-?[XYZ])\\b(?=\\s*[,\\s]|$)"
+        },
+        {
+          "comment": "Boundary condition values",
           "name": "constant.other.boundary.spectra-in",
-          "match": "(?i)\\b(PERIODIC|MIRROR|REFLECTION|P|M)\\b"
+          "match": "(?i)(?<==\\s*)(PERIODIC|MIRROR|REFLECTION|P|M)\\b"
         }
       ]
     },
     "numeric": {
       "patterns": [
         {
+          "comment": "Scientific notation: 1.2E15, 2e-3, etc.",
           "name": "constant.numeric.scientific.spectra-in",
           "match": "(?<![A-Za-z0-9_])-?\\d+\\.?\\d*[eE][+-]?\\d+(?![A-Za-z0-9_])"
         },
         {
+          "comment": "Engineering notation: 4B14 (= 4e14)",
           "name": "constant.numeric.engineering.spectra-in",
           "match": "(?<![A-Za-z0-9_])-?\\d+\\.?\\d*[bB]\\d+(?![A-Za-z0-9_])"
         },
         {
+          "comment": "Decimal numbers: 0.5, 3.14, etc.",
           "name": "constant.numeric.decimal.spectra-in",
           "match": "(?<![A-Za-z0-9_])-?\\d+\\.\\d+(?![A-Za-z0-9_])"
         },
         {
+          "comment": "Integers: 10, -3, etc.",
           "name": "constant.numeric.integer.spectra-in",
           "match": "(?<![A-Za-z0-9_])-?\\d+(?![A-Za-z0-9_.])"
         }
@@ -160,12 +259,29 @@
           ]
         },
         {
-          "name": "string.quoted.curly.spectra-in",
+          "comment": "User-defined function expressions in {}",
+          "name": "meta.expression.spectra-in",
           "begin": "\\{",
           "end": "\\}",
           "patterns": [
             { "include": "#variables" },
-            { "include": "#numeric" }
+            { "include": "#numeric" },
+            { "include": "#functions" },
+            {
+              "name": "keyword.operator.arithmetic.spectra-in",
+              "match": "[+\\-*/^]"
+            }
+          ]
+        },
+        {
+          "comment": "Numeric series in ()",
+          "name": "meta.series.spectra-in",
+          "begin": "\\(",
+          "end": "\\)",
+          "patterns": [
+            { "include": "#numeric" },
+            { "include": "#variables" },
+            { "include": "#strings" }
           ]
         }
       ]
@@ -178,15 +294,11 @@
         },
         {
           "name": "keyword.operator.separator.spectra-in",
-          "match": "[,;]"
+          "match": ","
         },
         {
-          "name": "keyword.operator.logical.spectra-in",
-          "match": "&"
-        },
-        {
-          "name": "invalid.illegal.double-comma.spectra-in",
-          "match": ",\\s*,"
+          "name": "keyword.operator.comparison.spectra-in",
+          "match": "(<=|>=|<>|<|>)"
         }
       ]
     }
