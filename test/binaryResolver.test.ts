@@ -6,13 +6,13 @@ import { getLanguageServerPath, getPlatformInfo } from '../src/utils/binaryResol
 // Mock the os module
 vi.mock('os', () => ({
   platform: vi.fn(() => 'linux'),
-  arch: vi.fn(() => 'x64')
+  arch: vi.fn(() => 'x64'),
 }));
 
 // Mock the fs module
 vi.mock('fs', () => ({
   existsSync: vi.fn(() => true),
-  statSync: vi.fn(() => ({ size: 1000, isFile: () => true }))
+  statSync: vi.fn(() => ({ size: 1000, isFile: () => true })),
 }));
 
 describe('binaryResolver', () => {
@@ -28,7 +28,7 @@ describe('binaryResolver', () => {
 
     beforeEach(() => {
       mockContext = {
-        extensionPath: '/test/extension'
+        extensionPath: '/test/extension',
       };
     });
 
@@ -37,7 +37,7 @@ describe('binaryResolver', () => {
       vi.mocked(os.arch).mockReturnValue('x64');
 
       const result = getLanguageServerPath(mockContext);
-      expect(result).toBe(path.join('/test/extension', 'bin', 'spectrals-windows-amd64.exe'));
+      expect(result).toBe(path.join('/test/extension', 'bin', 'spectrals-windows-x64.exe'));
     });
 
     it('should return correct path for macOS ARM64', () => {
@@ -48,12 +48,12 @@ describe('binaryResolver', () => {
       expect(result).toBe(path.join('/test/extension', 'bin', 'spectrals-darwin-arm64'));
     });
 
-    it('should return correct path for macOS x64', () => {
-      vi.mocked(os.platform).mockReturnValue('darwin');
-      vi.mocked(os.arch).mockReturnValue('x64');
+    it('should throw error for macOS x64', () => {
+      vi.mocked(os.platform).mockReturnValue('unsupported' as any);
 
-      const result = getLanguageServerPath(mockContext);
-      expect(result).toBe(path.join('/test/extension', 'bin', 'spectrals-darwin-amd64'));
+      expect(() => getLanguageServerPath(mockContext)).toThrow(
+        'Unsupported architecture: x64 on macOS. Only arm64 is supported.'
+      );
     });
 
     it('should return correct path for Linux x64', () => {
@@ -61,7 +61,7 @@ describe('binaryResolver', () => {
       vi.mocked(os.arch).mockReturnValue('x64');
 
       const result = getLanguageServerPath(mockContext);
-      expect(result).toBe(path.join('/test/extension', 'bin', 'spectrals-linux-amd64'));
+      expect(result).toBe(path.join('/test/extension', 'bin', 'spectrals-linux-x64'));
     });
 
     it('should throw error for unsupported platform', () => {
