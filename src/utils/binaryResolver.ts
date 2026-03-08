@@ -19,13 +19,16 @@ export function getLanguageServerPath(context: ExtensionContext): string {
 
   switch (platform) {
     case 'darwin':
-      binaryName = arch === 'arm64' ? 'spectrals-darwin-arm64' : 'spectrals-darwin-amd64';
+      if (arch !== 'arm64') {
+        throw new Error(`Unsupported architecture: ${arch} on macOS. Only arm64 is supported.`);
+      }
+      binaryName = 'spectrals-darwin-arm64';
       break;
     case 'linux':
-      binaryName = arch === 'arm64' ? 'spectrals-linux-arm64' : 'spectrals-linux-amd64';
+      binaryName = arch === 'arm64' ? 'spectrals-linux-arm64' : 'spectrals-linux-x64';
       break;
     case 'win32':
-      binaryName = arch === 'arm64' ? 'spectrals-windows-arm64.exe' : 'spectrals-windows-amd64.exe';
+      binaryName = arch === 'arm64' ? 'spectrals-windows-arm64.exe' : 'spectrals-windows-x64.exe';
       break;
     default:
       throw new Error(`Unsupported platform: ${platform}`);

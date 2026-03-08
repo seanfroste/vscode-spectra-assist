@@ -1,7 +1,7 @@
 {
   "name": "vscode-spectra-assist",
   "type": "module",
-  "main": "./dist/extension.js",
+  "main": "./dist/extension.cjs",
   "displayName": "Spectra Assist",
   "description": "Language Extension for SPECTRA Calculation Input files",
   "publisher": "seanfroste",
