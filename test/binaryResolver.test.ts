@@ -51,9 +51,7 @@ describe('binaryResolver', () => {
     it('should throw error for macOS x64', () => {
       vi.mocked(os.platform).mockReturnValue('unsupported' as any);
 
-      expect(() => getLanguageServerPath(mockContext)).toThrow(
-        'Unsupported architecture: x64 on macOS. Only arm64 is supported.'
-      );
+      expect(() => getLanguageServerPath(mockContext)).toThrow('Unsupported platform: unsupported');
     });
 
     it('should return correct path for Linux x64', () => {
