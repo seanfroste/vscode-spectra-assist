@@ -1,21 +1,29 @@
 # Spectra Assist
 
-Public VS Code extension context: syntax highlighting/snippets only. No proprietary language syntax/examples.
+This context covers the VS Code extension code for Spectra Assist and the vocabulary the extension uses to describe its editor features.
 
-## Branch scope
+## Language
 
-`main` is the release branch: static editor contributions only. `lang-server` hosts experimental/pre-release language-server integration; outside this branch's scope.
+**Intellisense**:
+An umbrella capability covering hover information and code completion.
+_Avoid_: autocomplete, smart hints
 
-## Extension vocabulary
+**Go to definition**:
+A navigation capability that jumps to the symbol or statement definition for the current location.
+_Avoid_: jump to source, definition lookup
 
-- **SPECTRA input files**: `.in` documents associated with the `spectra-in` language identifier.
-- **Syntax highlighting**: TextMate grammar scopes used by VS Code to style editor tokens.
-- **Snippets**: VS Code editor templates contributed for the extension's language identifier.
+**Find references**:
+A navigation capability that locates all usages of a symbol or statement.
+_Avoid_: search references, usages lookup
 
-## Public extension surfaces
+**Diagnostics**:
+An umbrella capability covering validation and error reporting for SPECTRA input files.
+_Avoid_: linting, error checking
 
-`package.json` defines language, grammar, snippet, and engine contributions. `language-configuration.json`, `syntaxes/`, and `snippets/` implement the static editor surface. Read config there; no language-definition copy here.
+**SPECTRA input files**:
+The `.in` files the extension targets.
+_Avoid_: input files, calculation files
 
-## Closed-source boundary
-
-Target SPECTRA software/language remain closed source. Limit public changes to extension-facing behavior. Private implementation references outside context; see `AGENTS.md` for the reference-checkout policy.
+**local reference clone**:
+A checked-out copy of the SPECTRALS LSP project kept for implementation context.
+_Avoid_: dependency, upstream project

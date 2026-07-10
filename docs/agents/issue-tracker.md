@@ -1,22 +1,20 @@
 # Issue tracker: GitHub
 
-Issues/specs live in GitHub Issues. Use `gh` CLI for all operations.
+Issues live in GitHub Issues for this repo. Use the `gh` CLI for all operations.
 
 ## Conventions
 
-- Create: `gh issue create --title "..." --body "..."`. Use heredoc for multi-line bodies.
-- Read: `gh issue view <number> --json number,title,body,labels,comments`.
-- List: `gh issue list --state open --json number,title,body,labels,comments --jq '[.[] | {number, title, body, labels: [.labels[].name], comments: [.comments[].body]}]'` with appropriate `--label` and `--state` filters.
-- Comment: `gh issue comment <number> --body "..."`.
-- Labels: `gh issue edit <number> --add-label "..."` / `--remove-label "..."`.
-- Close: `gh issue close <number> --comment "..."`.
-
-Infer repo from `git remote -v`; `gh` resolves it inside clone.
+- Create an issue with `gh issue create --title "..." --body "..."`.
+- Read an issue with `gh issue view <number> --comments`.
+- List issues with `gh issue list --state open`.
+- Comment on an issue with `gh issue comment <number> --body "..."`.
+- Apply or remove labels with `gh issue edit <number> --add-label "..."` / `--remove-label "..."`.
+- Close an issue with `gh issue close <number> --comment "..."`.
 
 ## Pull requests as a triage surface
 
 **PRs as a request surface: no.**
 
-Skill says "publish to the issue tracker": create GitHub issue.
+When a skill says "publish to the issue tracker", create a GitHub issue.
 
-Skill says "fetch the relevant ticket": read issue as above.
+When a skill says "fetch the relevant ticket", run `gh issue view <number> --comments`.
