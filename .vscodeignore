@@ -135,3 +135,8 @@ spectrals/**
 # This file itself (should not be in package)
 # ----------------------------------------------------------------------------
 .vscodeignore
+
+# Agent guidance and extension context are repository-only
+AGENTS.md
+CONTEXT*.md
+docs/agents/**
