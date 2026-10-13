@@ -37,25 +37,23 @@ function diagnosticSnapshot(diagnostic) {
 
 function waitForDiagnostics(predicate) {
   const { promise, resolve, reject } = Promise.withResolvers();
-  let timer;
-  let disposable;
-  const finish = diagnostics => {
-    clearTimeout(timer);
-    disposable.dispose();
-    resolve(diagnostics);
-  };
-  disposable = vscode.languages.onDidChangeDiagnostics(event => {
-    if (event.uris.some(uri => uri.toString() === documentUri.toString())) {
-      const diagnostics = vscode.languages.getDiagnostics(documentUri);
-      if (predicate(diagnostics)) finish(diagnostics);
-    }
-  });
-  timer = setTimeout(() => {
+  const timer = setTimeout(() => {
     disposable.dispose();
     reject(new Error(
       `Timed out waiting for diagnostics; got ${JSON.stringify(vscode.languages.getDiagnostics(documentUri).map(diagnosticSnapshot))}`
     ));
   }, 10000);
+  const finish = diagnostics => {
+    clearTimeout(timer);
+    disposable.dispose();
+    resolve(diagnostics);
+  };
+  const disposable = vscode.languages.onDidChangeDiagnostics(event => {
+    if (event.uris.some(uri => uri.toString() === documentUri.toString())) {
+      const diagnostics = vscode.languages.getDiagnostics(documentUri);
+      if (predicate(diagnostics)) finish(diagnostics);
+    }
+  });
   const current = vscode.languages.getDiagnostics(documentUri);
   if (predicate(current)) finish(current);
   return promise;

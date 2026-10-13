@@ -3,6 +3,12 @@ import type { ChildProcess } from 'node:child_process';
 import { spawn } from 'node:child_process';
 import * as path from 'node:path';
 import * as fs from 'node:fs';
+import type {
+  CompletionItem,
+  Diagnostic,
+  DocumentSymbol,
+  InitializeResult,
+} from 'vscode-languageclient/node';
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 const BIN_DIR = path.join(PROJECT_ROOT, 'bin');
@@ -39,7 +45,14 @@ function contractFixture() {
   };
 }
 
-type Message = Record<string, any>;
+type Message = {
+  jsonrpc: string;
+  id?: string | number | null;
+  method?: string;
+  result?: unknown;
+  error?: { code: number; message: string; data?: unknown };
+  params?: { uri?: string; diagnostics?: Diagnostic[] };
+};
 
 class Protocol {
   private buffer = Buffer.alloc(0);
@@ -53,8 +66,8 @@ class Protocol {
   private readonly errors: string[] = [];
 
   constructor(readonly process: ChildProcess) {
-    process.stderr?.on('data', data => this.errors.push(data.toString()));
-    process.stdout?.on('data', data => {
+    process.stderr?.on('data', (data: Buffer) => this.errors.push(data.toString()));
+    process.stdout?.on('data', (data: Buffer) => {
       this.buffer = Buffer.concat([this.buffer, data]);
       try {
         for (;;) {
@@ -67,7 +80,7 @@ class Protocol {
           if (this.buffer.length < headerEnd + 4 + length) return;
           const message = JSON.parse(
             this.buffer.subarray(headerEnd + 4, headerEnd + 4 + length).toString('utf8')
-          );
+          ) as Message;
           this.buffer = this.buffer.subarray(headerEnd + 4 + length);
           if (message.jsonrpc !== '2.0') throw new Error(`Malformed JSON-RPC message: ${JSON.stringify(message)}`);
           const index = this.waiters.findIndex(waiter => waiter.match(message));
@@ -120,22 +133,28 @@ class Protocol {
     this.process.stdin?.write(`Content-Length: ${Buffer.byteLength(body)}\r\n\r\n${body}`);
   }
 
-  async request(method: string, params?: object) {
+  async request<T = unknown>(method: string, params?: object): Promise<T> {
     const id = Math.floor(Math.random() * 0x7fffffff);
     const responsePromise = this.receive(message => message.id === id);
     this.send(method, params, id);
     const response = await responsePromise;
     if (response.error) throw new Error(`${method} error: ${JSON.stringify(response.error)}`);
     if (!Object.hasOwn(response, 'result')) throw new Error(`${method} response has no result`);
-    return response.result;
+    return response.result as T;
   }
 
-  diagnostics(uri = URI) {
-    return this.receive(message => message.method === 'textDocument/publishDiagnostics' && message.params?.uri === uri)
-      .then(message => message.params.diagnostics as Message[]);
-  }
+  diagnostics(uri = URI): Promise<Diagnostic[]> {
+    return this.receive(
+      message => message.method === 'textDocument/publishDiagnostics' && message.params?.uri === uri
+    ).then(message => {
+      if (!message.params?.diagnostics) {
+        throw new Error('Diagnostics notification has no diagnostics');
+      }
+      return message.params.diagnostics;
+    });
 }
 
+}
 function position(line: number, character: number) {
   return { textDocument: { uri: URI }, position: { line, character } };
 }
@@ -148,9 +167,11 @@ describe('LSP Integration', () => {
   });
 
   it.skipIf(!binaryPath)('exposes the exact v0.4.0 initialize contract and shuts down cleanly', async () => {
-    serverProcess = spawn(binaryPath!, [], { stdio: ['pipe', 'pipe', 'pipe'] });
-    const protocol = new Protocol(serverProcess);
-    const init = await protocol.request('initialize', { capabilities: {} });
+    if (!binaryPath) throw new Error('Authentic language server binary is required');
+    const process = spawn(binaryPath, [], { stdio: ['pipe', 'pipe', 'pipe'] });
+    serverProcess = process;
+    const protocol = new Protocol(process);
+    const init = await protocol.request<InitializeResult>('initialize', { capabilities: {} });
     expect(init).toEqual({
       capabilities: {
         textDocumentSync: 1, hoverProvider: true, completionProvider: {},
@@ -163,28 +184,34 @@ describe('LSP Integration', () => {
     protocol.send('exit');
     await expect(new Promise<void>((resolve, reject) => {
       const timer = setTimeout(() => reject(new Error('Server did not exit after shutdown')), TIMEOUT_MS);
-      serverProcess!.once('exit', code => {
+      process.once('exit', code => {
         clearTimeout(timer);
-        code === 0 ? resolve() : reject(new Error(`Server exit code ${code}`));
+        if (code === 0) {
+          resolve();
+        } else {
+          reject(new Error(`Server exit code ${code}`));
+        }
       });
     })).resolves.toBeUndefined();
   });
 
   it.skipIf(!binaryPath)('serves diagnostics and semantic LSP features across settings and document lifecycle', async () => {
+    if (!binaryPath) throw new Error('Authentic language server binary is required');
     const { text, changed } = contractFixture();
     const lines = text.split('\n');
     const lastName = lines[6].split(' ')[0];
     const parameter = lines[6].slice(5).split('=')[0];
     const detail = lines[6].slice(10);
-    const catalogue = fs.readFileSync(path.join(PROJECT_ROOT, 'spectrals/internal/catalogue/data.go'), 'utf8');
+    const catalogue: string = fs.readFileSync(path.join(PROJECT_ROOT, 'spectrals/internal/catalogue/data.go'), 'utf8');
     const sourceEntry = [...catalogue.matchAll(/\{Name: ("(?:[^"\\]|\\.)*"), MinLength: \d+, Description: ("(?:[^"\\]|\\.)*")/g)]
       .find(match => JSON.parse(match[1]) === lastName);
     if (!sourceEntry) throw new Error('Private catalogue entry missing');
-    const hoverDescription = JSON.parse(sourceEntry[2]);
+    const hoverDescription = JSON.parse(sourceEntry[2]) as string;
 
-    serverProcess = spawn(binaryPath!, [], { stdio: ['pipe', 'pipe', 'pipe'] });
-    const protocol = new Protocol(serverProcess);
-    const init = await protocol.request('initialize', { initializationOptions: { diagnosticsSeverity: 'warning' } });
+    const process = spawn(binaryPath, [], { stdio: ['pipe', 'pipe', 'pipe'] });
+    serverProcess = process;
+    const protocol = new Protocol(process);
+    const init = await protocol.request<InitializeResult>('initialize', { initializationOptions: { diagnosticsSeverity: 'warning' } });
     protocol.send('initialized', {});
     protocol.send('textDocument/didOpen', {
       textDocument: { uri: URI, languageId: 'spectra-in', version: 1, text },
@@ -200,7 +227,7 @@ describe('LSP Integration', () => {
     expect(init.capabilities).toHaveProperty('documentSymbolProvider', true);
 
     expect(await protocol.request('textDocument/hover', position(6, 1))).toEqual({ contents: hoverDescription });
-    const completion = await protocol.request('textDocument/completion', position(6, 5));
+    const completion = await protocol.request<CompletionItem[]>('textDocument/completion', position(6, 5));
     expect(completion).toContainEqual(expect.objectContaining({ label: parameter, kind: 6 }));
     expect(await protocol.request('textDocument/definition', position(2, 20))).toEqual({
       uri: URI, range: RANGE(1, 0, 6),
@@ -211,11 +238,14 @@ describe('LSP Integration', () => {
       { uri: URI, range: RANGE(1, 0, 6) },
       { uri: URI, range: RANGE(2, 18, 24) },
     ]);
-    const symbols = await protocol.request('textDocument/documentSymbol', { textDocument: { uri: URI } });
+    const symbols = await protocol.request<DocumentSymbol[]>('textDocument/documentSymbol', { textDocument: { uri: URI } });
     const save = symbols.at(-1);
+    if (!save) throw new Error('Document symbol response was empty');
+    const saveParameter = save.children?.[0];
+    if (!saveParameter) throw new Error('Save symbol has no parameter child');
     expect({ name: save.name, kind: save.kind, selectionRange: save.selectionRange })
       .toEqual({ name: lastName, kind: 20, selectionRange: RANGE(6, 0, 4) });
-    expect(save.children[0]).toMatchObject({
+    expect(saveParameter).toMatchObject({
       name: parameter, kind: 7, detail, selectionRange: RANGE(6, 5, 9),
     });
 
@@ -247,8 +277,13 @@ describe('LSP Integration', () => {
     expect(await protocol.request('textDocument/references', {
       ...position(2, 1), context: { includeDeclaration: true },
     })).toEqual([]);
-    expect((await protocol.request('textDocument/documentSymbol', { textDocument: { uri: URI } })).at(-1).name)
-      .toBe(lastName);
+    const disabledSymbols = await protocol.request<DocumentSymbol[]>(
+      'textDocument/documentSymbol',
+      { textDocument: { uri: URI } }
+    );
+    const disabledLastSymbol = disabledSymbols.at(-1);
+    if (!disabledLastSymbol) throw new Error('Document symbol response was empty');
+    expect(disabledLastSymbol.name).toBe(lastName);
 
     protocol.send('textDocument/didClose', { textDocument: { uri: URI } });
     expect(await protocol.diagnostics()).toEqual([]);
@@ -257,10 +292,14 @@ describe('LSP Integration', () => {
     protocol.send('exit');
     await new Promise<void>((resolve, reject) => {
       const timer = setTimeout(() => reject(new Error('Server did not exit after shutdown')), TIMEOUT_MS);
-      serverProcess!.once('exit', code => {
+      process.once('exit', code => {
         clearTimeout(timer);
-        code === 0 ? resolve() : reject(new Error(`Server exit code ${code}`));
-      });
+        if (code === 0) {
+          resolve();
+        } else {
+          reject(new Error(`Server exit code ${code}`));
+        }
+    });
     });
   });
 });
