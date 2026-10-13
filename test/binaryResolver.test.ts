@@ -37,7 +37,7 @@ describe('binaryResolver', () => {
       vi.mocked(os.arch).mockReturnValue('x64');
 
       const result = getLanguageServerPath(mockContext);
-      expect(result).toBe(path.join('/test/extension', 'bin', 'spectrals-windows-x64.exe'));
+      expect(result).toBe(path.join('/test/extension', 'bin', 'spectrals-windows-amd64.exe'));
     });
 
     it('should return correct path for macOS ARM64', () => {
