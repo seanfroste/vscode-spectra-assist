@@ -102,6 +102,7 @@ export default defineConfig([
     },
   },
   {
+    // The protocol integration suite skips when its authentic private binary is unavailable.
     files: ['test/lspIntegration.test.ts'],
     rules: {
       'vitest/no-disabled-tests': 'off',
@@ -116,10 +117,11 @@ export default defineConfig([
     ignores: ['.vscode/**/*.json', 'tsconfig*.json'],
     language: 'jsonc/json',
     plugins: { jsonc },
-    rules: {
-      ...jsonRules(...jsonc.configs['flat/recommended-with-json']),
-      'jsonc/no-comments': 'off',
-    },
+    rules: jsonRules(...jsonc.configs['flat/recommended-with-json']),
+  },
+  {
+    files: ['language-configuration.json'],
+    rules: { 'jsonc/no-comments': 'off' },
   },
   {
     files: ['**/*.code-snippets', '.vscode/**/*.json', 'tsconfig*.json', '**/*.jsonc'],
