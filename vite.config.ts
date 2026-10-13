@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 
 export default defineConfig({
   // Build for Node.js (SSR mode) to prevent bundling the browser version of vscode-languageclient
@@ -10,11 +10,11 @@ export default defineConfig({
     ssr: true,
     target: 'node16',
     lib: {
-      entry: resolve(__dirname, 'src/extension.ts'),
+      entry: resolve(import.meta.dirname, 'src/extension.ts'),
       formats: ['cjs'],
       fileName: 'extension',
     },
-    rollupOptions: {
+    rolldownOptions: {
       external: [
         'vscode',
         'path',

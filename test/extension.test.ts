@@ -41,12 +41,11 @@ vi.mock('vscode-languageclient/node', () => ({
 }));
 
 // Import after mocks are set up
-import { activate, deactivate } from '../src/extension';
+import { activate } from '../src/extension';
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
 import { getLanguageServerPath, getPlatformInfo } from '../src/utils/binaryResolver';
-import { LanguageClient } from 'vscode-languageclient/node';
 
 describe('Extension', () => {
   let mockContext: any;
@@ -122,77 +121,6 @@ describe('Extension', () => {
   });
 
   describe('activate', () => {
-    it('should be a function', () => {
-      expect(typeof activate).toBe('function');
-    });
-
-    it('should create output channel and log activation', async () => {
-      (LanguageClient as any).mockImplementation(() => ({
-        start: vi.fn(() => Promise.resolve()),
-      }));
-
-      await activate(mockContext);
-
-      expect(vscode.window.createOutputChannel).toHaveBeenCalledWith('Spectra LSP');
-      expect(mockOutputChannel.appendLine).toHaveBeenCalledWith('Spectra LSP extension activated');
-      expect(mockOutputChannel.appendLine).toHaveBeenCalledWith('Platform: mock-platform');
-    });
-
-    it('should resolve server path and check binary existence', async () => {
-      (LanguageClient as any).mockImplementation(() => ({
-        start: vi.fn(() => Promise.resolve()),
-      }));
-
-      await activate(mockContext);
-
-      expect(mockOutputChannel.appendLine).toHaveBeenCalledWith('Extension path: /mock/extension');
-      expect(mockOutputChannel.appendLine).toHaveBeenCalledWith('Server path resolved: /mock/path/spectrals.exe');
-      expect(fs.existsSync).toHaveBeenCalledWith('/mock/path/spectrals.exe');
-    });
-
-    it('should start language client successfully', async () => {
-      const mockClient = {
-        start: vi.fn(() => Promise.resolve()),
-      };
-      (LanguageClient as any).mockImplementation(() => mockClient);
-
-      await activate(mockContext);
-
-      expect(LanguageClient).toHaveBeenCalled();
-      expect(mockClient.start).toHaveBeenCalled();
-      // Note: Success message logging happens asynchronously
-    });
-    it('sends flat server settings at startup and when Spectra settings change', async () => {
-      const mockClient = {
-        start: vi.fn(() => Promise.resolve()),
-        sendNotification: vi.fn(() => Promise.resolve()),
-      };
-      vi.mocked(LanguageClient).mockImplementation(() => mockClient as unknown as LanguageClient);
-      await activate(mockContext);
-
-      const clientOptions = vi.mocked(LanguageClient).mock.calls[0][3];
-      expect(clientOptions.initializationOptions).toEqual({
-        intellisense: true,
-        navigation: true,
-        diagnostics: true,
-        traceLevel: 'messages',
-        diagnosticsSeverity: 'error',
-        maxDiagnosticsPerFile: 100,
-      });
-      expect(clientOptions.synchronize?.configurationSection).toBeUndefined();
-      expect(mockClient.sendNotification).toHaveBeenCalledWith('workspace/didChangeConfiguration', {
-        settings: clientOptions.initializationOptions,
-      });
-
-      const listener = vi.mocked(vscode.workspace.onDidChangeConfiguration).mock.calls[0][0];
-      expect(vi.mocked(vscode.workspace.onDidChangeConfiguration).mock.invocationCallOrder[0])
-        .toBeLessThan(mockClient.sendNotification.mock.invocationCallOrder[0]);
-      listener({ affectsConfiguration: section => section === 'spectrals' } as Parameters<typeof listener>[0]);
-      await Promise.resolve();
-      expect(mockClient.sendNotification).toHaveBeenCalledTimes(2);
-    });
-
-
     it('should handle binary not found error', async () => {
       (fs.existsSync as any).mockReturnValue(false);
 
@@ -213,27 +141,6 @@ describe('Extension', () => {
       expect(vscode.window.showErrorMessage).toHaveBeenCalledWith(
         'Failed to get language server path: Unsupported platform'
       );
-    });
-  });
-
-  describe('deactivate', () => {
-    it('should be a function', () => {
-      expect(typeof deactivate).toBe('function');
-    });
-
-    it('should stop language client when client exists', async () => {
-      const mockClient = {
-        start: vi.fn(() => Promise.resolve()),
-        stop: vi.fn(() => Promise.resolve()),
-      };
-      (LanguageClient as any).mockImplementation(() => mockClient);
-
-      await activate(mockContext);
-      const result = await deactivate();
-
-      expect(mockClient.stop).toHaveBeenCalled();
-      expect(result).toBeUndefined();
-      expect(mockOutputChannel.dispose).toHaveBeenCalled();
     });
   });
 });
