@@ -49,6 +49,8 @@ Format loosely based on [Keep a Changelog](http://keepachangelog.com/)
 
 - Resolved the Windows x64 server using the release's `amd64` binary filename.
 - Matched the server's LSP protocol and identity contract, and sent flat server settings after startup and configuration changes.
+- Upgraded the language client and development dependencies while retaining the VS Code 1.87 API floor and Node16-targeted CommonJS bundle.
+- Replaced deprecated compiler resolution and bundler options, and explicitly included all runtime sources in V8 coverage.
 
 ## 0.12.0
 
