@@ -89,6 +89,7 @@ export default defineConfig([
       'vitest/no-disabled-tests': 'error',
       'vitest/no-duplicate-hooks': 'error',
       'vitest/prefer-vi-mocked': 'error',
+      'vitest/prefer-called-exactly-once-with': 'error',
       'vitest/prefer-mock-promise-shorthand': 'error',
       '@typescript-eslint/unbound-method': 'off',
       'vitest/unbound-method': 'error',
