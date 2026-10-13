@@ -1,0 +1,15 @@
+# Dependencies and generated build/test artifacts
+**/node_modules/**
+**/.git/**
+bin/**
+dist/**
+out/**
+coverage/**
+.nyc_output/**
+.vscode-test/**
+.vscode-test-web/**
+package-lock.json
+**/*.vsix
+
+# Private reference checkout
+spectrals/**
