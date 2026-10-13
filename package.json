@@ -8,7 +8,7 @@
   "version": "0.13.0",
   "repository": "https://github.com/seanfroste/vscode-spectra-assist",
   "engines": {
-    "vscode": "^1.87.0"
+    "vscode": "^1.140.0"
   },
   "categories": [
     "Programming Languages"
