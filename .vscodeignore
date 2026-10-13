@@ -2,7 +2,6 @@
 .vscode-test/**
 .gitignore
 vsc-extension-quickstart.md
-spectrals/**
 AGENTS.md
 CONTEXT*.md
 docs/agents/**

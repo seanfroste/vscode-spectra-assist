@@ -22,9 +22,3 @@ Read [docs/agents/issue-tracker.md](docs/agents/issue-tracker.md) for issue work
 ### Domain docs
 
 Before exploring, read [docs/agents/domain.md](docs/agents/domain.md) and [CONTEXT.md](CONTEXT.md). One public extension context; missing ADRs non-blocking.
-
-## Private reference checkout
-
-- Optional `spectrals/`: LSP implementation/feature-set reference only. Not runtime dependency, extension payload, or source for vendoring code/examples.
-- On every branch, NEVER commit or publish/package `spectrals/` or its content from this repository. Keep the checkout private and preserve Git and VSIX exclusions.
-- `.gitignore` excludes `spectrals/`; `.vscodeignore` excludes `spectrals/**`.
