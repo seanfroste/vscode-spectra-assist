@@ -1,7 +1,7 @@
 # Spectra Assist
 
 [![Version](https://img.shields.io/badge/version-0.12.0-blue.svg)](https://github.com/seanfroste/vscode-spectra-assist/releases)
-[![VSCode](https://img.shields.io/badge/VSCode-1.87.0+-green.svg)](https://code.visualstudio.com/)
+[![VSCode](https://img.shields.io/badge/VSCode-1.140.0+-green.svg)](https://code.visualstudio.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Intelligent support for SPECTRA 3D Device Simulator input files (*.in). Provides syntax highlighting, code snippets, and Language Server Protocol (LSP) features including hover information, auto-completion, diagnostics, go-to-definition, find references, and document symbols.
@@ -19,7 +19,7 @@ Intelligent support for SPECTRA 3D Device Simulator input files (*.in). Provides
 
 ## Requirements
 
-- Visual Studio Code 1.87.0+
+- Visual Studio Code 1.140.0+
 - Windows, macOS, or Linux (x64 or ARM64)
 
 ## Extension Settings
