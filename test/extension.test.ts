@@ -14,14 +14,14 @@ vi.mock('vscode', () => ({
 }));
 
 // Mock file system operations
-vi.mock('fs', () => ({
+vi.mock('node:fs', () => ({
   existsSync: vi.fn(),
   statSync: vi.fn(),
   readdirSync: vi.fn(),
 }));
 
 // Mock path operations
-vi.mock('path', () => ({
+vi.mock('node:path', () => ({
   join: vi.fn(),
 }));
 
@@ -43,8 +43,8 @@ vi.mock('vscode-languageclient/node', () => ({
 // Import after mocks are set up
 import { activate } from '../src/extension';
 import * as vscode from 'vscode';
-import * as fs from 'fs';
-import * as path from 'path';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 import { getLanguageServerPath, getPlatformInfo } from '../src/utils/binaryResolver';
 
 describe('Extension', () => {
@@ -80,13 +80,13 @@ describe('Extension', () => {
       },
     }));
 
-    vi.doMock('fs', () => ({
+    vi.doMock('node:fs', () => ({
       existsSync: vi.fn(),
       statSync: vi.fn(),
       readdirSync: vi.fn(),
     }));
 
-    vi.doMock('path', () => ({
+    vi.doMock('node:path', () => ({
       join: vi.fn(),
     }));
 

@@ -1,16 +1,16 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import * as os from 'os';
-import * as path from 'path';
+import * as os from 'node:os';
+import * as path from 'node:path';
 import { getLanguageServerPath, getPlatformInfo } from '../src/utils/binaryResolver';
 
 // Mock the os module
-vi.mock('os', () => ({
+vi.mock('node:os', () => ({
   platform: vi.fn(() => 'linux'),
   arch: vi.fn(() => 'x64'),
 }));
 
 // Mock the fs module
-vi.mock('fs', () => ({
+vi.mock('node:fs', () => ({
   existsSync: vi.fn(() => true),
   statSync: vi.fn(() => ({ size: 1000, isFile: () => true })),
 }));

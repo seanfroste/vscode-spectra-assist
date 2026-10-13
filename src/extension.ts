@@ -1,12 +1,14 @@
-import * as path from 'path';
-import * as fs from 'fs';
-import { workspace, ExtensionContext, OutputChannel, window } from 'vscode';
+import * as path from 'node:path';
+import * as fs from 'node:fs';
+import type { ExtensionContext, OutputChannel} from 'vscode';
+import { workspace, window } from 'vscode';
+import type {
+  LanguageClientOptions,
+  ServerOptions,
+  ExecutableOptions} from 'vscode-languageclient/node';
 import {
   LanguageClient,
-  LanguageClientOptions,
-  RevealOutputChannelOn,
-  ServerOptions,
-  ExecutableOptions,
+  RevealOutputChannelOn
 } from 'vscode-languageclient/node';
 import { getLanguageServerPath, getPlatformInfo } from './utils/binaryResolver';
 

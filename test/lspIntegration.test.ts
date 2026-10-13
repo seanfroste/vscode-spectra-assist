@@ -1,7 +1,8 @@
 import { afterAll, describe, expect, it } from 'vitest';
-import { spawn, ChildProcess } from 'child_process';
-import * as path from 'path';
-import * as fs from 'fs';
+import type { ChildProcess } from 'node:child_process';
+import { spawn } from 'node:child_process';
+import * as path from 'node:path';
+import * as fs from 'node:fs';
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 const BIN_DIR = path.join(PROJECT_ROOT, 'bin');
