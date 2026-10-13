@@ -4,7 +4,7 @@
 [![VSCode](https://img.shields.io/badge/VSCode-1.87.0+-green.svg)](https://code.visualstudio.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Intelligent support for SPECTRA 3D Device Simulator input files (*.in). Provides syntax highlighting, code snippets, and full Language Server Protocol (LSP) features including hover information, auto-completion, diagnostics, go-to-definition, and find references.
+Intelligent support for SPECTRA 3D Device Simulator input files (*.in). Provides syntax highlighting, code snippets, and Language Server Protocol (LSP) features including hover information, auto-completion, diagnostics, go-to-definition, find references, and document symbols.
 
 ## Features
 
@@ -15,7 +15,7 @@ Intelligent support for SPECTRA 3D Device Simulator input files (*.in). Provides
 - **Real-Time Diagnostics**: Error and warning detection as you type
 - **Go to Definition**: Navigate to variable definitions
 - **Find All References**: Locate all usages of defined variables
-- **Document Validation**: Automatic validation with configurable severity levels
+- **Document Symbols**: View statements and nested parameters in the document outline
 
 ## Requirements
 
@@ -26,13 +26,14 @@ Intelligent support for SPECTRA 3D Device Simulator input files (*.in). Provides
 
 This extension contributes the following settings:
 
-- `spectrals.intellisense` (boolean, default: true): Enable hover information and code completion
-- `spectrals.navigation` (boolean, default: true): Enable go-to-definition and find-references features
-- `spectrals.diagnostics` (boolean, default: true): Enable syntax validation and error reporting
-- `spectrals.traceLevel` (string, default: "messages"): Logging verbosity (off, messages, verbose)
-- `spectrals.diagnosticsSeverity` (string, default: "error"): Minimum diagnostic severity level (error, warning, info)
-- `spectrals.maxDiagnosticsPerFile` (number, default: 100): Maximum number of diagnostics per file (0 = unlimited)
-- `spectrals.lsp.logging` (boolean, default: false): Enable LSP communication logging to output channel
+- `spectrals.intellisense` (boolean, default: `true`): Enable hover information and code completion.
+- `spectrals.navigation` (boolean, default: `true`): Enable go-to-definition and find-references features.
+- `spectrals.diagnostics` (boolean, default: `true`): Enable or disable server diagnostics.
+- `spectrals.traceLevel` (string, default: `"messages"`): Server logging verbosity (`off`, `messages`, or `verbose`); server logs go to standard error.
+- `spectrals.diagnosticsSeverity` (string, default: `"error"`): Minimum diagnostic severity (`error`, `warning`, or `info`). Warning includes errors and warnings; info includes all diagnostics.
+- `spectrals.maxDiagnosticsPerFile` (number, default: `100`): Maximum published diagnostics per file; `0` means unlimited. Severity filtering happens before the cap.
+
+The LSP server receives exactly these six settings. Document symbols are always available, independently of the IntelliSense and navigation settings.
 
 ## Known Issues
 
