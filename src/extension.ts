@@ -87,6 +87,19 @@ export async function activate(context: ExtensionContext) {
     },
   };
 
+  const readServerSettings = () => {
+    const configuration = workspace.getConfiguration('spectrals');
+    return {
+      intellisense: configuration.get('intellisense', true),
+      navigation: configuration.get('navigation', true),
+      diagnostics: configuration.get('diagnostics', true),
+      traceLevel: configuration.get('traceLevel', 'messages'),
+      diagnosticsSeverity: configuration.get('diagnosticsSeverity', 'error'),
+      maxDiagnosticsPerFile: configuration.get('maxDiagnosticsPerFile', 100),
+    };
+  };
+  const serverSettings = readServerSettings();
+
   // Client options - configure which documents to sync
   const clientOptions: LanguageClientOptions = {
     // Register the server for .in files (spectra-in language)
@@ -97,28 +110,11 @@ export async function activate(context: ExtensionContext) {
     synchronize: {
       // Notify the server about file changes in the workspace
       fileEvents: workspace.createFileSystemWatcher('**/*.in'),
-      // Notify the server about configuration changes
-      configurationSection: 'spectrals',
     },
-    // Enable diagnostics
     diagnosticCollectionName: 'spectrals',
-    // Output channel for logging
-    outputChannel: outputChannel,
-    // Reveal output channel on error
+    outputChannel,
     revealOutputChannelOn: RevealOutputChannelOn.Error,
-    // Initialization options for the language server
-    initializationOptions: {
-      intellisense: workspace.getConfiguration('spectrals').get('intellisense', true),
-      navigation: workspace.getConfiguration('spectrals').get('navigation', true),
-      diagnostics: workspace.getConfiguration('spectrals').get('diagnostics', true),
-      traceLevel: workspace.getConfiguration('spectrals').get('traceLevel', 'messages'),
-      diagnosticsSeverity: workspace
-        .getConfiguration('spectrals')
-        .get('diagnosticsSeverity', 'error'),
-      maxDiagnosticsPerFile: workspace
-        .getConfiguration('spectrals')
-        .get('maxDiagnosticsPerFile', 100),
-    },
+    initializationOptions: serverSettings,
   };
 
   // Create the language client
@@ -130,6 +126,22 @@ export async function activate(context: ExtensionContext) {
   try {
     await client.start();
     outputChannel.appendLine('Language server started successfully');
+
+    const sendServerSettings = async () => {
+      try {
+        await client.sendNotification('workspace/didChangeConfiguration', { settings: readServerSettings() });
+      } catch (error) {
+        outputChannel.appendLine(
+          `Failed to update language server settings: ${error instanceof Error ? error.message : String(error)}`
+        );
+      }
+    };
+    context.subscriptions.push(workspace.onDidChangeConfiguration(event => {
+      if (event.affectsConfiguration('spectrals')) {
+        void sendServerSettings();
+      }
+    }));
+    await sendServerSettings();
   } catch (error) {
     const errorMsg = `Failed to start language server: ${error instanceof Error ? error.message : String(error)}`;
     outputChannel.appendLine(errorMsg);

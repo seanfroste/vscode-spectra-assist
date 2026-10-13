@@ -9,6 +9,7 @@ vi.mock('vscode', () => ({
   workspace: {
     createFileSystemWatcher: vi.fn(),
     getConfiguration: vi.fn(),
+    onDidChangeConfiguration: vi.fn(() => ({ dispose: vi.fn() })),
   },
 }));
 
@@ -57,6 +58,7 @@ describe('Extension', () => {
 
     mockContext = {
       extensionPath: '/mock/extension',
+      subscriptions: [],
     };
     mockOutputChannel = {
       appendLine: vi.fn(),
@@ -75,6 +77,7 @@ describe('Extension', () => {
       workspace: {
         createFileSystemWatcher: vi.fn(),
         getConfiguration: vi.fn(),
+        onDidChangeConfiguration: vi.fn(() => ({ dispose: vi.fn() })),
       },
     }));
 
@@ -159,6 +162,36 @@ describe('Extension', () => {
       expect(mockClient.start).toHaveBeenCalled();
       // Note: Success message logging happens asynchronously
     });
+    it('sends flat server settings at startup and when Spectra settings change', async () => {
+      const mockClient = {
+        start: vi.fn(() => Promise.resolve()),
+        sendNotification: vi.fn(() => Promise.resolve()),
+      };
+      vi.mocked(LanguageClient).mockImplementation(() => mockClient as unknown as LanguageClient);
+      await activate(mockContext);
+
+      const clientOptions = vi.mocked(LanguageClient).mock.calls[0][3];
+      expect(clientOptions.initializationOptions).toEqual({
+        intellisense: true,
+        navigation: true,
+        diagnostics: true,
+        traceLevel: 'messages',
+        diagnosticsSeverity: 'error',
+        maxDiagnosticsPerFile: 100,
+      });
+      expect(clientOptions.synchronize?.configurationSection).toBeUndefined();
+      expect(mockClient.sendNotification).toHaveBeenCalledWith('workspace/didChangeConfiguration', {
+        settings: clientOptions.initializationOptions,
+      });
+
+      const listener = vi.mocked(vscode.workspace.onDidChangeConfiguration).mock.calls[0][0];
+      expect(vi.mocked(vscode.workspace.onDidChangeConfiguration).mock.invocationCallOrder[0])
+        .toBeLessThan(mockClient.sendNotification.mock.invocationCallOrder[0]);
+      listener({ affectsConfiguration: section => section === 'spectrals' } as Parameters<typeof listener>[0]);
+      await Promise.resolve();
+      expect(mockClient.sendNotification).toHaveBeenCalledTimes(2);
+    });
+
 
     it('should handle binary not found error', async () => {
       (fs.existsSync as any).mockReturnValue(false);

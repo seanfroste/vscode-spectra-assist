@@ -28,7 +28,7 @@ export function getLanguageServerPath(context: ExtensionContext): string {
       binaryName = arch === 'arm64' ? 'spectrals-linux-arm64' : 'spectrals-linux-x64';
       break;
     case 'win32':
-      binaryName = arch === 'arm64' ? 'spectrals-windows-arm64.exe' : 'spectrals-windows-x64.exe';
+      binaryName = arch === 'arm64' ? 'spectrals-windows-arm64.exe' : 'spectrals-windows-amd64.exe';
       break;
     default:
       throw new Error(`Unsupported platform: ${platform}`);
