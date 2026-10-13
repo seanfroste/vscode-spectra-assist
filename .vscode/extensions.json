@@ -2,6 +2,6 @@
   "recommendations": [
     "redcmd.tmlanguage-syntax-highlighter",
     "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint"
-  ]
+    "dbaeumer.vscode-eslint",
+  ],
 }

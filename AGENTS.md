@@ -11,6 +11,7 @@
 - `lang-server` is experimental/pre-release; `main` remains the release branch.
 - Target SPECTRA software/language closed source; exclude proprietary syntax/examples/private material from public docs and changes.
 - Derive commands from config, e.g. `package.json`.
+
 ## Agent skills
 
 ### Issue tracker

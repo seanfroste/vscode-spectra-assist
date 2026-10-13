@@ -13,7 +13,11 @@
   "embeddedLanguageFormatting": "off",
   "overrides": [
     {
-      "files": ["**/*.code-snippets", "syntaxes/**/*.tmLanguage.json", "language-configuration.json"],
+      "files": [
+        "**/*.code-snippets",
+        "syntaxes/**/*.tmLanguage.json",
+        "language-configuration.json"
+      ],
       "options": { "parser": "json" }
     },
     {

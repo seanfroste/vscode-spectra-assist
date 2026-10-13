@@ -11,7 +11,8 @@ async function waitForTestResult(file) {
     try {
       const result = await readFile(file, 'utf8');
       if (result === 'passed') return;
-      if (result.length > 0) throw new Error(`Extension-host suite reported unexpected result: ${result}`);
+      if (result.length > 0)
+        throw new Error(`Extension-host suite reported unexpected result: ${result}`);
     } catch (error) {
       if (error?.code !== 'ENOENT') throw error;
     }
@@ -25,7 +26,9 @@ const work = await mkdtemp(path.join(os.tmpdir(), 'spectra-assist-host-'));
 try {
   const goTest = await readFile(path.join(root, 'spectrals/tests/lsp_test.go'), 'utf8');
   const fixture = goTest.match(/text := ("(?:[^"\\]|\\.)*")/);
-  const changed = goTest.match(/"contentChanges": \[\]any\{map\[string\]any\{"text": ("(?:[^"\\]|\\.)*")/);
+  const changed = goTest.match(
+    /"contentChanges": \[\]any\{map\[string\]any\{"text": ("(?:[^"\\]|\\.)*")/
+  );
   assert(fixture && changed, 'Private tagged contract fixture missing');
   const workspace = path.join(work, 'workspace');
   await mkdir(workspace);
@@ -37,7 +40,9 @@ try {
   process.env.SPECTRA_HOST_TEST_RESULT = testResultPath;
 
   const result = await runTests({
-    ...(process.env.VSCODE_EXECUTABLE ? { vscodeExecutablePath: process.env.VSCODE_EXECUTABLE } : {}),
+    ...(process.env.VSCODE_EXECUTABLE
+      ? { vscodeExecutablePath: process.env.VSCODE_EXECUTABLE }
+      : {}),
     extensionDevelopmentPath: root,
     extensionTestsPath: path.join(root, 'test/vscode/suite/index.js'),
     launchArgs: [

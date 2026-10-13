@@ -1,15 +1,13 @@
 import * as path from 'node:path';
 import * as fs from 'node:fs';
-import type { ExtensionContext, OutputChannel} from 'vscode';
+import type { ExtensionContext, OutputChannel } from 'vscode';
 import { workspace, window } from 'vscode';
 import type {
   LanguageClientOptions,
   ServerOptions,
-  ExecutableOptions} from 'vscode-languageclient/node';
-import {
-  LanguageClient,
-  RevealOutputChannelOn
+  ExecutableOptions,
 } from 'vscode-languageclient/node';
+import { LanguageClient, RevealOutputChannelOn } from 'vscode-languageclient/node';
 import { getLanguageServerPath, getPlatformInfo } from './utils/binaryResolver';
 
 let client: LanguageClient;
@@ -53,7 +51,9 @@ export async function activate(context: ExtensionContext) {
         outputChannel.appendLine(`Debug - Bin contents: ${files.join(', ')}`);
       }
     } catch (e) {
-      outputChannel.appendLine(`Debug - Error reading bin: ${e instanceof Error ? e.message : String(e)}`);
+      outputChannel.appendLine(
+        `Debug - Error reading bin: ${e instanceof Error ? e.message : String(e)}`
+      );
     }
   } catch (err) {
     const errorMsg = `Failed to get language server path: ${err instanceof Error ? err.message : String(err)}`;
@@ -131,18 +131,22 @@ export async function activate(context: ExtensionContext) {
 
     const sendServerSettings = async () => {
       try {
-        await client.sendNotification('workspace/didChangeConfiguration', { settings: readServerSettings() });
+        await client.sendNotification('workspace/didChangeConfiguration', {
+          settings: readServerSettings(),
+        });
       } catch (error) {
         outputChannel.appendLine(
           `Failed to update language server settings: ${error instanceof Error ? error.message : String(error)}`
         );
       }
     };
-    context.subscriptions.push(workspace.onDidChangeConfiguration(event => {
-      if (event.affectsConfiguration('spectrals')) {
-        void sendServerSettings();
-      }
-    }));
+    context.subscriptions.push(
+      workspace.onDidChangeConfiguration(event => {
+        if (event.affectsConfiguration('spectrals')) {
+          void sendServerSettings();
+        }
+      })
+    );
     await sendServerSettings();
   } catch (error) {
     const errorMsg = `Failed to start language server: ${error instanceof Error ? error.message : String(error)}`;

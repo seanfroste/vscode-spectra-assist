@@ -15,12 +15,7 @@ export default defineConfig({
       fileName: 'extension',
     },
     rolldownOptions: {
-      external: [
-        'vscode',
-        'path',
-        'fs',
-        'os'
-      ],
+      external: ['vscode', 'path', 'fs', 'os'],
       output: {
         format: 'cjs',
         exports: 'named',

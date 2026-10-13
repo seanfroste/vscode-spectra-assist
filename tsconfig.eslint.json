@@ -6,7 +6,7 @@
     "target": "ES2022",
     "lib": ["ES2022"],
     "module": "ESNext",
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
   },
   "include": ["src/**/*.ts", "test/**/*.test.ts", "vite.config.ts", "vitest.config.ts"],
   "exclude": [
@@ -18,6 +18,6 @@
     "coverage",
     ".nyc_output",
     ".vscode-test",
-    ".vscode-test-web"
-  ]
+    ".vscode-test-web",
+  ],
 }
