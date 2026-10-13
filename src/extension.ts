@@ -53,12 +53,12 @@ export async function activate(context: ExtensionContext) {
         outputChannel.appendLine(`Debug - Bin contents: ${files.join(', ')}`);
       }
     } catch (e) {
-      outputChannel.appendLine(`Debug - Error reading bin: ${e}`);
+      outputChannel.appendLine(`Debug - Error reading bin: ${e instanceof Error ? e.message : String(e)}`);
     }
   } catch (err) {
     const errorMsg = `Failed to get language server path: ${err instanceof Error ? err.message : String(err)}`;
     outputChannel.appendLine(errorMsg);
-    window.showErrorMessage(errorMsg);
+    void window.showErrorMessage(errorMsg);
     return;
   }
 
@@ -66,7 +66,7 @@ export async function activate(context: ExtensionContext) {
   if (!fs.existsSync(serverPath)) {
     const errorMsg = `Language server binary not found: ${serverPath}`;
     outputChannel.appendLine(errorMsg);
-    window.showErrorMessage(errorMsg);
+    void window.showErrorMessage(errorMsg);
     return;
   }
 
@@ -147,7 +147,7 @@ export async function activate(context: ExtensionContext) {
   } catch (error) {
     const errorMsg = `Failed to start language server: ${error instanceof Error ? error.message : String(error)}`;
     outputChannel.appendLine(errorMsg);
-    window.showErrorMessage(errorMsg);
+    void window.showErrorMessage(errorMsg);
   }
 }
 
@@ -163,8 +163,10 @@ export function deactivate(): Promise<void> | undefined {
       outputChannel?.appendLine('Language server stopped');
       outputChannel?.dispose();
     },
-    error => {
-      outputChannel?.appendLine(`Error stopping language server: ${error.message}`);
+    (error: unknown) => {
+      outputChannel?.appendLine(
+        `Error stopping language server: ${error instanceof Error ? error.message : String(error)}`
+      );
       outputChannel?.dispose();
     }
   );
