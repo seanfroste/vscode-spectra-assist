@@ -22,3 +22,7 @@ Read [docs/agents/issue-tracker.md](docs/agents/issue-tracker.md) for issue work
 ### Domain docs
 
 Before exploring, read [docs/agents/domain.md](docs/agents/domain.md) and [CONTEXT.md](CONTEXT.md). One public extension context; missing ADRs non-blocking.
+
+## Private reference checkout
+
+`spectrals/` is optional source context for the experimental language-server feature set, never a runtime dependency or source for vendored code/examples. Keep it out of Git and VSIX on every branch.
