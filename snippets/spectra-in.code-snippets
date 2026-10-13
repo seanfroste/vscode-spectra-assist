@@ -15,10 +15,7 @@
   // Statement Snippets
   "BIAS statement": {
     "prefix": ["bias"],
-    "body": [
-      "BIAS ENAME=${1:<char>} VSTEP=${2:<real>} NSTEP=${3:<real>} ERROR=${4:<real>} ",
-      "$0"
-    ],
+    "body": ["BIAS ENAME=${1:<char>} VSTEP=${2:<real>} NSTEP=${3:<real>} ERROR=${4:<real>} ", "$0"],
     "description": "snippet for the BIAS statement and required parameters, using its abbreviation"
   },
   "CONSTANT statement": {
@@ -33,10 +30,7 @@
   },
   "DEFINE statement": {
     "prefix": ["define"],
-    "body": [
-      "DEFINE NAME=${1:<char>} VALUE=${2:<real>, <series>, or <func>} ",
-      "$0"
-    ],
+    "body": ["DEFINE NAME=${1:<char>} VALUE=${2:<real>, <series>, or <func>} ", "$0"],
     "description": "snippet for the DEFINE statement and required parameters, using its abbreviation"
   },
   "DEPOSIT statement": {

@@ -1,40 +1,28 @@
 {
   "name": "vscode-spectra-assist",
-  "type": "module",
-  "main": "./dist/extension.cjs",
   "displayName": "Spectra Assist",
-  "description": "Language Extension for SPECTRA Calculation Input files",
-  "publisher": "seanfroste",
   "version": "0.13.0",
-  "repository": "https://github.com/seanfroste/vscode-spectra-assist",
-  "engines": {
-    "vscode": "^1.140.0"
-  },
+  "description": "Language Extension for SPECTRA Calculation Input files",
   "categories": [
     "Programming Languages"
   ],
+  "repository": "https://github.com/seanfroste/vscode-spectra-assist",
+  "publisher": "seanfroste",
+  "type": "module",
+  "main": "./dist/extension.cjs",
   "scripts": {
-    "compile": "tsc -p ./",
     "bundle": "vite build",
+    "compile": "tsc -p ./",
+    "format": "prettier --write . --ignore-path .prettierignore",
+    "format:check": "prettier --check . --ignore-path .prettierignore",
+    "lint": "eslint . --max-warnings=0",
+    "lint:fix": "eslint . --fix --max-warnings=0",
     "test": "vitest",
-    "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:extension-host": "npm run bundle && node test/vscode/run.js",
-    "vscode:prepublish": "npm run test:coverage && npm run compile && npm run bundle",
+    "test:run": "vitest run",
+    "vscode:prepublish": "npm run lint && npm run format:check && npm run test:coverage && npm run compile && npm run bundle",
     "watch": "tsc -watch -p ./"
-  },
-  "dependencies": {
-    "vscode-languageclient": "9.0.1"
-  },
-  "devDependencies": {
-    "@types/node": "24.19.2",
-    "@types/vscode": "1.140.0",
-    "@vitest/coverage-v8": "5.0.4",
-    "@vscode/test-electron": "3.1.0",
-    "mocha": "12.0.3",
-    "typescript": "6.0.3",
-    "vite": "8.3.4",
-    "vitest": "5.0.4"
   },
   "contributes": {
     "configuration": {
@@ -87,6 +75,13 @@
         }
       }
     },
+    "grammars": [
+      {
+        "language": "spectra-in",
+        "scopeName": "source.spectra-in",
+        "path": "./syntaxes/spectra-in.tmLanguage.json"
+      }
+    ],
     "languages": [
       {
         "id": "spectra-in",
@@ -99,18 +94,37 @@
         "configuration": "./language-configuration.json"
       }
     ],
-    "grammars": [
-      {
-        "language": "spectra-in",
-        "scopeName": "source.spectra-in",
-        "path": "./syntaxes/spectra-in.tmLanguage.json"
-      }
-    ],
     "snippets": [
       {
         "language": "spectra-in",
         "path": "./snippets/spectra-in.code-snippets"
       }
     ]
+  },
+  "dependencies": {
+    "vscode-languageclient": "9.0.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "@types/node": "24.19.2",
+    "@types/vscode": "1.140.0",
+    "@vitest/coverage-v8": "5.0.4",
+    "@vitest/eslint-plugin": "1.6.27",
+    "@vscode/test-electron": "3.1.0",
+    "eslint": "9.39.5",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-jsonc": "3.4.2",
+    "eslint-plugin-n": "18.4.1",
+    "globals": "17.13.0",
+    "mocha": "12.0.3",
+    "prettier": "3.9.10",
+    "prettier-plugin-packagejson": "3.0.2",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.71.2",
+    "vite": "8.3.4",
+    "vitest": "5.0.4"
+  },
+  "engines": {
+    "vscode": "^1.140.0"
   }
 }

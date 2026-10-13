@@ -246,17 +246,13 @@
           "name": "string.quoted.single.spectra-in",
           "begin": "'",
           "end": "'",
-          "patterns": [
-            { "include": "#variables" }
-          ]
+          "patterns": [{ "include": "#variables" }]
         },
         {
           "name": "string.quoted.double.spectra-in",
           "begin": "\"",
           "end": "\"",
-          "patterns": [
-            { "include": "#variables" }
-          ]
+          "patterns": [{ "include": "#variables" }]
         },
         {
           "comment": "User-defined function expressions in {}",

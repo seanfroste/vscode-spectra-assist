@@ -1,6 +1,6 @@
-import * as path from 'path';
-import * as os from 'os';
-import { ExtensionContext } from 'vscode';
+import * as path from 'node:path';
+import * as os from 'node:os';
+import type { ExtensionContext } from 'vscode';
 
 /**
  * Gets the platform-appropriate language server binary path

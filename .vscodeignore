@@ -96,6 +96,7 @@ pnpm-lock.yaml
 # ----------------------------------------------------------------------------
 .editorconfig
 .prettierrc
+.prettierignore
 .prettierrc.*
 .eslintrc*
 .eslintignore

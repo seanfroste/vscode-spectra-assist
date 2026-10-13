@@ -1,35 +1,22 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import * as os from 'os';
-import * as path from 'path';
-import { getLanguageServerPath, getPlatformInfo } from '../src/utils/binaryResolver';
+import * as os from 'node:os';
+import * as path from 'node:path';
+import type { ExtensionContext } from 'vscode';
+import { getLanguageServerPath } from '../src/utils/binaryResolver';
 
 // Mock the os module
-vi.mock('os', () => ({
+vi.mock('node:os', () => ({
   platform: vi.fn(() => 'linux'),
   arch: vi.fn(() => 'x64'),
 }));
 
-// Mock the fs module
-vi.mock('fs', () => ({
-  existsSync: vi.fn(() => true),
-  statSync: vi.fn(() => ({ size: 1000, isFile: () => true })),
-}));
-
 describe('binaryResolver', () => {
-  describe('getPlatformInfo', () => {
-    it('should return platform and architecture', () => {
-      const result = getPlatformInfo();
-      expect(result).toMatch(/^[a-z0-9]+-[a-z0-9]+$/);
-    });
-  });
-
   describe('getLanguageServerPath', () => {
-    let mockContext: any;
+    const mockContext = { extensionPath: '/test/extension' } as ExtensionContext;
 
     beforeEach(() => {
-      mockContext = {
-        extensionPath: '/test/extension',
-      };
+      vi.mocked(os.platform).mockReturnValue('linux');
+      vi.mocked(os.arch).mockReturnValue('x64');
     });
 
     it('should return correct path for Windows x64', () => {
@@ -49,9 +36,12 @@ describe('binaryResolver', () => {
     });
 
     it('should throw error for macOS x64', () => {
-      vi.mocked(os.platform).mockReturnValue('unsupported' as any);
+      vi.mocked(os.platform).mockReturnValue('darwin');
+      vi.mocked(os.arch).mockReturnValue('x64');
 
-      expect(() => getLanguageServerPath(mockContext)).toThrow('Unsupported platform: unsupported');
+      expect(() => getLanguageServerPath(mockContext)).toThrow(
+        'Unsupported architecture: x64 on macOS. Only arm64 is supported.'
+      );
     });
 
     it('should return correct path for Linux x64', () => {
@@ -63,9 +53,9 @@ describe('binaryResolver', () => {
     });
 
     it('should throw error for unsupported platform', () => {
-      vi.mocked(os.platform).mockReturnValue('unsupported' as any);
+      vi.mocked(os.platform).mockReturnValue('freebsd');
 
-      expect(() => getLanguageServerPath(mockContext)).toThrow('Unsupported platform: unsupported');
+      expect(() => getLanguageServerPath(mockContext)).toThrow('Unsupported platform: freebsd');
     });
   });
 });

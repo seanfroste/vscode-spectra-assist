@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 // Mock VS Code APIs before importing extension
 vi.mock('vscode', () => ({
@@ -14,14 +14,14 @@ vi.mock('vscode', () => ({
 }));
 
 // Mock file system operations
-vi.mock('fs', () => ({
+vi.mock('node:fs', () => ({
   existsSync: vi.fn(),
   statSync: vi.fn(),
   readdirSync: vi.fn(),
 }));
 
 // Mock path operations
-vi.mock('path', () => ({
+vi.mock('node:path', () => ({
   join: vi.fn(),
 }));
 
@@ -35,25 +35,22 @@ vi.mock('../src/utils/binaryResolver', () => ({
 vi.mock('vscode-languageclient/node', () => ({
   LanguageClient: vi.fn(),
   RevealOutputChannelOn: { Error: 2 },
-  TransportKind: {
-    stdio: 0,
-  },
 }));
 
 // Import after mocks are set up
 import { activate } from '../src/extension';
 import * as vscode from 'vscode';
-import * as fs from 'fs';
-import * as path from 'path';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 import { getLanguageServerPath, getPlatformInfo } from '../src/utils/binaryResolver';
+import type { ExtensionContext, OutputChannel } from 'vscode';
 
 describe('Extension', () => {
-  let mockContext: any;
-  let mockOutputChannel: any;
+  let mockContext: Pick<ExtensionContext, 'extensionPath' | 'subscriptions'>;
+  let mockOutputChannel: Pick<OutputChannel, 'appendLine' | 'dispose'>;
 
   beforeEach(() => {
-    // Reset module state to avoid test interference
-    vi.resetModules();
+    vi.resetAllMocks();
 
     mockContext = {
       extensionPath: '/mock/extension',
@@ -64,67 +61,28 @@ describe('Extension', () => {
       dispose: vi.fn(),
     };
 
-    // Reset mocks
-    vi.clearAllMocks();
+    vi.mocked(vscode.window.createOutputChannel).mockReturnValue(
+      mockOutputChannel as ReturnType<typeof vscode.window.createOutputChannel>
+    );
+    vi.mocked(vscode.workspace.getConfiguration).mockReturnValue({
+      get: <T>(_key: string, defaultValue: T): T => defaultValue,
+    } as vscode.WorkspaceConfiguration);
+    vi.mocked(fs.existsSync).mockReturnValue(true);
+    vi.mocked(fs.statSync).mockReturnValue({
+      size: 1000,
+      isFile: () => true,
+    } as ReturnType<typeof fs.statSync>);
 
-    // Re-import after reset
-    vi.doMock('vscode', () => ({
-      window: {
-        createOutputChannel: vi.fn(),
-        showErrorMessage: vi.fn(),
-      },
-      workspace: {
-        createFileSystemWatcher: vi.fn(),
-        getConfiguration: vi.fn(),
-        onDidChangeConfiguration: vi.fn(() => ({ dispose: vi.fn() })),
-      },
-    }));
-
-    vi.doMock('fs', () => ({
-      existsSync: vi.fn(),
-      statSync: vi.fn(),
-      readdirSync: vi.fn(),
-    }));
-
-    vi.doMock('path', () => ({
-      join: vi.fn(),
-    }));
-
-    vi.doMock('../src/utils/binaryResolver', () => ({
-      getLanguageServerPath: vi.fn(),
-      getPlatformInfo: vi.fn(),
-    }));
-
-    vi.doMock('vscode-languageclient/node', () => ({
-      LanguageClient: vi.fn(),
-      RevealOutputChannelOn: { Error: 2 },
-      TransportKind: {
-        stdio: 0,
-      },
-    }));
-
-    // Setup default mocks
-    (vscode.window.createOutputChannel as any).mockReturnValue(mockOutputChannel);
-    (vscode.workspace.getConfiguration as any).mockReturnValue({
-      get: vi.fn((key: string, defaultValue: any) => defaultValue),
-    });
-    (fs.existsSync as any).mockReturnValue(true);
-    (fs.statSync as any).mockReturnValue({ size: 1000, isFile: () => true });
-    (fs.readdirSync as any).mockReturnValue(['spectrals-windows-amd64.exe']);
-    (path.join as any).mockImplementation((...args: string[]) => args.join('/'));
-    (getLanguageServerPath as any).mockReturnValue('/mock/path/spectrals.exe');
-    (getPlatformInfo as any).mockReturnValue('mock-platform');
-  });
-
-  afterEach(() => {
-    vi.restoreAllMocks();
+    vi.mocked(path.join).mockImplementation((...args: string[]) => args.join('/'));
+    vi.mocked(getLanguageServerPath).mockReturnValue('/mock/path/spectrals.exe');
+    vi.mocked(getPlatformInfo).mockReturnValue('mock-platform');
   });
 
   describe('activate', () => {
     it('should handle binary not found error', async () => {
-      (fs.existsSync as any).mockReturnValue(false);
+      vi.mocked(fs.existsSync).mockReturnValue(false);
 
-      await activate(mockContext);
+      await activate(mockContext as ExtensionContext);
 
       expect(vscode.window.showErrorMessage).toHaveBeenCalledWith(
         'Language server binary not found: /mock/path/spectrals.exe'
@@ -132,11 +90,11 @@ describe('Extension', () => {
     });
 
     it('should handle server path resolution error', async () => {
-      (getLanguageServerPath as any).mockImplementation(() => {
+      vi.mocked(getLanguageServerPath).mockImplementation(() => {
         throw new Error('Unsupported platform');
       });
 
-      await activate(mockContext);
+      await activate(mockContext as ExtensionContext);
 
       expect(vscode.window.showErrorMessage).toHaveBeenCalledWith(
         'Failed to get language server path: Unsupported platform'
