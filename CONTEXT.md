@@ -1,29 +1,23 @@
 # Spectra Assist
 
-This context covers the VS Code extension code for Spectra Assist and the vocabulary the extension uses to describe its editor features.
+Extension-only context: experimental/pre-release VS Code language-server branch. No proprietary syntax/examples.
 
-## Language
+## Branch scope
 
-**Intellisense**:
-An umbrella capability covering hover information and code completion.
-_Avoid_: autocomplete, smart hints
+`lang-server`: experimental language-server integration; `main`: release branch for static syntax highlighting/snippets.
 
-**Go to definition**:
-A navigation capability that jumps to the symbol or statement definition for the current location.
-_Avoid_: jump to source, definition lookup
+## Extension vocabulary
 
-**Find references**:
-A navigation capability that locates all usages of a symbol or statement.
-_Avoid_: search references, usages lookup
+- **IntelliSense**: hover information and code completion.
+- **Go to definition**: navigation to the definition at the current location.
+- **Find references**: navigation to usages of a symbol or statement.
+- **Diagnostics**: extension-reported validation and error information for editor documents.
+- **SPECTRA input files**: `.in` files targeted by the `spectra-in` language identifier.
 
-**Diagnostics**:
-An umbrella capability covering validation and error reporting for SPECTRA input files.
-_Avoid_: linting, error checking
+## Public extension surface
 
-**SPECTRA input files**:
-The `.in` files the extension targets.
-_Avoid_: input files, calculation files
+`package.json`: extension entrypoint, language contributions, settings, commands. `src/`: extension implementation; `dist/`: bundled entrypoint. Config/tests define exact behavior.
 
-**local reference clone**:
-A checked-out copy of the SPECTRALS LSP project kept for implementation context.
-_Avoid_: dependency, upstream project
+## Closed-source boundary
+
+Target SPECTRA software/language closed source. Public context covers VS Code only; private implementation references are not language docs. See `AGENTS.md` for `spectrals/` pin/exclusion rules.
