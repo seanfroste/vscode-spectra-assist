@@ -4,7 +4,7 @@
 
 1. Invoke `using-superpowers` before any response, question, or tool, except the skill-loading call itself.
 2. Invoke `ask-matt` next, before any other response, question, or tool.
-3. Follow its selected flow and load the applicable task skill before further responses, questions, or tools. Approved plan: resume execution, not idea discovery.
+3. Follow its selected flow and load the applicable task skill before further responses, questions, or tools.
 
 ## Branch and scope
 
